@@ -1,0 +1,103 @@
+site_name: Docker Mastery Path
+site_description: A structured, module-wise Docker containerization training program from entry level to master level.
+site_url: https://sigilipelli.github.io/docker-mastery-path/
+repo_url: https://github.com/SIGILIPELLI/docker-mastery-path
+repo_name: docker-mastery-path
+
+theme:
+  name: material
+  favicon: assets/favicon.svg
+  custom_dir: docs/overrides
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.indexes
+    - content.code.copy
+    - content.code.annotate
+    - search.suggest
+    - search.highlight
+
+markdown_extensions:
+  - admonition
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - toc:
+      permalink: true
+
+extra_css:
+  - stylesheets/extra.css
+
+nav:
+  - Home: index.md
+  - Privacy Policy: privacy.md
+  - "Level 1 · Entry":
+      - Overview: level-1/index.md
+      - "01 · What Is Docker & Why Containers?": level-1/01-what-is-docker.md
+      - "02 · Installing Docker": level-1/02-installing-docker.md
+      - "03 · Images vs Containers": level-1/03-images-vs-containers.md
+      - "04 · Running Your First Container": level-1/04-first-container.md
+      - "05 · The Dockerfile": level-1/05-the-dockerfile.md
+      - "06 · Building Images": level-1/06-building-images.md
+      - "07 · Container Lifecycle": level-1/07-container-lifecycle.md
+      - "08 · Volumes & Bind Mounts": level-1/08-volumes-bind-mounts.md
+      - "09 · Networking Basics": level-1/09-networking-basics.md
+      - "10 · Docker Hub & Registries": level-1/10-docker-hub-registries.md
+      - "11 · Project — Containerize an App": level-1/11-project-containerize-app.md
+  - "Level 2 · Intermediate":
+      - Overview: level-2/index.md
+      - "01 · Multi-Stage Builds": level-2/01-multi-stage-builds.md
+      - "02 · Docker Compose Basics": level-2/02-docker-compose-basics.md
+      - "03 · Environment Variables & .env Files": level-2/03-environment-variables-env-files.md
+      - "04 · Image Layering & Build Cache": level-2/04-image-layering-build-cache.md
+      - "05 · Container Logs & Debugging": level-2/05-logs-and-debugging.md
+      - "06 · Health Checks": level-2/06-health-checks.md
+      - "07 · Compose Networks & Volumes": level-2/07-compose-networks-volumes.md
+      - "08 · Managing Images & Tags": level-2/08-managing-images-tags.md
+      - "09 · Compose for Multi-Service Apps": level-2/09-compose-multi-service-apps.md
+      - "10 · Project — Multi-Container Compose App": level-2/10-project-compose-app.md
+  - "Level 3 · Advanced":
+      - Overview: level-3/index.md
+      - "01 · Docker Networking Deep Dive": level-3/01-networking-deep-dive.md
+      - "02 · Security Basics": level-3/02-security-basics.md
+      - "03 · Resource Limits (CPU/Memory)": level-3/03-resource-limits.md
+      - "04 · Multi-Container App Patterns": level-3/04-multi-container-patterns.md
+      - "05 · Private Registries": level-3/05-private-registries.md
+      - "06 · Storage Drivers & Volume Plugins": level-3/06-storage-drivers-volume-plugins.md
+      - "07 · Logging Drivers & Centralized Logging": level-3/07-logging-drivers.md
+      - "08 · Docker Swarm Basics": level-3/08-docker-swarm-basics.md
+      - "09 · Secrets & Config Management": level-3/09-secrets-config-management.md
+      - "10 · Project — Secure Production Stack": level-3/10-project-secure-stack.md
+  - "Level 4 · Master":
+      - Overview: level-4/index.md
+      - "01 · Docker in CI/CD Pipelines": level-4/01-docker-in-cicd.md
+      - "02 · Orchestration Handoff (Kubernetes/Swarm)": level-4/02-orchestration-handoff.md
+      - "03 · Production Image Hardening": level-4/03-production-image-hardening.md
+      - "04 · Build Optimization at Scale": level-4/04-build-optimization-at-scale.md
+      - "05 · Designing a Containerized Architecture": level-4/05-containerized-architecture-design.md
+      - "06 · Observability for Containers": level-4/06-observability-for-containers.md
+      - "07 · Zero-Downtime Deployments": level-4/07-zero-downtime-deployments.md
+      - "08 · Cost & Performance at Scale": level-4/08-cost-performance-at-scale.md
+      - "09 · Disaster Recovery & Backups": level-4/09-disaster-recovery-backups.md
+      - "10 · Capstone Project": level-4/10-capstone-project.md
