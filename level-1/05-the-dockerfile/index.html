@@ -970,6 +970,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2457,6 +2468,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2617,6 +2639,38 @@ to application code invalidates the cached dependency-install layer,
 forcing a slow reinstall on every code change — see Level 2's caching
 module for the fix (copying the dependency manifest first, as shown
 above).</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Two Dockerfile behaviors that look like stylistic preferences are actually
+consequences of how Linux processes and signals work.</p>
+<p><strong>Why <code>RUN</code> produces a layer, mechanically.</strong> Each <code>RUN</code> instruction
+during <code>docker build</code> starts an ephemeral container from the current
+image state (same <code>clone()</code>/namespace/overlayfs machinery as <code>docker
+run</code>), executes the command inside it, then — instead of discarding the
+container — the builder diffs its writable layer against what it started
+with and commits <em>that diff</em> as a new, permanent, content-addressed image
+layer (identified by hashing its contents). The ephemeral container is
+then removed, but its filesystem delta lives on as a layer. This is why
+<code>RUN rm -rf /some/big/file</code> in a <em>later</em> instruction doesn't shrink the
+image: the file still physically exists in the earlier layer on disk —
+deleting it later just adds a whiteout file in a new layer that hides it
+from view, exactly like deleting a file inside a running container (see
+module 03). The only way to actually not have those bytes in the image is
+to not create them in that layer in the first place, or to use a
+multi-stage build (Level 2) to copy only what you need into a fresh image.</p>
+<p><strong>Exec form vs. shell form and PID 1 signals.</strong> <code>CMD ["python", "app.py"]</code>
+(exec form) causes the container runtime to <code>exec()</code> that binary directly
+as PID 1. <code>CMD python app.py</code> (shell form) is silently rewritten to <code>CMD
+["/bin/sh", "-c", "python app.py"]</code> — meaning <code>/bin/sh</code> becomes PID 1, and
+your actual <code>python</code> process runs as its <em>child</em>, PID 2 or later. This
+matters because <code>docker stop</code> sends <code>SIGTERM</code> to PID 1 specifically. A
+shell interpreting <code>-c "python app.py"</code> does not automatically forward
+signals to child processes it spawned — many shells simply ignore
+<code>SIGTERM</code> while waiting on a child — so <code>python app.py</code> never receives it,
+and Docker falls back to <code>SIGKILL</code> after the default 10-second grace
+period, giving your process no chance to shut down cleanly (flush
+buffers, close database connections, finish in-flight requests). The exec
+form avoids the extra shell layer entirely, so your process <em>is</em> PID 1 and
+receives <code>SIGTERM</code> directly.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Write a Dockerfile for a tiny Node.js script:</p>
 <ul>

@@ -993,6 +993,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2335,6 +2346,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2500,6 +2522,39 @@ for that container, not named ones you created separately).</p>
 because both mount the same <code>counter-data</code> volume, the count persists and
 increments across completely separate containers — proof the data's
 lifetime is decoupled from any single container's lifetime.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Volumes and bind mounts both work by exploiting the <strong>mount namespace</strong>
+(<code>CLONE_NEWNS</code>) the same way the container's root filesystem does — but
+they bypass overlayfs entirely for the paths involved, which is precisely
+why they behave differently from regular container writes.</p>
+<p><strong>A bind mount is a second view of the same inode, not a copy.</strong> The
+Linux <code>mount --bind</code> mechanism (which <code>docker run -v host:container</code>
+ultimately invokes inside the container's mount namespace) doesn't copy
+data anywhere — it makes an existing directory (or file) accessible at a
+second path by pointing a new mount point at the same underlying inode on
+the host's real filesystem. Reads and writes from either path hit the
+identical on-disk blocks. That's why edits made from the host appear
+instantly inside the container and vice versa: there's exactly one copy
+of the data, referenced from two locations, with no overlayfs upper/lower
+layering involved for that specific mounted path at all — it's excluded
+from the union entirely and mounted directly over whatever was there.</p>
+<p><strong>A named volume is the same mechanism, pointed at Docker's own
+directory.</strong> <code>docker volume create pgdata</code> just makes a directory under
+<code>/var/lib/docker/volumes/pgdata/_data</code> on the host. <code>-v pgdata:/var/lib/postgresql/data</code>
+performs the identical bind-mount operation as above, with the volume's
+managed directory as the host side — the only difference from a bind
+mount is <em>who</em> picked the host path (Docker, vs. you). This is also why
+volume data survives <code>docker rm</code>: removing a container tears down its
+mount namespace (the mount points disappear), but the underlying
+directory on the host — the actual inode holding the data — is untouched,
+exactly as unmounting a USB drive doesn't erase the drive.</p>
+<p><strong>Why the data survives even though the image layers don't.</strong> A
+container's writable layer is an overlayfs <code>upperdir</code> that gets deleted
+along with the container. A mounted path is deliberately carved out of
+that overlay — the kernel resolves any path under a mount point by
+following the mount table first, so the overlayfs layers underneath a
+bind-mounted directory are never consulted or written to for that path at
+all while the mount is active.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Create a named volume called <code>notes-data</code>. Run an <code>alpine</code> container that
 mounts it at <code>/data</code> and appends a line of text to <code>/data/notes.txt</code>

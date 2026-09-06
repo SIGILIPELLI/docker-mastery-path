@@ -1010,6 +1010,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2313,6 +2324,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2464,6 +2486,56 @@ and can be added to or removed from a network without being restarted.</p>
 <p>The second container reaches the first purely by the name <code>redis-srv</code> —
 no IP address needed, because both are on the same user-defined network
 and Docker's embedded DNS resolved the name.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>All of this rests on two Linux kernel primitives: <strong>network namespaces</strong>
+and a <strong>virtual ethernet (veth) pair</strong> wired into a <strong>Linux bridge</strong>.</p>
+<ul>
+<li><strong>Network namespaces.</strong> Each container gets its own network namespace —
+  a completely separate copy of the kernel's network stack: its own
+  routing table, its own set of interfaces (including <code>lo</code>), its own
+  iptables rules, its own <code>/proc/net</code>. This is what makes a container's
+  <code>eth0</code> and <code>172.17.0.2</code> address invisible to any process outside that
+  namespace, and why two containers can each believe they own port 80
+  without conflict.</li>
+<li><strong>The <code>docker0</code> bridge.</strong> On the host's <em>root</em> network namespace, Docker
+  creates a virtual switch — the <code>docker0</code> interface — implemented by the
+  kernel's <code>bridge</code> module (the same code that implements a real Ethernet
+  switch, just in software). It has its own IP (typically <code>172.17.0.1</code>,
+  the default gateway containers see) and forwards frames between
+  everything plugged into it, in this case veth ends.</li>
+<li><strong>veth pairs.</strong> When a container joins a bridge network, Docker creates
+  a <strong>veth pair</strong>: two virtual network interfaces that are permanently
+  linked like a virtual patch cable — anything sent into one end comes
+  out the other instantaneously. One end is moved into the container's
+  network namespace (renamed <code>eth0</code> inside it); the other end stays in
+  the root namespace and is attached to <code>docker0</code> as a bridge port. This
+  is the literal, physical-layer-equivalent mechanism behind "the
+  container is connected to the bridge."</li>
+<li><strong>User-defined bridges and embedded DNS.</strong> A user-defined bridge network
+  (<code>docker network create app-net</code>) is a <em>second</em>, separate Linux bridge
+  device, isolated from <code>docker0</code>, with its own subnet. Docker also runs
+  a lightweight embedded DNS server (listening inside each container's
+  namespace at <code>127.0.0.11:53</code>, injected via <code>/etc/resolv.conf</code>) that
+  Docker's daemon keeps updated with a live map of container name → IP
+  for that specific network. The default <code>bridge</code> network predates this
+  DNS server design and was deliberately left without it for backward
+  compatibility — which is the real reason name resolution silently
+  fails there.</li>
+<li><strong>Port publishing via iptables.</strong> <code>-p 8080:80</code> does not open a socket
+  that proxies traffic in userspace (in the current Linux implementation)
+  — it inserts a rule into the <code>nat</code> table's <code>DOCKER</code> chain via
+  <code>iptables</code>/<code>nftables</code>, roughly <code>DNAT --to-destination 172.17.0.2:80</code> for
+  packets arriving on the host's port 8080. The kernel's netfilter/conntrack
+  subsystem rewrites the destination address of each packet in flight and
+  routes it across the bridge to the container's veth end — all before
+  the packet reaches any container process. <code>docker network inspect</code> and
+  <code>iptables -t nat -L DOCKER -n</code> show these two views (Docker's model and
+  the kernel's actual rule) of the same mechanism.</li>
+<li><strong><code>--network host</code></strong> skips namespace creation for networking entirely —
+  the container process is simply placed in the host's own (root) network
+  namespace, so <code>eth0</code>, routing table, and open ports are literally the
+  host's, which is why no <code>-p</code> mapping is possible or needed.</li>
+</ul>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Create a user-defined bridge network called <code>lab-net</code>. Start an <code>nginx</code>
 container named <code>web</code> attached to it (no need to publish any port to the

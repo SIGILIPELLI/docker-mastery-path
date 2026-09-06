@@ -1110,6 +1110,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise-extend-the-project" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2401,6 +2412,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise-extend-the-project" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2583,6 +2605,54 @@ brand-new container.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>This project quietly exercises four separate kernel/filesystem mechanisms
+working together — worth naming explicitly since they're each doing real
+work behind a one-line command.</p>
+<ul>
+<li><strong>Layer caching during the build.</strong> Docker builds the image one
+  instruction at a time, and for each instruction it checks whether it
+  already has a cached layer produced by the <em>same instruction run
+  against the same parent layer</em> (matched by hashing the instruction
+  string plus, for <code>COPY</code>/<code>ADD</code>, the checksum of the copied files'
+  content). Because <code>COPY requirements.txt .</code> + <code>RUN pip install</code> come
+  <em>before</em> <code>COPY app.py .</code>, editing <code>app.py</code> only invalidates the cache
+  from that <code>COPY</code> onward — the <code>pip install</code> layer's cache entry still
+  matches, so Docker reuses the existing layer bit-for-bit instead of
+  re-running <code>pip install</code> and re-downloading Flask.</li>
+<li><strong>Overlayfs at runtime.</strong> When the container starts, Docker doesn't
+  copy the image's files — it mounts an <strong>overlayfs</strong> union filesystem:
+  every read-only image layer stacked as <code>lowerdir</code>s, plus one writable
+  <code>upperdir</code> created fresh for this container instance. Reading a file
+  transparently falls through to whichever layer actually has it (top
+  layer wins); writing a file uses <strong>copy-up</strong> — the file is copied from
+  its lower, read-only layer into the container's own <code>upperdir</code> before
+  being modified, leaving the original image layer completely untouched.
+  This is why deleting the container and starting a new one from the same
+  image gives you a pristine filesystem again — the new container gets
+  its own empty <code>upperdir</code>.</li>
+<li><strong>Why the volume survives that.</strong> <code>count.txt</code> under <code>/data</code> would
+  otherwise live inside that ephemeral <code>upperdir</code> and vanish with
+  <code>docker rm</code>. A named volume sidesteps overlayfs entirely: Docker uses a
+  <strong>bind mount</strong> (via the mount namespace) to graft a directory that
+  lives under Docker's own storage area (<code>/var/lib/docker/volumes/...</code> on
+  the host) directly onto <code>/data</code> inside the container's mount namespace.
+  That directory's lifecycle is managed independently of any container,
+  which is the literal reason <code>docker rm -f visit-counter</code> followed by a
+  fresh <code>docker run -v visit-counter-data:/data ...</code> reattaches the exact
+  same inode-backed files and the counter resumes at 4 instead of resetting.</li>
+<li><strong>Port publishing.</strong> As covered in module 09, <code>-p 8080:5000</code> installs an
+  iptables DNAT rule mapping the host's port 8080 into this specific
+  container's network namespace at port 5000 — <code>curl http://localhost:8080</code>
+  never talks to Flask directly, it talks to the kernel's netfilter layer,
+  which rewrites the packet's destination before delivery.</li>
+<li><strong><code>--restart unless-stopped</code>.</strong> This isn't monitored by the container's
+  own process — the Docker daemon persists this policy in the container's
+  metadata (<code>/var/lib/docker/containers/&lt;id&gt;/config.v2.json</code>) and, on
+  daemon startup or whenever the container's process exits non-manually,
+  consults that policy to decide whether to <code>start</code> it again — which is
+  why it survives host reboots but not an explicit <code>docker stop</code>.</li>
+</ul>
 <h2 id="exercise-extend-the-project">Exercise (extend the project)<a class="headerlink" href="#exercise-extend-the-project" title="Permanent link">&para;</a></h2>
 <p>Add a second route, <code>/reset</code>, that deletes <code>count.txt</code> (resetting the
 counter to zero on the next visit), rebuild the image with a new tag

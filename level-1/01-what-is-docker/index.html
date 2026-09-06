@@ -764,6 +764,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2269,6 +2280,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2457,6 +2479,79 @@ one artifact:</p>
 <code>RUN</code>, and <code>CMD</code> in detail in <a href="../05-the-dockerfile/">module 05</a>; for now,
 notice that the whole environment is described in five lines and produces
 one portable image.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>"A container is just a process with a different view of the system" is
+true, but it's worth seeing exactly which kernel mechanisms create that
+view — because none of it is magic and none of it is Docker-specific.</p>
+<p><strong>Namespaces: what a process can see.</strong> When the container runtime starts
+a container, it doesn't launch a special "container process" — it calls
+the same <code>clone()</code> system call any process uses to fork, but passes extra
+flags telling the kernel to give the new process fresh, empty instances of
+particular namespaces instead of inheriting the parent's:</p>
+<table>
+<thead>
+<tr>
+<th>Namespace</th>
+<th>Flag</th>
+<th>Isolates</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PID</td>
+<td><code>CLONE_NEWPID</code></td>
+<td>Process IDs — the container's first process becomes PID 1 inside its own PID tree, even though the host sees it as, say, PID 48213</td>
+</tr>
+<tr>
+<td>NET</td>
+<td><code>CLONE_NEWNET</code></td>
+<td>Network interfaces, routing tables, ports — the container gets its own loopback and virtual ethernet interface</td>
+</tr>
+<tr>
+<td>MNT</td>
+<td><code>CLONE_NEWNS</code></td>
+<td>Mount points — the container sees its own root filesystem, not the host's</td>
+</tr>
+<tr>
+<td>UTS</td>
+<td><code>CLONE_NEWUTS</code></td>
+<td>Hostname and domain name</td>
+</tr>
+<tr>
+<td>IPC</td>
+<td><code>CLONE_NEWIPC</code></td>
+<td>System V IPC and POSIX message queues</td>
+</tr>
+<tr>
+<td>USER</td>
+<td><code>CLONE_NEWUSER</code></td>
+<td>User/group ID mappings — root inside the container can map to an unprivileged UID outside it</td>
+</tr>
+</tbody>
+</table>
+<p>Each namespace is a separate, independently-toggleable kernel data
+structure. <code>docker run</code> asks the kernel for all of them at once, which is
+<em>why</em> a container process can't see host PIDs, can't bind to host network
+interfaces directly, and sees <code>/</code> as its own filesystem root rather than
+the host's <code>/</code>.</p>
+<p><strong>cgroups: what a process can consume.</strong> Namespaces control visibility,
+not resource usage — a namespaced process could still consume 100% of the
+host's RAM. Control groups (cgroups, implemented via the <code>cgroupfs</code>
+pseudo-filesystem, typically under <code>/sys/fs/cgroup/</code>) are a separate
+kernel mechanism that caps and accounts for CPU shares, memory, block I/O,
+and PIDs for a group of processes. When you later pass flags like
+<code>--memory</code> or <code>--cpus</code> to <code>docker run</code>, the daemon is writing numbers into
+cgroup control files (e.g. <code>memory.max</code>) for that container's cgroup —
+there's no separate "Docker resource manager," just files in a
+special-purpose filesystem that the kernel enforces directly.</p>
+<p><strong>Why the kernel is shared.</strong> All of this — namespaces and cgroups alike —
+are <em>views and limits applied to processes running on one kernel</em>. There's
+only one kernel scheduler, one kernel memory manager, one set of loaded
+kernel modules, shared by the host and every container on it. That's the
+mechanical reason containers boot in milliseconds (no second kernel to
+initialize) and why "container escape" vulnerabilities are a real category
+of security bug: break out of your namespace/cgroup view and you're
+talking to the same kernel everything else on the host uses.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Without running anything yet, write down (in a text file or scratch note)
 answers to these three questions, in your own words:</p>

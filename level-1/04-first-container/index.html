@@ -892,6 +892,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2357,6 +2368,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2529,6 +2551,36 @@ explicitly <code>docker rm</code> them.</p>
 <p>This sequence — run detached with a published port, verify with <code>curl</code>,
 inspect logs, then stop and remove — is the pattern you'll repeat
 constantly while developing against containerized services.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Two things in this module look like simple flags but are backed by real
+kernel and networking machinery: starting the process, and publishing a
+port.</p>
+<p><strong>What "create a container" really executes.</strong> When <code>dockerd</code> (via
+containerd and runc) starts a container, it doesn't spawn a lightweight
+"Docker process" — it performs a real <code>clone()</code> syscall with namespace
+flags set (<code>CLONE_NEWPID</code>, <code>CLONE_NEWNET</code>, <code>CLONE_NEWNS</code>, <code>CLONE_NEWUTS</code>,
+<code>CLONE_NEWIPC</code>), pivots the new process's root filesystem to the merged
+overlayfs view assembled from the image's layers (via <code>pivot_root</code>), then
+<code>exec</code>s the image's <code>CMD</code>/<code>ENTRYPOINT</code> inside that new set of namespaces.
+That exec'd process becomes PID 1 <em>inside</em> the container's PID namespace —
+which is why a container's lifetime is tied to it: the PID namespace is
+torn down by the kernel once its init process (PID 1) exits, taking any
+remaining children with it (the kernel delivers SIGKILL to the rest of the
+namespace).</p>
+<p><strong>How <code>-p 8080:80</code> actually routes traffic.</strong> Docker creates each
+container's network namespace with its own virtual ethernet interface
+(<code>veth</code>), one end of a <code>veth</code> pair whose other end lives on the host,
+attached to a Linux bridge (<code>docker0</code> by default). That bridge gives
+containers a private subnet (commonly <code>172.17.0.0/16</code>) that's invisible
+from outside the host. <code>-p 8080:80</code> doesn't open a "port forward" in any
+abstract sense — the daemon inserts a <strong>DNAT (destination NAT) rule into
+the host's <code>iptables</code></strong> (in the <code>DOCKER</code> chain, part of <code>nat</code> table): any
+packet arriving at the host on port 8080 gets its destination address
+rewritten to the container's internal IP and port 80 before the kernel
+routes it onward, then MASQUERADE rules handle the return path. You can
+see this yourself with <code>sudo iptables -t nat -L DOCKER -n</code> on a Linux
+host — those are the actual rules <code>docker run -p</code> installs, and removing
+the container removes them.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Run an <code>nginx</code> container named <code>practice-web</code>, detached, publishing
 container port 80 to host port 9090. Use <code>curl</code> (or your browser) to

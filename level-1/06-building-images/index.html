@@ -937,6 +937,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2335,6 +2346,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2501,6 +2523,32 @@ for spotting which instruction bloated the image:</p>
 correctly structured; if <code>npm install</code> fails inside the build, the error
 output will point at that <code>RUN</code> step specifically, since BuildKit reports
 which step failed.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>Build cache keys, precisely.</strong> BuildKit doesn't decide "reuse this
+layer" by comparing your Dockerfile text to a previous run in a fuzzy way
+— it computes a <strong>cache key per instruction</strong> from two inputs: the parent
+layer's content hash, and a normalized representation of the instruction
+itself (the command string for <code>RUN</code>, or a hash of the <em>actual file
+contents being copied</em> for <code>COPY</code>/<code>ADD</code>, not just the filename). If either
+input changes, the cache key changes, and every subsequent instruction's
+cache key changes too, because each one's key incorporates the previous
+layer's hash — this is exactly why reordering <code>COPY requirements.txt .</code>
+before <code>COPY . .</code> matters: <code>COPY .</code> changes its cache key on <em>any</em> source
+file edit, so if it comes before <code>RUN pip install</code>, that install step's
+cache key changes too and reruns, even though the actual dependency
+manifest didn't change.</p>
+<p><strong>What an image actually is on disk/registry.</strong> An image is not one
+opaque blob — it's a JSON <strong>manifest</strong> listing an ordered array of layer
+digests (each a <code>sha256:...</code> of a compressed tarball) plus a reference to
+a separate <strong>image config</strong> JSON object (environment variables, <code>CMD</code>,
+<code>ENTRYPOINT</code>, exposed ports, architecture). <code>docker build</code> assembles this
+manifest+config+layers set locally; <code>docker images</code>'s <code>IMAGE ID</code> is the
+hash of the config JSON, while each layer keeps its own independent
+content hash. <code>docker history</code> is reading that manifest's layer list back
+out and matching sizes to instructions — <code>&lt;missing&gt;</code> appears for layers
+that came from a pulled base image rather than being built locally in
+this session, since Docker doesn't always retain per-instruction metadata
+for layers it didn't just build.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Using the Dockerfile you wrote in module 05 (or the Python one shown
 above), run a build tagging the image with <strong>two</strong> tags at once — a

@@ -965,6 +965,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2335,6 +2346,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2531,6 +2553,35 @@ never touched by it.</p>
 <p>This demonstrates <code>on-failure:N</code>: Docker retries a crashing container a
 bounded number of times rather than looping forever, then leaves it
 stopped for you to inspect.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong><code>docker pause</code> uses the cgroup freezer, not a signal.</strong> Unlike stop/kill,
+pausing a container doesn't send any signal at all. It writes to the
+cgroup freezer controller (<code>cgroup.freeze</code> under cgroup v2, or the older
+<code>freezer.state</code> under v1) for that container's cgroup. The kernel then
+stops scheduling every process in that cgroup entirely — they sit frozen
+mid-instruction, still holding their memory and open file descriptors,
+consuming zero CPU, invisible to the scheduler until <code>docker unpause</code>
+writes the cgroup back to "thawed." This is why pause/unpause is
+essentially instantaneous and loses no state, unlike stop/start which
+actually terminates and later re-execs the process from scratch.</p>
+<p><strong>Why removing a container requires it to be stopped first.</strong> A
+container's cgroup and network namespace can only be torn down once
+nothing is using them — specifically, once the PID namespace's init
+process (PID 1) has exited, the kernel automatically SIGKILLs every
+remaining process in that namespace and the namespace itself becomes
+reclaimable. <code>docker rm</code> on a running container is refused (without <code>-f</code>)
+because removing the overlayfs upper directory and network veth pair out
+from under a live process would corrupt state the process is actively
+using; <code>-f</code> is really "kill first, then do the normal teardown."</p>
+<p><strong>Where exit code 137 comes from.</strong> By Unix convention, when a process is
+terminated by a signal rather than exiting via <code>exit()</code>, the shell/kernel
+reports its status as <code>128 + signal number</code>. <code>SIGKILL</code> is signal 9, so
+<code>128 + 9 = 137</code>. That's why a <code>docker stop</code> that times out and falls back
+to <code>SIGKILL</code>, or an out-of-memory kill (the kernel's OOM killer sends
+<code>SIGKILL</code> to the largest/most-recently-offending process when a cgroup
+hits its memory limit), both show up as exit code 137 in <code>docker inspect</code>
+— it's the same generic "died by signal 9" encoding the Linux kernel uses
+for any process, container or not.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Start an <code>nginx</code> container named <code>lifecycle-demo</code> with
 <code>--restart on-failure:5</code>. Verify it's <code>Up</code> via <code>docker ps</code>. Then

@@ -803,6 +803,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2291,6 +2302,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2462,6 +2484,41 @@ commonly go wrong during setup.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Installing "Docker" actually installs several separate binaries that talk
+to each other over Unix sockets — understanding that layering explains
+most of the setup problems above.</p>
+<p><strong>The daemon/CLI split.</strong> <code>docker</code> (the CLI) is a thin client. It doesn't
+build images or run containers itself — every command you type is
+serialized into an HTTP request and sent to <code>dockerd</code> (the daemon) over a
+Unix domain socket, normally <code>/var/run/docker.sock</code>. That's why
+<code>permission denied</code> errors happen: the socket file has the permissions of
+a regular file (owned by <code>root</code>, group <code>docker</code>), and the kernel enforces
+normal Unix filesystem permissions on it exactly like any other file —
+there's no Docker-specific permission system involved, which is also why
+adding a user to the <code>docker</code> group is equivalent to root: anyone who can
+write to that socket can ask the daemon to bind-mount <code>/</code> from the host
+into a new container and get a root shell on the host filesystem.</p>
+<p><strong>containerd and runc underneath dockerd.</strong> <code>dockerd</code> itself doesn't
+create containers directly either. It delegates to <strong>containerd</strong> (a
+separate daemon, also installed by <code>docker-ce</code>), which manages image
+storage and container lifecycle, and containerd in turn shells out to
+<strong>runc</strong> for each container start. <code>runc</code> is the piece that actually
+issues the <code>clone()</code>/<code>unshare()</code> syscalls to create namespaces and writes
+the cgroup files, per the OCI (Open Container Initiative) runtime spec —
+then exits once the container is running, handing supervision back to
+<code>containerd-shim</code>. This is why you'll see <code>containerd</code>, <code>containerd-shim</code>,
+and <code>runc</code> processes on a Linux host even though you only ever typed
+<code>docker</code> commands: it's a chain of four separate programs, each doing one
+job, with the OCI spec as the contract between them.</p>
+<p><strong>Why Docker Desktop needs a VM.</strong> <code>runc</code> calls Linux-specific syscalls
+(<code>clone</code> with namespace flags, cgroup v2 file writes) that simply don't
+exist on the macOS or Windows kernel. Docker Desktop's Linux VM (via
+Apple's Virtualization.framework, or WSL2's real Linux kernel on Windows)
+exists solely to give <code>containerd</code>/<code>runc</code> an actual Linux kernel to issue
+those syscalls against — your containers are Linux processes running
+inside that VM's kernel, and the Docker Desktop GUI/CLI on the host side
+is just a client proxying commands into the VM.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Install Docker on your machine (or verify it's already installed), then
 run these three commands and record their output:</p>
