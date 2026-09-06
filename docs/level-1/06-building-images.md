@@ -145,6 +145,35 @@ correctly structured; if `npm install` fails inside the build, the error
 output will point at that `RUN` step specifically, since BuildKit reports
 which step failed.
 
+## How It Actually Works
+
+**Build cache keys, precisely.** BuildKit doesn't decide "reuse this
+layer" by comparing your Dockerfile text to a previous run in a fuzzy way
+— it computes a **cache key per instruction** from two inputs: the parent
+layer's content hash, and a normalized representation of the instruction
+itself (the command string for `RUN`, or a hash of the *actual file
+contents being copied* for `COPY`/`ADD`, not just the filename). If either
+input changes, the cache key changes, and every subsequent instruction's
+cache key changes too, because each one's key incorporates the previous
+layer's hash — this is exactly why reordering `COPY requirements.txt .`
+before `COPY . .` matters: `COPY .` changes its cache key on *any* source
+file edit, so if it comes before `RUN pip install`, that install step's
+cache key changes too and reruns, even though the actual dependency
+manifest didn't change.
+
+**What an image actually is on disk/registry.** An image is not one
+opaque blob — it's a JSON **manifest** listing an ordered array of layer
+digests (each a `sha256:...` of a compressed tarball) plus a reference to
+a separate **image config** JSON object (environment variables, `CMD`,
+`ENTRYPOINT`, exposed ports, architecture). `docker build` assembles this
+manifest+config+layers set locally; `docker images`'s `IMAGE ID` is the
+hash of the config JSON, while each layer keeps its own independent
+content hash. `docker history` is reading that manifest's layer list back
+out and matching sizes to instructions — `<missing>` appears for layers
+that came from a pulled base image rather than being built locally in
+this session, since Docker doesn't always retain per-instruction metadata
+for layers it didn't just build.
+
 ## Exercise
 
 Using the Dockerfile you wrote in module 05 (or the Python one shown

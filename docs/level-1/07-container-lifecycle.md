@@ -154,6 +154,39 @@ This demonstrates `on-failure:N`: Docker retries a crashing container a
 bounded number of times rather than looping forever, then leaves it
 stopped for you to inspect.
 
+## How It Actually Works
+
+**`docker pause` uses the cgroup freezer, not a signal.** Unlike stop/kill,
+pausing a container doesn't send any signal at all. It writes to the
+cgroup freezer controller (`cgroup.freeze` under cgroup v2, or the older
+`freezer.state` under v1) for that container's cgroup. The kernel then
+stops scheduling every process in that cgroup entirely — they sit frozen
+mid-instruction, still holding their memory and open file descriptors,
+consuming zero CPU, invisible to the scheduler until `docker unpause`
+writes the cgroup back to "thawed." This is why pause/unpause is
+essentially instantaneous and loses no state, unlike stop/start which
+actually terminates and later re-execs the process from scratch.
+
+**Why removing a container requires it to be stopped first.** A
+container's cgroup and network namespace can only be torn down once
+nothing is using them — specifically, once the PID namespace's init
+process (PID 1) has exited, the kernel automatically SIGKILLs every
+remaining process in that namespace and the namespace itself becomes
+reclaimable. `docker rm` on a running container is refused (without `-f`)
+because removing the overlayfs upper directory and network veth pair out
+from under a live process would corrupt state the process is actively
+using; `-f` is really "kill first, then do the normal teardown."
+
+**Where exit code 137 comes from.** By Unix convention, when a process is
+terminated by a signal rather than exiting via `exit()`, the shell/kernel
+reports its status as `128 + signal number`. `SIGKILL` is signal 9, so
+`128 + 9 = 137`. That's why a `docker stop` that times out and falls back
+to `SIGKILL`, or an out-of-memory kill (the kernel's OOM killer sends
+`SIGKILL` to the largest/most-recently-offending process when a cgroup
+hits its memory limit), both show up as exit code 137 in `docker inspect`
+— it's the same generic "died by signal 9" encoding the Linux kernel uses
+for any process, container or not.
+
 ## Exercise
 
 Start an `nginx` container named `lifecycle-demo` with

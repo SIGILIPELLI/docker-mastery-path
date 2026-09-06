@@ -113,6 +113,46 @@ commonly go wrong during setup.
 | Pull is very slow or times out | Network/proxy or Docker Hub rate limits | Check network; configure a registry mirror or authenticate to Docker Hub |
 | WSL2 errors on Windows | WSL2 not enabled or outdated | Run `wsl --update`, enable virtualization in BIOS if needed |
 
+## How It Actually Works
+
+Installing "Docker" actually installs several separate binaries that talk
+to each other over Unix sockets — understanding that layering explains
+most of the setup problems above.
+
+**The daemon/CLI split.** `docker` (the CLI) is a thin client. It doesn't
+build images or run containers itself — every command you type is
+serialized into an HTTP request and sent to `dockerd` (the daemon) over a
+Unix domain socket, normally `/var/run/docker.sock`. That's why
+`permission denied` errors happen: the socket file has the permissions of
+a regular file (owned by `root`, group `docker`), and the kernel enforces
+normal Unix filesystem permissions on it exactly like any other file —
+there's no Docker-specific permission system involved, which is also why
+adding a user to the `docker` group is equivalent to root: anyone who can
+write to that socket can ask the daemon to bind-mount `/` from the host
+into a new container and get a root shell on the host filesystem.
+
+**containerd and runc underneath dockerd.** `dockerd` itself doesn't
+create containers directly either. It delegates to **containerd** (a
+separate daemon, also installed by `docker-ce`), which manages image
+storage and container lifecycle, and containerd in turn shells out to
+**runc** for each container start. `runc` is the piece that actually
+issues the `clone()`/`unshare()` syscalls to create namespaces and writes
+the cgroup files, per the OCI (Open Container Initiative) runtime spec —
+then exits once the container is running, handing supervision back to
+`containerd-shim`. This is why you'll see `containerd`, `containerd-shim`,
+and `runc` processes on a Linux host even though you only ever typed
+`docker` commands: it's a chain of four separate programs, each doing one
+job, with the OCI spec as the contract between them.
+
+**Why Docker Desktop needs a VM.** `runc` calls Linux-specific syscalls
+(`clone` with namespace flags, cgroup v2 file writes) that simply don't
+exist on the macOS or Windows kernel. Docker Desktop's Linux VM (via
+Apple's Virtualization.framework, or WSL2's real Linux kernel on Windows)
+exists solely to give `containerd`/`runc` an actual Linux kernel to issue
+those syscalls against — your containers are Linux processes running
+inside that VM's kernel, and the Docker Desktop GUI/CLI on the host side
+is just a client proxying commands into the VM.
+
 ## Exercise
 
 Install Docker on your machine (or verify it's already installed), then

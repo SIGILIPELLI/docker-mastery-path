@@ -130,6 +130,48 @@ docker images --digests python
 | `docker run`, `docker start`, `docker stop` | Containers |
 | `docker rm <container>` | Containers |
 
+## How It Actually Works
+
+The layer diagram above is conceptually accurate, but the actual on-disk
+mechanism is a specific Linux filesystem: **OverlayFS**.
+
+**How overlayfs stacks layers.** OverlayFS combines multiple directories
+into one merged view using three roles: a `lowerdir` (one or more
+read-only directories — your image layers), an `upperdir` (one writable
+directory — the container's writable layer), and a `merged` mount point,
+which is what the container actually sees as its root filesystem. Docker's
+default storage driver on modern Linux is `overlay2`, and each image layer
+on disk is literally just a directory of files under
+`/var/lib/docker/overlay2/<layer-id>/diff`, identified by the SHA-256
+content hash of its contents. When you `docker pull` an image whose base
+layer you already have (say, another image also built `FROM
+python:3.12-slim`), Docker checks that hash, finds a match, and reuses the
+existing directory on disk rather than downloading or storing it again —
+that's the actual mechanism behind "shared base layers save disk space,"
+not just a marketing claim.
+
+**Copy-on-write in practice.** When a running container modifies a file
+that only exists in a lower (read-only) layer, overlayfs performs
+**copy-up**: it copies the entire file from the lower layer into the
+upper (writable) layer first, then applies the modification there. The
+original file in the image layer is never touched — the container's view
+just shows the modified copy instead, because overlayfs always resolves a
+path by checking the upper layer first, falling through to lower layers
+only if the file isn't there. This is also why modifying one huge file
+that lives in a low layer can be surprisingly slow the first time — the
+whole file gets copied up, not just the changed bytes.
+
+**Deletion inside a container.** Deleting a file that exists in a lower
+layer can't literally remove it (lower layers are read-only and possibly
+shared with other containers), so overlayfs creates a **whiteout file** — a
+special character device file with a specific name — in the upper layer.
+When the merged view is assembled, a whiteout tells overlayfs "treat this
+path as absent," even though it still physically exists in a lower layer
+underneath. Removing the container discards the upper directory (and its
+whiteouts) entirely, which is the actual reason the image is left
+untouched: the image's directories were never writable in the first
+place.
+
 ## Exercise
 
 Run three containers from the same `nginx` image, give each a distinct

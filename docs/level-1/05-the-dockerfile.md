@@ -150,6 +150,42 @@ forcing a slow reinstall on every code change — see Level 2's caching
 module for the fix (copying the dependency manifest first, as shown
 above).
 
+## How It Actually Works
+
+Two Dockerfile behaviors that look like stylistic preferences are actually
+consequences of how Linux processes and signals work.
+
+**Why `RUN` produces a layer, mechanically.** Each `RUN` instruction
+during `docker build` starts an ephemeral container from the current
+image state (same `clone()`/namespace/overlayfs machinery as `docker
+run`), executes the command inside it, then — instead of discarding the
+container — the builder diffs its writable layer against what it started
+with and commits *that diff* as a new, permanent, content-addressed image
+layer (identified by hashing its contents). The ephemeral container is
+then removed, but its filesystem delta lives on as a layer. This is why
+`RUN rm -rf /some/big/file` in a *later* instruction doesn't shrink the
+image: the file still physically exists in the earlier layer on disk —
+deleting it later just adds a whiteout file in a new layer that hides it
+from view, exactly like deleting a file inside a running container (see
+module 03). The only way to actually not have those bytes in the image is
+to not create them in that layer in the first place, or to use a
+multi-stage build (Level 2) to copy only what you need into a fresh image.
+
+**Exec form vs. shell form and PID 1 signals.** `CMD ["python", "app.py"]`
+(exec form) causes the container runtime to `exec()` that binary directly
+as PID 1. `CMD python app.py` (shell form) is silently rewritten to `CMD
+["/bin/sh", "-c", "python app.py"]` — meaning `/bin/sh` becomes PID 1, and
+your actual `python` process runs as its *child*, PID 2 or later. This
+matters because `docker stop` sends `SIGTERM` to PID 1 specifically. A
+shell interpreting `-c "python app.py"` does not automatically forward
+signals to child processes it spawned — many shells simply ignore
+`SIGTERM` while waiting on a child — so `python app.py` never receives it,
+and Docker falls back to `SIGKILL` after the default 10-second grace
+period, giving your process no chance to shut down cleanly (flush
+buffers, close database connections, finish in-flight requests). The exec
+form avoids the extra shell layer entirely, so your process *is* PID 1 and
+receives `SIGTERM` directly.
+
 ## Exercise
 
 Write a Dockerfile for a tiny Node.js script:

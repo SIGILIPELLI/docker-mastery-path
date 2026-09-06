@@ -146,6 +146,40 @@ This sequence — run detached with a published port, verify with `curl`,
 inspect logs, then stop and remove — is the pattern you'll repeat
 constantly while developing against containerized services.
 
+## How It Actually Works
+
+Two things in this module look like simple flags but are backed by real
+kernel and networking machinery: starting the process, and publishing a
+port.
+
+**What "create a container" really executes.** When `dockerd` (via
+containerd and runc) starts a container, it doesn't spawn a lightweight
+"Docker process" — it performs a real `clone()` syscall with namespace
+flags set (`CLONE_NEWPID`, `CLONE_NEWNET`, `CLONE_NEWNS`, `CLONE_NEWUTS`,
+`CLONE_NEWIPC`), pivots the new process's root filesystem to the merged
+overlayfs view assembled from the image's layers (via `pivot_root`), then
+`exec`s the image's `CMD`/`ENTRYPOINT` inside that new set of namespaces.
+That exec'd process becomes PID 1 *inside* the container's PID namespace —
+which is why a container's lifetime is tied to it: the PID namespace is
+torn down by the kernel once its init process (PID 1) exits, taking any
+remaining children with it (the kernel delivers SIGKILL to the rest of the
+namespace).
+
+**How `-p 8080:80` actually routes traffic.** Docker creates each
+container's network namespace with its own virtual ethernet interface
+(`veth`), one end of a `veth` pair whose other end lives on the host,
+attached to a Linux bridge (`docker0` by default). That bridge gives
+containers a private subnet (commonly `172.17.0.0/16`) that's invisible
+from outside the host. `-p 8080:80` doesn't open a "port forward" in any
+abstract sense — the daemon inserts a **DNAT (destination NAT) rule into
+the host's `iptables`** (in the `DOCKER` chain, part of `nat` table): any
+packet arriving at the host on port 8080 gets its destination address
+rewritten to the container's internal IP and port 80 before the kernel
+routes it onward, then MASQUERADE rules handle the return path. You can
+see this yourself with `sudo iptables -t nat -L DOCKER -n` on a Linux
+host — those are the actual rules `docker run -p` installs, and removing
+the container removes them.
+
 ## Exercise
 
 Run an `nginx` container named `practice-web`, detached, publishing

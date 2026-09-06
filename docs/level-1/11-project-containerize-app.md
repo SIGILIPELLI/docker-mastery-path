@@ -169,6 +169,55 @@ docker rmi visit-counter:1.0
 | Run with a mapped port | `-p 8080:5000`, verified via `curl` |
 | (Bonus) Registry round-trip | Tag, login, push |
 
+## How It Actually Works
+
+This project quietly exercises four separate kernel/filesystem mechanisms
+working together — worth naming explicitly since they're each doing real
+work behind a one-line command.
+
+- **Layer caching during the build.** Docker builds the image one
+  instruction at a time, and for each instruction it checks whether it
+  already has a cached layer produced by the *same instruction run
+  against the same parent layer* (matched by hashing the instruction
+  string plus, for `COPY`/`ADD`, the checksum of the copied files'
+  content). Because `COPY requirements.txt .` + `RUN pip install` come
+  *before* `COPY app.py .`, editing `app.py` only invalidates the cache
+  from that `COPY` onward — the `pip install` layer's cache entry still
+  matches, so Docker reuses the existing layer bit-for-bit instead of
+  re-running `pip install` and re-downloading Flask.
+- **Overlayfs at runtime.** When the container starts, Docker doesn't
+  copy the image's files — it mounts an **overlayfs** union filesystem:
+  every read-only image layer stacked as `lowerdir`s, plus one writable
+  `upperdir` created fresh for this container instance. Reading a file
+  transparently falls through to whichever layer actually has it (top
+  layer wins); writing a file uses **copy-up** — the file is copied from
+  its lower, read-only layer into the container's own `upperdir` before
+  being modified, leaving the original image layer completely untouched.
+  This is why deleting the container and starting a new one from the same
+  image gives you a pristine filesystem again — the new container gets
+  its own empty `upperdir`.
+- **Why the volume survives that.** `count.txt` under `/data` would
+  otherwise live inside that ephemeral `upperdir` and vanish with
+  `docker rm`. A named volume sidesteps overlayfs entirely: Docker uses a
+  **bind mount** (via the mount namespace) to graft a directory that
+  lives under Docker's own storage area (`/var/lib/docker/volumes/...` on
+  the host) directly onto `/data` inside the container's mount namespace.
+  That directory's lifecycle is managed independently of any container,
+  which is the literal reason `docker rm -f visit-counter` followed by a
+  fresh `docker run -v visit-counter-data:/data ...` reattaches the exact
+  same inode-backed files and the counter resumes at 4 instead of resetting.
+- **Port publishing.** As covered in module 09, `-p 8080:5000` installs an
+  iptables DNAT rule mapping the host's port 8080 into this specific
+  container's network namespace at port 5000 — `curl http://localhost:8080`
+  never talks to Flask directly, it talks to the kernel's netfilter layer,
+  which rewrites the packet's destination before delivery.
+- **`--restart unless-stopped`.** This isn't monitored by the container's
+  own process — the Docker daemon persists this policy in the container's
+  metadata (`/var/lib/docker/containers/<id>/config.v2.json`) and, on
+  daemon startup or whenever the container's process exits non-manually,
+  consults that policy to decide whether to `start` it again — which is
+  why it survives host reboots but not an explicit `docker stop`.
+
 ## Exercise (extend the project)
 
 Add a second route, `/reset`, that deletes `count.txt` (resetting the

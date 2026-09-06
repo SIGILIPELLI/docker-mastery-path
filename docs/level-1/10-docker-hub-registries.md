@@ -154,6 +154,62 @@ docker run --rm yourusername/counter-app:1.0
 # published image is self-contained and independent of your local build
 ```
 
+## How It Actually Works
+
+A registry is not a wall of monolithic image files — it's a
+content-addressable store of layers, glued together by manifests, and
+pull/push is a set of independently verifiable, resumable steps built
+around that structure.
+
+- **Content-addressable layers.** Every image layer is a compressed
+  filesystem diff (a tarball of added/changed/deleted files), and its
+  identity is the **SHA-256 digest of its own content** — not a name
+  assigned by anyone. This is why `docker pull` can safely download
+  layers "not already present locally": the client hashes what it
+  already has and compares digests against the manifest's layer list, so
+  a layer shared by two unrelated images (e.g. the same `python:3.12-slim`
+  base under two different apps) is stored and transferred exactly once,
+  and a corrupted or tampered layer is detectable because its bytes
+  wouldn't hash to the digest the manifest claims.
+- **The manifest and image config.** A tag like `nginx:1.27` doesn't point
+  at a blob of image data directly — it points at a **manifest**, a small
+  JSON document listing (a) the image config digest (environment, entry
+  point, exposed ports — the metadata `docker inspect` shows) and (b) the
+  ordered list of layer digests. `docker pull` fetches this manifest
+  first (a single small request), then fetches only the layer blobs it's
+  missing, in parallel, keyed by digest.
+- **Multi-architecture tags.** A tag can resolve to a **manifest list**
+  (a manifest of manifests) — one entry per CPU architecture/OS
+  combination. The registry/client negotiates which single manifest to
+  actually pull based on the host's platform, which is how
+  `docker pull nginx:1.27` transparently gets an `arm64` image on Apple
+  Silicon and an `amd64` image on a typical CI runner from the identical
+  tag.
+- **Tags are mutable pointers, digests are not.** `docker tag` writes a
+  new name → image-ID mapping in local metadata; it copies zero layer
+  data, which is why it's instant regardless of image size. On the
+  registry side, a tag is likewise just a mutable pointer to a manifest
+  digest — pushing a new image under an existing tag doesn't overwrite
+  old layers, it just repoints the tag, so anyone who pulled by
+  the immutable `@sha256:...` digest instead of the tag keeps referencing
+  the exact original bytes forever, even if the tag moves later.
+- **Auth as bearer tokens, not sessions.** `docker login` doesn't open a
+  persistent connection — it exchanges credentials for a short-lived
+  bearer token (via the registry's `/v2/` auth endpoint, following the
+  OCI distribution spec's token-auth flow) and caches a *credential*, not
+  the token, in `~/.docker/config.json`. Each subsequent `push`/`pull`
+  re-authenticates on demand, requesting a token scoped to just the
+  repository being accessed, which is also the mechanism behind
+  per-repository push permissions and pull-rate-limit accounting tied to
+  the authenticated identity rather than the raw IP.
+- **Push order.** `docker push` uploads layers bottom layer first, each
+  as a discrete `POST`/`PATCH` blob upload identified by its digest —
+  the registry can reject or dedupe an upload immediately if it already
+  holds a blob with that digest — and only after every layer is
+  confirmed does the client `PUT` the manifest, atomically making the tag
+  resolvable; this ordering is why an interrupted push leaves orphaned
+  layer blobs but never a tag pointing at incomplete data.
+
 ## Exercise
 
 Create a free Docker Hub account if you don't have one, `docker login`

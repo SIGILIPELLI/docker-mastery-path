@@ -114,6 +114,53 @@ No "which Python version do you have," no "did you forget to install
 notice that the whole environment is described in five lines and produces
 one portable image.
 
+## How It Actually Works
+
+"A container is just a process with a different view of the system" is
+true, but it's worth seeing exactly which kernel mechanisms create that
+view — because none of it is magic and none of it is Docker-specific.
+
+**Namespaces: what a process can see.** When the container runtime starts
+a container, it doesn't launch a special "container process" — it calls
+the same `clone()` system call any process uses to fork, but passes extra
+flags telling the kernel to give the new process fresh, empty instances of
+particular namespaces instead of inheriting the parent's:
+
+| Namespace | Flag | Isolates |
+|---|---|---|
+| PID | `CLONE_NEWPID` | Process IDs — the container's first process becomes PID 1 inside its own PID tree, even though the host sees it as, say, PID 48213 |
+| NET | `CLONE_NEWNET` | Network interfaces, routing tables, ports — the container gets its own loopback and virtual ethernet interface |
+| MNT | `CLONE_NEWNS` | Mount points — the container sees its own root filesystem, not the host's |
+| UTS | `CLONE_NEWUTS` | Hostname and domain name |
+| IPC | `CLONE_NEWIPC` | System V IPC and POSIX message queues |
+| USER | `CLONE_NEWUSER` | User/group ID mappings — root inside the container can map to an unprivileged UID outside it |
+
+Each namespace is a separate, independently-toggleable kernel data
+structure. `docker run` asks the kernel for all of them at once, which is
+*why* a container process can't see host PIDs, can't bind to host network
+interfaces directly, and sees `/` as its own filesystem root rather than
+the host's `/`.
+
+**cgroups: what a process can consume.** Namespaces control visibility,
+not resource usage — a namespaced process could still consume 100% of the
+host's RAM. Control groups (cgroups, implemented via the `cgroupfs`
+pseudo-filesystem, typically under `/sys/fs/cgroup/`) are a separate
+kernel mechanism that caps and accounts for CPU shares, memory, block I/O,
+and PIDs for a group of processes. When you later pass flags like
+`--memory` or `--cpus` to `docker run`, the daemon is writing numbers into
+cgroup control files (e.g. `memory.max`) for that container's cgroup —
+there's no separate "Docker resource manager," just files in a
+special-purpose filesystem that the kernel enforces directly.
+
+**Why the kernel is shared.** All of this — namespaces and cgroups alike —
+are *views and limits applied to processes running on one kernel*. There's
+only one kernel scheduler, one kernel memory manager, one set of loaded
+kernel modules, shared by the host and every container on it. That's the
+mechanical reason containers boot in milliseconds (no second kernel to
+initialize) and why "container escape" vulnerabilities are a real category
+of security bug: break out of your namespace/cgroup view and you're
+talking to the same kernel everything else on the host uses.
+
 ## Exercise
 
 Without running anything yet, write down (in a text file or scratch note)

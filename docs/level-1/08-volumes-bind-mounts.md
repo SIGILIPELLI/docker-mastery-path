@@ -139,6 +139,44 @@ because both mount the same `counter-data` volume, the count persists and
 increments across completely separate containers — proof the data's
 lifetime is decoupled from any single container's lifetime.
 
+## How It Actually Works
+
+Volumes and bind mounts both work by exploiting the **mount namespace**
+(`CLONE_NEWNS`) the same way the container's root filesystem does — but
+they bypass overlayfs entirely for the paths involved, which is precisely
+why they behave differently from regular container writes.
+
+**A bind mount is a second view of the same inode, not a copy.** The
+Linux `mount --bind` mechanism (which `docker run -v host:container`
+ultimately invokes inside the container's mount namespace) doesn't copy
+data anywhere — it makes an existing directory (or file) accessible at a
+second path by pointing a new mount point at the same underlying inode on
+the host's real filesystem. Reads and writes from either path hit the
+identical on-disk blocks. That's why edits made from the host appear
+instantly inside the container and vice versa: there's exactly one copy
+of the data, referenced from two locations, with no overlayfs upper/lower
+layering involved for that specific mounted path at all — it's excluded
+from the union entirely and mounted directly over whatever was there.
+
+**A named volume is the same mechanism, pointed at Docker's own
+directory.** `docker volume create pgdata` just makes a directory under
+`/var/lib/docker/volumes/pgdata/_data` on the host. `-v pgdata:/var/lib/postgresql/data`
+performs the identical bind-mount operation as above, with the volume's
+managed directory as the host side — the only difference from a bind
+mount is *who* picked the host path (Docker, vs. you). This is also why
+volume data survives `docker rm`: removing a container tears down its
+mount namespace (the mount points disappear), but the underlying
+directory on the host — the actual inode holding the data — is untouched,
+exactly as unmounting a USB drive doesn't erase the drive.
+
+**Why the data survives even though the image layers don't.** A
+container's writable layer is an overlayfs `upperdir` that gets deleted
+along with the container. A mounted path is deliberately carved out of
+that overlay — the kernel resolves any path under a mount point by
+following the mount table first, so the overlayfs layers underneath a
+bind-mounted directory are never consulted or written to for that path at
+all while the mount is active.
+
 ## Exercise
 
 Create a named volume called `notes-data`. Run an `alpine` container that
