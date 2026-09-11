@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 05 · Container Logs & Debugging
 
 !!! info "Coming soon"

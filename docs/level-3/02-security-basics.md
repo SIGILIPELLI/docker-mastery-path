@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 02 · Security Basics
 
 !!! info "Coming soon"

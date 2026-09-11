@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 01 · Multi-Stage Builds
 
 !!! info "Coming soon"

@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 06 · Health Checks
 
 !!! info "Coming soon"

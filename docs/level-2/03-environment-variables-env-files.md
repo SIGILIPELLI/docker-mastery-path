@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 03 · Environment Variables & .env Files
 
 !!! info "Coming soon"

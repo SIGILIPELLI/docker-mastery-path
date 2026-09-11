@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 10 · Project — Secure, Resource-Limited Production Stack
 
 !!! info "Coming soon"

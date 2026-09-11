@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 02 · Docker Compose Basics
 
 !!! info "Coming soon"

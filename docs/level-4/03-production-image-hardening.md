@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 03 · Production Image Hardening
 
 !!! info "Coming soon"

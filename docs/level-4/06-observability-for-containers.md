@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 06 · Observability for Containers
 
 !!! info "Coming soon"

@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 10 · Project — Multi-Container Compose App
 
 !!! info "Coming soon"

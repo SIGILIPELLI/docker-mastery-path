@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 03 · Resource Limits (CPU/Memory)
 
 !!! info "Coming soon"

@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 06 · Storage Drivers & Volume Plugins
 
 !!! info "Coming soon"

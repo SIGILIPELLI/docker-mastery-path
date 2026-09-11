@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 09 · Compose for Multi-Service Apps
 
 !!! info "Coming soon"

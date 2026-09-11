@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 08 · Docker Swarm Basics
 
 !!! info "Coming soon"

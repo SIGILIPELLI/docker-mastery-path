@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 04 · Multi-Container App Patterns
 
 !!! info "Coming soon"

@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 05 · Private Registries
 
 !!! info "Coming soon"

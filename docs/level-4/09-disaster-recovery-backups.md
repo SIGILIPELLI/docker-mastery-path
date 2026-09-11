@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 09 · Disaster Recovery & Backups
 
 !!! info "Coming soon"

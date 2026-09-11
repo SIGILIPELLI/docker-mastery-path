@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 01 · Docker in CI/CD Pipelines
 
 !!! info "Coming soon"

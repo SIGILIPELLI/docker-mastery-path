@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 09 · Secrets & Config Management
 
 !!! info "Coming soon"

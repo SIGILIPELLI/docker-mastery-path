@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 07 · Logging Drivers & Centralized Logging
 
 !!! info "Coming soon"

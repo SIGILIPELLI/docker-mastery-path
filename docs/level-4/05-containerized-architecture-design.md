@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 05 · Designing a Containerized Architecture
 
 !!! info "Coming soon"

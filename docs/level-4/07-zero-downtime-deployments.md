@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 07 · Zero-Downtime Deployments
 
 !!! info "Coming soon"

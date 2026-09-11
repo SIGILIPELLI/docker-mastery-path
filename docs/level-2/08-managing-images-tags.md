@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 08 · Managing Images & Tags
 
 !!! info "Coming soon"

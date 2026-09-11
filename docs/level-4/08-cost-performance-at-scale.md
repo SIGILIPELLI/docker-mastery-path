@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 08 · Cost & Performance at Scale
 
 !!! info "Coming soon"

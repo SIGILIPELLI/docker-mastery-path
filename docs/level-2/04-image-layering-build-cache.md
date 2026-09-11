@@ -1,3 +1,7 @@
+---
+robots: noindex, follow
+---
+
 # 04 · Image Layering & Build Cache
 
 !!! info "Coming soon"
