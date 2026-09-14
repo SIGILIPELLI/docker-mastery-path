@@ -94,8 +94,6 @@
   }
   </script>
   
-  <meta name="robots" content="noindex, follow">
-  
 
   </head>
   
@@ -2052,6 +2050,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Disaster Recovery & Backups
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -2068,6 +2084,113 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-actually-needs-backing-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What actually needs backing up
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backing-up-a-named-volume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backing up a named volume
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#restoring-a-volume-from-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Restoring a volume from backup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#database-aware-backups-when-file-level-isnt-consistent-enough" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database-aware backups (when file-level isn't consistent enough)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backing-up-a-private-registry-module-05" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backing up a private registry (module 05)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-full-disaster-recovery-drill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: full disaster recovery drill
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2129,6 +2252,102 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-actually-needs-backing-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What actually needs backing up
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backing-up-a-named-volume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backing up a named volume
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#restoring-a-volume-from-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Restoring a volume from backup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#database-aware-backups-when-file-level-isnt-consistent-enough" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database-aware backups (when file-level isn't consistent enough)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backing-up-a-private-registry-module-05" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backing up a private registry (module 05)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-full-disaster-recovery-drill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: full disaster recovery drill
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2148,22 +2367,143 @@
 
 
 <h1 id="09-disaster-recovery-backups">09 · Disaster Recovery &amp; Backups<a class="headerlink" href="#09-disaster-recovery-backups" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This module's full lessons and runnable examples are being written next.
-This module will cover Backup strategies for volumes and registries, and recovering a containerized system after a host failure.</p>
-</div>
-<p>In the meantime, <a href="../../level-1/">Level 1 · Entry</a> is fully published —
-start there if you haven't yet.</p>
+<p>Everything containerized is, by design, disposable — a container can be
+destroyed and recreated from its image in seconds (that's the whole point
+of module 07's zero-downtime replacement). But two things are <em>not</em>
+disposable that way: <strong>data in volumes</strong> (databases, uploaded files) and
+<strong>images in a private registry</strong> (module 05) that aren't reproducible from
+source alone if the build context or base image ever disappears. This
+module covers backing up both, and actually restoring from the backup —
+a backup that's never been restored is a hope, not a plan.</p>
+<h2 id="what-actually-needs-backing-up">What actually needs backing up<a class="headerlink" href="#what-actually-needs-backing-up" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Named volumes</strong> — anything a database or stateful service writes to
+  disk (module 06's storage drivers make clear this data lives outside
+  the container's writable layer, on the host or a plugin-backed store).</li>
+<li><strong>Registry contents</strong> (module 05) — image tags, especially ones built
+  from a Dockerfile whose exact base-image digest or build context may no
+  longer be reconstructible later (a base image tag can be repointed
+  upstream; a digest-pinned build from six months ago may not be).</li>
+<li><strong>Compose/stack files and <code>.env</code> secrets material</strong> — the deployment
+  definition itself, usually already in git, but explicitly verify it is.</li>
+</ul>
+<p>Container images and containers themselves are <em>not</em> what you back up —
+they're rebuilt from source and redeployed from the stack file.</p>
+<h2 id="backing-up-a-named-volume">Backing up a named volume<a class="headerlink" href="#backing-up-a-named-volume" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span>-v<span class="w"> </span>pgdata:/data:ro<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span>-v<span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span><span class="s2">/backups:/backup"</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span>alpine<span class="w"> </span>tar<span class="w"> </span>czf<span class="w"> </span>/backup/pgdata-<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d<span class="k">)</span>.tar.gz<span class="w"> </span>-C<span class="w"> </span>/data<span class="w"> </span>.
+</code></pre></div>
+<p>This is the standard "sidecar container" backup pattern: a throwaway
+<code>alpine</code> container mounts the volume you want to back up (read-only, so
+the backup process itself can't corrupt live data) alongside a host
+directory, and <code>tar</code> streams the volume's contents into a timestamped
+archive on the host. No changes to the running database container are
+needed — the volume is a first-class Docker object independent of which
+container currently has it mounted.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ls<span class="w"> </span>backups/
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># pgdata-20260910.tar.gz  pgdata-20260909.tar.gz  pgdata-20260908.tar.gz</span>
+</code></pre></div>
+<h2 id="restoring-a-volume-from-backup">Restoring a volume from backup<a class="headerlink" href="#restoring-a-volume-from-backup" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>docker<span class="w"> </span>volume<span class="w"> </span>create<span class="w"> </span>pgdata_restored
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span>-v<span class="w"> </span>pgdata_restored:/data<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span>-v<span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span><span class="s2">/backups:/backup"</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span>alpine<span class="w"> </span>tar<span class="w"> </span>xzf<span class="w"> </span>/backup/pgdata-20260910.tar.gz<span class="w"> </span>-C<span class="w"> </span>/data
+</code></pre></div>
+<p>Restoring into a <em>new</em> volume name first (rather than overwriting the
+live one in place) lets you verify the restore succeeded before cutting
+anything over — point a throwaway container at <code>pgdata_restored</code> and
+confirm the data looks right before ever touching production.</p>
+<h2 id="database-aware-backups-when-file-level-isnt-consistent-enough">Database-aware backups (when file-level isn't consistent enough)<a class="headerlink" href="#database-aware-backups-when-file-level-isnt-consistent-enough" title="Permanent link">&para;</a></h2>
+<p>A running database's on-disk files can be mid-write when a <code>tar</code> backup
+runs, producing a backup that looks complete but is internally
+inconsistent. Prefer the database's own consistent-snapshot tooling when
+one exists:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>postgres-db<span class="w"> </span>pg_dump<span class="w"> </span>-U<span class="w"> </span>postgres<span class="w"> </span>mydb<span class="w"> </span><span class="p">|</span><span class="w"> </span>gzip<span class="w"> </span>&gt;<span class="w"> </span>backups/mydb-<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d<span class="k">)</span>.sql.gz
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1"># restore</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>gunzip<span class="w"> </span>-c<span class="w"> </span>backups/mydb-20260910.sql.gz<span class="w"> </span><span class="p">|</span><span class="w"> </span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-i<span class="w"> </span>postgres-db<span class="w"> </span>psql<span class="w"> </span>-U<span class="w"> </span>postgres<span class="w"> </span>mydb
+</code></pre></div>
+<p><code>pg_dump</code> reads through Postgres's own transaction-consistent view of the
+data rather than the raw files on disk, so the resulting dump is
+guaranteed internally consistent regardless of what writes were in flight
+when it started — something the raw <code>tar</code> approach can't promise for a
+live, actively-written database.</p>
+<h2 id="backing-up-a-private-registry-module-05">Backing up a private registry (module 05)<a class="headerlink" href="#backing-up-a-private-registry-module-05" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">5000</span>:5000<span class="w"> </span>--name<span class="w"> </span>registry<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span>-v<span class="w"> </span>registry-data:/var/lib/registry<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span>registry:2
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1"># back up the registry's own storage the same way as any named volume</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span>registry-data:/data:ro<span class="w"> </span>-v<span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span><span class="s2">/backups:/backup"</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">  </span>alpine<span class="w"> </span>tar<span class="w"> </span>czf<span class="w"> </span>/backup/registry-<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d<span class="k">)</span>.tar.gz<span class="w"> </span>-C<span class="w"> </span>/data<span class="w"> </span>.
+</code></pre></div>
+<p>For a cloud-hosted registry rather than a self-run one, the equivalent is
+scripted re-tagging and pushing of every tag you depend on to a second
+registry (or <code>docker save</code>/<code>docker load</code> to portable tarballs) — the goal
+is the same either way: don't let "the only copy of this image" live in
+one place with one provider.</p>
+<h2 id="worked-example-full-disaster-recovery-drill">Worked example: full disaster recovery drill<a class="headerlink" href="#worked-example-full-disaster-recovery-drill" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># 1. Simulate the disaster: the host is gone</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>docker<span class="w"> </span>compose<span class="w"> </span>down<span class="w"> </span>-v<span class="w">   </span><span class="c1"># -v also removes the named volumes -- total loss</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># 2. Recreate the stack from source of truth (git, not memory)</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>git<span class="w"> </span>clone<span class="w"> </span>https://example.com/myapp.git<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>myapp
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1"># 3. Recreate volumes and restore data into them before starting services</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>docker<span class="w"> </span>volume<span class="w"> </span>create<span class="w"> </span>pgdata
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span>pgdata:/data<span class="w"> </span>-v<span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span><span class="s2">/backups:/backup"</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">  </span>alpine<span class="w"> </span>tar<span class="w"> </span>xzf<span class="w"> </span>/backup/pgdata-20260910.tar.gz<span class="w"> </span>-C<span class="w"> </span>/data
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="c1"># 4. Bring the stack up against the restored volume</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="c1"># 5. Verify -- don't just assume the restore worked</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>db<span class="w"> </span>psql<span class="w"> </span>-U<span class="w"> </span>postgres<span class="w"> </span>-c<span class="w"> </span><span class="s2">"SELECT count(*) FROM users;"</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="c1"># compare the count against what you expect from the backup's timestamp</span>
+</code></pre></div>
+<p>Step 5 is the step most real incidents skip under pressure, and it's the
+one that actually determines whether the recovery worked.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>Why a volume backup is safe to take with <code>-v pgdata:/data:ro</code> while the
+database container keeps running.</strong> A named volume (module 06) is a
+directory managed by Docker's volume driver, bind-mounted by the kernel
+into as many containers as reference it simultaneously — mounting it
+read-only into the backup sidecar doesn't pause or lock it for the
+database container, which still has its own (typically read-write) mount
+of the same underlying directory. The risk isn't a mount conflict, it's a
+<em>point-in-time consistency</em> one: <code>tar</code> reads files sequentially and a
+database can modify files between when <code>tar</code> reads file A and when it
+reads file B, producing an archive where A and B were never simultaneously
+true on disk — which is exactly why the module recommends <code>pg_dump</code>-style
+logical backups for anything actively written, since those go through the
+database engine's own MVCC snapshot rather than racing its file writes at
+the filesystem level.</p>
+<p><strong>Why restoring into a fresh volume name, not overwriting live data, is
+the mechanically safer default.</strong> <code>docker volume create</code> allocates a new,
+empty directory under the volume driver's storage root, entirely separate
+from any existing volume — there is no shared state between
+<code>pgdata</code> and <code>pgdata_restored</code> until you explicitly point a container at
+one or the other. This means a bad or partial restore is contained to the
+new volume and never touches the original, and cutover becomes a single
+atomic decision (which volume name does the container mount) rather than
+an in-place overwrite that can't be undone if the restored data turns out
+to be wrong.</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Stand up a Postgres container with a named volume, insert a few rows,
+take both a <code>tar</code>-based volume backup and a <code>pg_dump</code> logical backup, then
+run <code>docker compose down -v</code> to simulate total loss. Restore from the
+<code>pg_dump</code> backup into a fresh container and volume, and confirm via <code>SELECT
+count(*)</code> that the row count matches what you inserted before the
+simulated disaster.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 

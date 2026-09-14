@@ -94,8 +94,6 @@
   }
   </script>
   
-  <meta name="robots" content="noindex, follow">
-  
 
   </head>
   
@@ -2024,6 +2022,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Cost & Performance at Scale
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -2040,6 +2056,91 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#measure-before-you-size" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Measure before you size
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#right-sizing-cpu-requests-vs-bursts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Right-sizing CPU: requests vs. bursts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#image-size-the-cost-thats-paid-on-every-pull-and-every-host" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Image size: the cost that's paid on every pull and every host
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-sizing-a-real-fleet-from-measured-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: sizing a real fleet from measured data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2129,6 +2230,80 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#measure-before-you-size" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Measure before you size
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#right-sizing-cpu-requests-vs-bursts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Right-sizing CPU: requests vs. bursts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#image-size-the-cost-thats-paid-on-every-pull-and-every-host" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Image size: the cost that's paid on every pull and every host
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-sizing-a-real-fleet-from-measured-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: sizing a real fleet from measured data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2148,22 +2323,148 @@
 
 
 <h1 id="08-cost-performance-at-scale">08 · Cost &amp; Performance at Scale<a class="headerlink" href="#08-cost-performance-at-scale" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This module's full lessons and runnable examples are being written next.
-This module will cover Right-sizing container resource requests and image sizes to control infrastructure cost at scale.</p>
-</div>
-<p>In the meantime, <a href="../../level-1/">Level 1 · Entry</a> is fully published —
-start there if you haven't yet.</p>
+<p>At small scale, an oversized container or a bloated image costs nothing
+you'd notice. At fleet scale — dozens of services, hundreds of replicas,
+billed by the CPU-second and the gigabyte — the same inefficiencies
+compound into real invoices. This module covers the two levers that
+actually move cost: <strong>right-sizing resource requests</strong> (module 03's
+resource limits, revisited with a cost lens) and <strong>image size</strong> (module
+04's build optimization, revisited the same way), plus how to measure
+before guessing.</p>
+<h2 id="measure-before-you-size">Measure before you size<a class="headerlink" href="#measure-before-you-size" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker<span class="w"> </span>stats<span class="w"> </span>--no-stream
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># CONTAINER   CPU %   MEM USAGE / LIMIT   MEM %   NET I/O</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># web         3.20%   84MiB / 512MiB      16.41%  1.2MB / 800kB</span>
+</code></pre></div>
+<p>A container using 84MiB against a 512MiB limit isn't "safely under
+budget" — it's paying for 428MiB of capacity it never touches. Cloud
+schedulers (Kubernetes, ECS, Swarm) generally bill or bin-pack against the
+<em>request</em>, not the <em>actual usage</em>, so an inflated limit directly reduces
+how many containers fit per host, which directly increases host count.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>web<span class="w"> </span>--memory<span class="o">=</span>512m<span class="w"> </span>--memory-reservation<span class="o">=</span>128m<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span>--cpus<span class="o">=</span><span class="m">1</span>.0<span class="w"> </span>myapp:1.0
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># after a week of docker stats sampling shows steady 90-110MiB usage:</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>docker<span class="w"> </span>update<span class="w"> </span>--memory<span class="o">=</span>192m<span class="w"> </span>--memory-reservation<span class="o">=</span>96m<span class="w"> </span>web
+</code></pre></div>
+<p><code>--memory-reservation</code> (a soft limit) matters for bin-packing: the
+scheduler can place more containers per host if it plans around typical
+usage rather than the hard ceiling, while <code>--memory</code> (the hard limit)
+still protects against a genuine leak by killing the container via OOM
+rather than starving its neighbors.</p>
+<h2 id="right-sizing-cpu-requests-vs-bursts">Right-sizing CPU: requests vs. bursts<a class="headerlink" href="#right-sizing-cpu-requests-vs-bursts" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># compose.yml</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nt">services</span><span class="p">:</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">api</span><span class="p">:</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myapp:1.0</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="nt">deploy</span><span class="p">:</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">      </span><span class="nt">resources</span><span class="p">:</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">        </span><span class="nt">limits</span><span class="p">:</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">          </span><span class="nt">cpus</span><span class="p">:</span><span class="w"> </span><span class="s">"0.50"</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">          </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">256M</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">        </span><span class="nt">reservations</span><span class="p">:</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">          </span><span class="nt">cpus</span><span class="p">:</span><span class="w"> </span><span class="s">"0.25"</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">          </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">128M</span>
+</code></pre></div>
+<p>The gap between <code>reservations</code> (guaranteed, used for scheduling/bin-packing)
+and <code>limits</code> (the ceiling, used for throttling) is deliberate headroom for
+bursts — a request-handling service that's idle 90% of the time and spikes
+to 0.5 CPU briefly doesn't need a permanent 0.5-CPU reservation; it needs a
+small reservation and a burst ceiling, which lets many such services
+share a host's idle capacity instead of each reserving worst-case
+capacity that mostly goes unused.</p>
+<h2 id="image-size-the-cost-thats-paid-on-every-pull-and-every-host">Image size: the cost that's paid on every pull and every host<a class="headerlink" href="#image-size-the-cost-thats-paid-on-every-pull-and-every-host" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c"># before: 1.1GB</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">FROM</span><span class="w"> </span><span class="s">node:20</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">RUN</span><span class="w"> </span>npm<span class="w"> </span>install
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">"node"</span><span class="p">,</span><span class="w"> </span><span class="s2">"server.js"</span><span class="p">]</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c"># after: 178MB</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">FROM</span><span class="w"> </span><span class="s">node:20-slim</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s">build</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="k">COPY</span><span class="w"> </span>package*.json<span class="w"> </span>./
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="k">RUN</span><span class="w"> </span>npm<span class="w"> </span>ci<span class="w"> </span>--omit<span class="o">=</span>dev
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="k">FROM</span><span class="w"> </span><span class="s">node:20-slim</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>build<span class="w"> </span>/app/node_modules<span class="w"> </span>./node_modules
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="k">USER</span><span class="w"> </span><span class="s">node</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">"node"</span><span class="p">,</span><span class="w"> </span><span class="s2">"server.js"</span><span class="p">]</span>
+</code></pre></div>
+<p>Image size is a cost multiplier in three places at once: registry storage
+(billed per GB-month), network egress on every pull (billed per GB,
+multiplied by however many hosts pull it), and node autoscaling latency
+(a new node joining a cluster during a traffic spike can't serve requests
+until it finishes pulling every image it needs to run — a 1.1GB image adds
+real seconds-to-minutes to how fast you can scale out).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>docker<span class="w"> </span>image<span class="w"> </span>ls<span class="w"> </span>myapp<span class="w"> </span>--format<span class="w"> </span><span class="s2">"{{.Size}}"</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>docker<span class="w"> </span><span class="nb">history</span><span class="w"> </span>myapp:1.0<span class="w"> </span>--format<span class="w"> </span><span class="s2">"{{.Size}}\t{{.CreatedBy}}"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-20
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1"># find which single layer is responsible for the bulk of the size</span>
+</code></pre></div>
+<h2 id="worked-example-sizing-a-real-fleet-from-measured-data">Worked example: sizing a real fleet from measured data<a class="headerlink" href="#worked-example-sizing-a-real-fleet-from-measured-data" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># collect real usage across every running replica for a week, not a guess</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">for</span><span class="w"> </span>c<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>--format<span class="w"> </span><span class="s1">'{{.Names}}'</span><span class="w"> </span>--filter<span class="w"> </span><span class="nv">name</span><span class="o">=</span>api<span class="k">)</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span>docker<span class="w"> </span>stats<span class="w"> </span>--no-stream<span class="w"> </span>--format<span class="w"> </span><span class="s2">"{{.Name}}: {{.MemUsage}} {{.CPUPerc}}"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$c</span><span class="s2">"</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="k">done</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="c1"># api_1: 96MiB / 512MiB  4.10%</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="c1"># api_2: 103MiB / 512MiB 3.80%</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="c1"># api_3: 91MiB / 512MiB  4.40%</span>
+</code></pre></div>
+<p>All three replicas cluster around 100MiB and under 5% of one CPU, against
+limits sized for a launch-day guess of 512MiB/1 CPU. Resizing to a
+reservation just above the observed ceiling with headroom for growth:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>docker<span class="w"> </span>service<span class="w"> </span>update<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span>--limit-memory<span class="w"> </span>200m<span class="w"> </span>--reserve-memory<span class="w"> </span>128m<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span>--limit-cpu<span class="w"> </span><span class="m">0</span>.5<span class="w"> </span>--reserve-cpu<span class="w"> </span><span class="m">0</span>.15<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span>myapp_api
+</code></pre></div>
+<p>At 3 replicas this drops the <em>reserved</em> footprint from 1.5 CPU / 1.5GiB to
+0.45 CPU / 384MiB — nearly a 3x reduction in what the scheduler must set
+aside, meaning roughly 3x as many similarly-sized services can bin-pack
+onto the same host fleet before it needs to scale out.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>Why an oversized <code>--memory</code> limit costs money even when never hit.</strong>
+cgroups (the kernel mechanism behind <code>--memory</code>, covered in module 03)
+enforce the limit as a ceiling on that specific container's cgroup — but
+an orchestrator's scheduler makes placement decisions based on the <em>sum
+of requested/reserved resources</em> on a host, not on real-time usage,
+precisely because usage fluctuates and packing to a moving target risks
+oversubscription. A host with 8GiB of memory and containers reserving
+512MiB each can host 16 of them on paper regardless of whether they
+actually use 100MiB or 500MiB — so the reservation number, not the
+measured number, is what determines fleet density and therefore host
+count and therefore bill.</p>
+<p><strong>Why layer structure — not just final file count — drives pullable
+image size.</strong> A Docker image is a stack of read-only layers (module 04),
+and <code>docker history</code> shows the size <em>added</em> by each instruction, not a
+running total per file — deleting a file in a later <code>RUN</code> layer doesn't
+shrink the image, because the earlier layer containing that file is still
+part of the image's content-addressable layer stack and still gets pulled
+in full. This is why the multi-stage pattern in the worked Dockerfile
+matters mechanically: the <code>build</code> stage's layers (containing the full
+<code>npm ci</code> cache and any dev dependencies) are never copied into the final
+stage's layer stack at all — <code>COPY --from=build</code> copies specific
+directories' <em>current contents</em> into a fresh layer in the final image,
+leaving the bloated build-stage layers to exist only in the intermediate
+image that gets discarded, not in anything that's ever pushed, pulled, or
+billed for.</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Pick a service you've built in an earlier module, run it under load for a
+few minutes while sampling <code>docker stats --no-stream</code> every 10 seconds,
+and compute its actual peak CPU and memory. Set <code>--memory</code> and <code>--cpus</code> to
+roughly 1.5x that peak (not a round guess), then re-run the same load and
+confirm via <code>docker stats</code> that it never gets OOM-killed or CPU-throttled
+at the new, smaller limits.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 
