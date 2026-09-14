@@ -94,8 +94,6 @@
   }
   </script>
   
-  <meta name="robots" content="noindex, follow">
-  
 
   </head>
   
@@ -1620,6 +1618,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Logging Drivers & Centralized Logging
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1636,6 +1652,113 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setting-a-logging-driver-per-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting a logging driver per container
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-drivers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common drivers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-a-daemon-wide-default" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting a daemon-wide default
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-a-log-shipping-sidecar-instead-of-a-driver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using a log-shipping sidecar instead of a driver
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-a-logging-driver-in-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting a logging driver in Compose
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-comparing-the-two-approaches-operationally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: comparing the two approaches operationally
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2129,6 +2252,102 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setting-a-logging-driver-per-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting a logging driver per container
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-drivers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common drivers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-a-daemon-wide-default" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting a daemon-wide default
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-a-log-shipping-sidecar-instead-of-a-driver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using a log-shipping sidecar instead of a driver
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-a-logging-driver-in-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting a logging driver in Compose
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-comparing-the-two-approaches-operationally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: comparing the two approaches operationally
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2148,22 +2367,161 @@
 
 
 <h1 id="07-logging-drivers-centralized-logging">07 · Logging Drivers &amp; Centralized Logging<a class="headerlink" href="#07-logging-drivers-centralized-logging" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This module's full lessons and runnable examples are being written next.
-This module will cover Configuring logging drivers to ship container logs to external aggregation systems.</p>
-</div>
-<p>In the meantime, <a href="../../level-1/">Level 1 · Entry</a> is fully published —
-start there if you haven't yet.</p>
+<p>Module 05 of Level 2 relied on the default <code>json-file</code> logging driver.
+For production, especially with many hosts and short-lived containers,
+logs need to leave the host entirely and land in a central aggregation
+system before the container (and its log file) disappears.</p>
+<h2 id="setting-a-logging-driver-per-container">Setting a logging driver per container<a class="headerlink" href="#setting-a-logging-driver-per-container" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--log-driver<span class="o">=</span>syslog<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span>--log-opt<span class="w"> </span>syslog-address<span class="o">=</span>udp://logs.example.com:514<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span>myapp
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--log-driver<span class="o">=</span>json-file<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span>--log-opt<span class="w"> </span>max-size<span class="o">=</span>10m<span class="w"> </span>--log-opt<span class="w"> </span>max-file<span class="o">=</span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span>myapp
+</code></pre></div>
+<p>Even sticking with <code>json-file</code>, <code>max-size</code>/<code>max-file</code> cap total disk
+usage per container by rotating — without them, a chatty container's log
+file grows unbounded, the exact disk-filling risk flagged back in Level
+2, module 05.</p>
+<h2 id="common-drivers">Common drivers<a class="headerlink" href="#common-drivers" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Driver</th>
+<th>Destination</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>json-file</code> (default)</td>
+<td>Local JSON-lines file, readable via <code>docker logs</code></td>
+</tr>
+<tr>
+<td><code>local</code></td>
+<td>A more space-efficient local binary format, still readable via <code>docker logs</code></td>
+</tr>
+<tr>
+<td><code>syslog</code></td>
+<td>A syslog daemon (local or remote)</td>
+</tr>
+<tr>
+<td><code>journald</code></td>
+<td>The systemd journal</td>
+</tr>
+<tr>
+<td><code>fluentd</code></td>
+<td>A Fluentd collector, typically forwarding onward to Elasticsearch/Loki/etc.</td>
+</tr>
+<tr>
+<td><code>awslogs</code></td>
+<td>Amazon CloudWatch Logs directly</td>
+</tr>
+<tr>
+<td><code>gelf</code></td>
+<td>Graylog/Logstash via the GELF protocol</td>
+</tr>
+<tr>
+<td><code>none</code></td>
+<td>Discard entirely — no log storage at all</td>
+</tr>
+</tbody>
+</table>
+<p>A driver other than <code>json-file</code>/<code>local</code>/<code>journald</code> generally means
+<code>docker logs</code> <strong>stops working</strong> for that container — the daemon is
+shipping output straight to the external system instead of also keeping
+a locally readable copy, so <code>docker logs</code> on a <code>fluentd</code>-configured
+container typically returns nothing useful; you'd check the aggregator
+instead.</p>
+<h2 id="setting-a-daemon-wide-default">Setting a daemon-wide default<a class="headerlink" href="#setting-a-daemon-wide-default" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">// /etc/docker/daemon.json</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="p">{</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">"log-driver"</span><span class="p">:</span><span class="w"> </span><span class="s2">"json-file"</span><span class="p">,</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nt">"log-opts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="nt">"max-size"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10m"</span><span class="p">,</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="nt">"max-file"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="p">}</span>
+</code></pre></div>
+<p>Setting sane rotation defaults daemon-wide (rather than remembering
+<code>--log-opt</code> on every <code>docker run</code>) is the single most common fix for
+"disk filled up with container logs" incidents.</p>
+<h2 id="using-a-log-shipping-sidecar-instead-of-a-driver">Using a log-shipping sidecar instead of a driver<a class="headerlink" href="#using-a-log-shipping-sidecar-instead-of-a-driver" title="Permanent link">&para;</a></h2>
+<p>An alternative to configuring the driver directly is the sidecar pattern
+from module 04 — a Fluent Bit (or Filebeat, Vector, etc.) container reads
+the same <code>json-file</code> logs Docker already produces (mounting
+<code>/var/lib/docker/containers</code> read-only) and ships them onward, giving you
+<code>docker logs</code> locally <em>and</em> centralized shipping simultaneously, at the
+cost of one more container to run and secure.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">services</span><span class="p">:</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">app</span><span class="p">:</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nt">build</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="nt">log-shipper</span><span class="p">:</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fluent/fluent-bit:latest</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/lib/docker/containers:/var/lib/docker/containers:ro</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/run/docker.sock:/var/run/docker.sock:ro</span>
+</code></pre></div>
+<h2 id="setting-a-logging-driver-in-compose">Setting a logging driver in Compose<a class="headerlink" href="#setting-a-logging-driver-in-compose" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">services</span><span class="p">:</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">api</span><span class="p">:</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="nt">build</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="nt">logging</span><span class="p">:</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">      </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="s">"gelf"</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">      </span><span class="nt">options</span><span class="p">:</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">        </span><span class="nt">gelf-address</span><span class="p">:</span><span class="w"> </span><span class="s">"udp://logs.example.com:12201"</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="s">"{{.Name}}"</span>
+</code></pre></div>
+<h2 id="worked-example-comparing-the-two-approaches-operationally">Worked example: comparing the two approaches operationally<a class="headerlink" href="#worked-example-comparing-the-two-approaches-operationally" title="Permanent link">&para;</a></h2>
+<p>Direct driver (<code>awslogs</code>, <code>gelf</code>, <code>syslog</code>, etc.): simplest to configure,
+but loses local <code>docker logs</code> access and ties the container's log
+pipeline tightly to the daemon-level driver — changing where logs go
+means changing every container's config or the daemon default and
+restarting affected containers. Sidecar shipping json-file logs: keeps
+<code>docker logs</code> working locally, decouples the shipping pipeline (you can
+change/upgrade the shipper independently), but requires the shipper to
+have read access to <code>/var/lib/docker/containers</code> and to correctly parse
+Docker's json-file format including log rotation boundaries.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>Where a logging driver actually sits in the log's path.</strong> As
+established in Level 2 module 05, the daemon holds the read end of the
+pipe connected to a container's stdout/stderr from the moment it starts.
+The logging driver is the code that runs <em>on that read end</em>: <code>json-file</code>
+writes each line to a local file; <code>syslog</code>/<code>gelf</code>/<code>fluentd</code> instead
+format and forward each line over the network to the configured
+destination, using that protocol's own framing (RFC 5424 for syslog, the
+GELF JSON+chunking format for GELF, Fluentd's forward protocol for
+fluentd) — in every case the daemon itself is the one reading and
+relaying, not a separate agent watching a file. This is exactly why
+switching drivers on an already-running container isn't possible without
+recreating it: <code>--log-driver</code> is fixed at container-create time as part
+of how the daemon wires up that pipe's consumer.</p>
+<p><strong>Why sidecar-based shipping instead reads a file, and what "tailing a
+rotating file correctly" actually requires.</strong> With <code>json-file</code> still
+selected as the driver, log lines physically exist as JSON objects (one
+per line) in <code>/var/lib/docker/containers/&lt;id&gt;/&lt;id&gt;-json.log</code>, rotated by
+renaming the current file and starting a fresh one once <code>max-size</code> is
+hit. A naive <code>tail -f</code> breaks across a rotation (the file descriptor it
+holds now points at the renamed, no-longer-growing file). Log shippers
+built for this instead track files by inode, not by path, and
+periodically re-check whether the path they're tailing still refers to
+the same inode — detecting a rotation by an inode/path mismatch rather
+than by any signal from Docker itself, since Docker's <code>json-file</code> driver
+does not notify external processes about rotation at all.</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Set <code>max-size: "1m"</code> and <code>max-file: "2"</code> on a container that logs
+continuously and verbosely (<code>docker run -d --log-opt max-size=1m
+--log-opt max-file=2 alpine sh -c "while true; do echo $(date); sleep
+0.01; done"</code>). Watch <code>/var/lib/docker/containers/&lt;id&gt;/</code> on the host (root
+access required) and confirm you see rotation happen — never more than 2
+files, each capped near 1MB — while <code>docker logs</code> for the container keeps
+working across the rotation.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 

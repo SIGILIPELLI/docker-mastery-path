@@ -94,8 +94,6 @@
   }
   </script>
   
-  <meta name="robots" content="noindex, follow">
-  
 
   </head>
   
@@ -1272,6 +1270,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Managing Images & Tags
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1288,6 +1304,91 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tagging-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tagging strategies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#listing-and-cleaning-up-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Listing and cleaning up images
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pushing-and-pulling-by-tag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pushing and pulling by tag
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-promoting-an-image-across-environments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: promoting an image across environments
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2129,6 +2230,80 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tagging-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tagging strategies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#listing-and-cleaning-up-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Listing and cleaning up images
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pushing-and-pulling-by-tag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pushing and pulling by tag
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-promoting-an-image-across-environments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: promoting an image across environments
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2148,22 +2323,132 @@
 
 
 <h1 id="08-managing-images-tags">08 · Managing Images &amp; Tags<a class="headerlink" href="#08-managing-images-tags" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This module's full lessons and runnable examples are being written next.
-This module will cover Tagging strategies, cleaning up unused images, and versioning images across environments.</p>
-</div>
-<p>In the meantime, <a href="../../level-1/">Level 1 · Entry</a> is fully published —
-start there if you haven't yet.</p>
+<p>An image name like <code>myapp:1.4.2</code> has two parts — the <strong>repository</strong>
+(<code>myapp</code>) and the <strong>tag</strong> (<code>1.4.2</code>) — and how you assign and clean up tags
+directly affects whether you can reliably reproduce what's running in
+production, and how much disk space your build hosts accumulate.</p>
+<h2 id="tagging-strategies">Tagging strategies<a class="headerlink" href="#tagging-strategies" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>myapp:1.4.2<span class="w"> </span>.
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>docker<span class="w"> </span>tag<span class="w"> </span>myapp:1.4.2<span class="w"> </span>myapp:latest
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>docker<span class="w"> </span>tag<span class="w"> </span>myapp:1.4.2<span class="w"> </span>registry.example.com/team/myapp:1.4.2
+</code></pre></div>
+<p><code>docker tag</code> doesn't copy anything — it adds another name pointing at the
+same image ID, the way a hard link adds another filename for the same
+inode.</p>
+<table>
+<thead>
+<tr>
+<th>Strategy</th>
+<th>Example</th>
+<th>Trade-off</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Semantic version</td>
+<td><code>myapp:1.4.2</code></td>
+<td>Precise, reproducible, but you must remember to bump it</td>
+</tr>
+<tr>
+<td>Git SHA</td>
+<td><code>myapp:a1b2c3d</code></td>
+<td>Always unique, traceable to exact source, unreadable to humans</td>
+</tr>
+<tr>
+<td><code>latest</code></td>
+<td><code>myapp:latest</code></td>
+<td>Convenient default, but <strong>mutable</strong> — it silently points at whatever was last pushed, which is exactly why it should never be the tag a production deployment pins to</td>
+</tr>
+<tr>
+<td>Environment</td>
+<td><code>myapp:staging</code>, <code>myapp:prod</code></td>
+<td>Readable, but also mutable — same caveat as <code>latest</code></td>
+</tr>
+</tbody>
+</table>
+<p>A robust pattern combines them: build and push both <code>myapp:a1b2c3d</code> (immutable, for deploys to pin to) and <code>myapp:1.4.2</code> (human-readable) pointing at the same image, and only move <code>myapp:latest</code> to point at the newest release for convenience during local development.</p>
+<h2 id="listing-and-cleaning-up-images">Listing and cleaning up images<a class="headerlink" href="#listing-and-cleaning-up-images" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span>images<span class="w">                        </span><span class="c1"># every locally stored image</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>docker<span class="w"> </span>images<span class="w"> </span>myapp<span class="w">                  </span><span class="c1"># filter by repository</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>docker<span class="w"> </span>images<span class="w"> </span>--filter<span class="w"> </span><span class="s2">"dangling=true"</span><span class="w">   </span><span class="c1"># untagged, unreferenced layers</span>
+</code></pre></div>
+<p>A <strong>dangling</strong> image is one with no tag at all (<code>&lt;none&gt;:&lt;none&gt;</code>) —
+typically left behind when you rebuild <code>myapp:latest</code> and the old image
+ID that used to hold that tag is now nameless but still on disk.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>docker<span class="w"> </span>image<span class="w"> </span>prune<span class="w">                   </span><span class="c1"># remove all dangling images</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>docker<span class="w"> </span>image<span class="w"> </span>prune<span class="w"> </span>-a<span class="w">                </span><span class="c1"># remove ALL images not used by a running container</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>docker<span class="w"> </span>rmi<span class="w"> </span>myapp:1.3.0<span class="w">               </span><span class="c1"># remove one specific tag</span>
+</code></pre></div>
+<p><code>docker image prune -a</code> is far more aggressive than plain <code>docker image
+prune</code> — it also removes tagged images that simply aren't currently
+backing a running container, which is appropriate for a CI build agent
+that should stay clean between jobs but dangerous on a workstation where
+you keep images around between sessions.</p>
+<h2 id="pushing-and-pulling-by-tag">Pushing and pulling by tag<a class="headerlink" href="#pushing-and-pulling-by-tag" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker<span class="w"> </span>tag<span class="w"> </span>myapp:1.4.2<span class="w"> </span>registry.example.com/team/myapp:1.4.2
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>docker<span class="w"> </span>push<span class="w"> </span>registry.example.com/team/myapp:1.4.2
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>docker<span class="w"> </span>pull<span class="w"> </span>registry.example.com/team/myapp:1.4.2
+</code></pre></div>
+<h2 id="worked-example-promoting-an-image-across-environments">Worked example: promoting an image across environments<a class="headerlink" href="#worked-example-promoting-an-image-across-environments" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Build once</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>registry.example.com/team/myapp:a1b2c3d<span class="w"> </span>.
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>docker<span class="w"> </span>push<span class="w"> </span>registry.example.com/team/myapp:a1b2c3d
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1"># "Promote" to staging by tagging the SAME image, not rebuilding it</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>docker<span class="w"> </span>pull<span class="w"> </span>registry.example.com/team/myapp:a1b2c3d
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>docker<span class="w"> </span>tag<span class="w"> </span>registry.example.com/team/myapp:a1b2c3d<span class="w"> </span>registry.example.com/team/myapp:staging
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>docker<span class="w"> </span>push<span class="w"> </span>registry.example.com/team/myapp:staging
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="c1"># Later, promote the identical, already-tested artifact to prod</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>docker<span class="w"> </span>tag<span class="w"> </span>registry.example.com/team/myapp:a1b2c3d<span class="w"> </span>registry.example.com/team/myapp:prod
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>docker<span class="w"> </span>push<span class="w"> </span>registry.example.com/team/myapp:prod
+</code></pre></div>
+<p>Retagging the exact same image ID for each environment (rather than
+rebuilding per environment) is what guarantees "what we tested in staging
+is byte-for-byte what's running in production."</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>A tag is a pointer, and pointers can be moved without touching any
+content.</strong> Internally, the daemon (and the registry) key everything by
+<strong>digest</strong> — a SHA-256 hash of the image manifest, which itself lists the
+content-addressed hashes of every layer. A tag like <code>myapp:1.4.2</code> is
+stored as a mutable mapping from that human-readable string to a specific
+digest, kept in the daemon's local image store (and, for a registry, in
+its own tag-to-manifest index). <code>docker tag</code> writes a new entry in that
+mapping pointing at an existing digest — no bytes are duplicated on disk,
+and no network transfer happens. This is exactly why <code>docker pull
+myapp:latest</code> twice, an hour apart, can silently hand you two different
+sets of bytes despite an identical command: <code>latest</code> is just whichever
+digest the mapping currently resolves to, and someone could have pushed a
+new image under that tag in between — the immutable, verifiable
+alternative is to pull by digest directly
+(<code>docker pull myapp@sha256:...</code>), which can never resolve to different
+content.</p>
+<p><strong>Why <code>docker image prune -a</code> can free gigabytes instantly.</strong> Layers are
+shared, reference-counted content on disk (via the storage driver's
+content store, keyed by layer digest) — removing a tag decrements the
+reference count for the layers it pointed to, and only layers with a
+reference count of zero (not referenced by any remaining tag or by any
+container's read-only layer set) are actually deleted from
+<code>/var/lib/docker</code>. This is why building ten variants of an image that all
+<code>FROM python:3.12-slim</code> costs almost no extra disk beyond the first —
+they all share that base's layers by reference — and why pruning can look
+dramatic: a single removed tag can be the last reference holding dozens
+of otherwise-orphaned layers, all reclaimed together.</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Build the same Dockerfile twice under two different tags without
+changing anything (<code>docker build -t myapp:v1 .</code> then
+<code>docker build -t myapp:v2 .</code>), and confirm with <code>docker images
+--digests</code> that both tags resolve to the identical digest. Then change
+one line, rebuild as <code>myapp:v3</code>, and use <code>docker image prune</code> to observe
+that the dangling intermediate layers from the <em>previous</em> untagged builds
+(if any) get cleaned up, while <code>v1</code>/<code>v2</code>/<code>v3</code> — all currently tagged —
+are left alone.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 

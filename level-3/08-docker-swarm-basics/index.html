@@ -94,8 +94,6 @@
   }
   </script>
   
-  <meta name="robots" content="noindex, follow">
-  
 
   </head>
   
@@ -1648,6 +1646,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Docker Swarm Basics
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1664,6 +1680,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#initializing-a-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Initializing a cluster
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#services-vs-plain-containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Services vs. plain containers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scaling-and-updating-a-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scaling and updating a service
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploying-a-full-stack-with-docker-stack-deploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deploying a full stack with docker stack deploy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-surviving-a-node-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: surviving a node failure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2129,6 +2241,91 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#initializing-a-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Initializing a cluster
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#services-vs-plain-containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Services vs. plain containers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scaling-and-updating-a-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scaling and updating a service
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploying-a-full-stack-with-docker-stack-deploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deploying a full stack with docker stack deploy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-surviving-a-node-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: surviving a node failure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2148,22 +2345,131 @@
 
 
 <h1 id="08-docker-swarm-basics">08 · Docker Swarm Basics<a class="headerlink" href="#08-docker-swarm-basics" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This module's full lessons and runnable examples are being written next.
-This module will cover Initializing a Swarm cluster and deploying a service across multiple nodes.</p>
-</div>
-<p>In the meantime, <a href="../../level-1/">Level 1 · Entry</a> is fully published —
-start there if you haven't yet.</p>
+<p><strong>Swarm</strong> is Docker's own built-in orchestrator — no separate
+installation required, since it ships inside the Docker Engine itself —
+for running services across a cluster of multiple hosts, with
+replication, rolling updates, and the overlay networking covered in
+module 01.</p>
+<h2 id="initializing-a-cluster">Initializing a cluster<a class="headerlink" href="#initializing-a-cluster" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker<span class="w"> </span>swarm<span class="w"> </span>init<span class="w"> </span>--advertise-addr<span class="w"> </span><span class="m">192</span>.168.1.10
+</code></pre></div>
+<p>This turns the current host into a Swarm <strong>manager</strong> and prints a
+<code>docker swarm join</code> command (with a join token) to run on other hosts to
+add them as <strong>workers</strong>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># on a second host</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>docker<span class="w"> </span>swarm<span class="w"> </span>join<span class="w"> </span>--token<span class="w"> </span>SWMTKN-1-xxxx<span class="w"> </span><span class="m">192</span>.168.1.10:2377
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>docker<span class="w"> </span>node<span class="w"> </span>ls
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="c1"># lists every node in the cluster, its role (Manager/Worker), and status</span>
+</code></pre></div>
+<h2 id="services-vs-plain-containers">Services vs. plain containers<a class="headerlink" href="#services-vs-plain-containers" title="Permanent link">&para;</a></h2>
+<p>In Swarm mode, you deploy <strong>services</strong> rather than individual
+containers — a service describes a desired state (which image, how many
+replicas, which ports) and Swarm's manager continuously reconciles the
+actual cluster toward it.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker<span class="w"> </span>service<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>web<span class="w"> </span>--replicas<span class="w"> </span><span class="m">3</span><span class="w"> </span>-p<span class="w"> </span><span class="m">8080</span>:80<span class="w"> </span>nginx:1.25
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>docker<span class="w"> </span>service<span class="w"> </span>ls
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>docker<span class="w"> </span>service<span class="w"> </span>ps<span class="w"> </span>web
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># shows which physical node each of the 3 replicas landed on</span>
+</code></pre></div>
+<p>If a node running one of the replicas goes down, the manager detects it
+and schedules a replacement replica on a healthy node automatically —
+this self-healing behavior is the core value Swarm adds over
+plain <code>docker run</code>.</p>
+<h2 id="scaling-and-updating-a-service">Scaling and updating a service<a class="headerlink" href="#scaling-and-updating-a-service" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker<span class="w"> </span>service<span class="w"> </span>scale<span class="w"> </span><span class="nv">web</span><span class="o">=</span><span class="m">5</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>docker<span class="w"> </span>service<span class="w"> </span>update<span class="w"> </span>--image<span class="w"> </span>nginx:1.26<span class="w"> </span>--update-parallelism<span class="w"> </span><span class="m">1</span><span class="w"> </span>--update-delay<span class="w"> </span>10s<span class="w"> </span>web
+</code></pre></div>
+<p><code>--update-parallelism 1 --update-delay 10s</code> performs a <strong>rolling
+update</strong>: replace one replica, wait 10 seconds (giving it time to become
+healthy), then move to the next — rather than replacing all replicas
+simultaneously and risking a total outage if the new image is broken.</p>
+<h2 id="deploying-a-full-stack-with-docker-stack-deploy">Deploying a full stack with <code>docker stack deploy</code><a class="headerlink" href="#deploying-a-full-stack-with-docker-stack-deploy" title="Permanent link">&para;</a></h2>
+<p>Swarm reuses Compose file syntax for multi-service deployments:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># stack.yml</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">"3.9"</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nt">services</span><span class="p">:</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="nt">web</span><span class="p">:</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx:1.25</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"8080:80"</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">    </span><span class="nt">deploy</span><span class="p">:</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">      </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">      </span><span class="nt">restart_policy</span><span class="p">:</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">        </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">on-failure</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">      </span><span class="nt">update_config</span><span class="p">:</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">        </span><span class="nt">parallelism</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="w">        </span><span class="nt">delay</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10s</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="w">  </span><span class="nt">api</span><span class="p">:</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">registry.example.com/team/api:1.0.0</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="w">    </span><span class="nt">deploy</span><span class="p">:</span>
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="w">      </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="w">    </span><span class="nt">networks</span><span class="p">:</span>
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">backend</span>
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="nt">networks</span><span class="p">:</span>
+<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a><span class="w">  </span><span class="nt">backend</span><span class="p">:</span>
+<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a><span class="w">    </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">overlay</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>docker<span class="w"> </span>stack<span class="w"> </span>deploy<span class="w"> </span>-c<span class="w"> </span>stack.yml<span class="w"> </span>myapp
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>docker<span class="w"> </span>stack<span class="w"> </span>services<span class="w"> </span>myapp
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>docker<span class="w"> </span>stack<span class="w"> </span>rm<span class="w"> </span>myapp
+</code></pre></div>
+<p>Note <code>networks.backend.driver: overlay</code> — this is where module 01's
+overlay networking becomes necessary: <code>api</code>'s replicas can land on any
+node in the cluster, and only an overlay network lets them discover and
+reach each other by service name regardless of which physical host each
+replica runs on.</p>
+<h2 id="worked-example-surviving-a-node-failure">Worked example: surviving a node failure<a class="headerlink" href="#worked-example-surviving-a-node-failure" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>docker<span class="w"> </span>service<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>resilient<span class="w"> </span>--replicas<span class="w"> </span><span class="m">3</span><span class="w"> </span>nginx
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>docker<span class="w"> </span>service<span class="w"> </span>ps<span class="w"> </span>resilient
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="c1"># note which nodes host each replica</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="c1"># simulate a node failure by draining it</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>docker<span class="w"> </span>node<span class="w"> </span>update<span class="w"> </span>--availability<span class="w"> </span>drain<span class="w"> </span>&lt;node-id&gt;
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>docker<span class="w"> </span>service<span class="w"> </span>ps<span class="w"> </span>resilient
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="c1"># the replica that was on the drained node is now Shutdown, and a</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="c1"># replacement has been scheduled on a remaining active node automatically</span>
+</code></pre></div>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>How the manager decides the cluster is converged, mechanically.</strong> Swarm
+managers run a Raft consensus group among themselves (an odd number of
+managers, typically 3 or 5, is recommended specifically because Raft
+needs a majority quorum to keep operating through manager failures) that
+holds the cluster's desired-state store — every service spec, its
+replica count, and current task placement. Each manager continuously
+diffs desired state (from that Raft-replicated store) against observed
+actual state (worker heartbeats reporting which tasks are running where)
+and issues scheduling decisions to close any gap — a crashed replica
+simply stops sending "I'm running" heartbeats, which the reconciliation
+loop notices within its heartbeat-timeout window and responds to by
+scheduling a replacement task elsewhere, all without any human
+intervention or external orchestrator.</p>
+<p><strong>Why overlay networking (module 01) is what makes service-name discovery
+work identically to single-host Compose.</strong> Each Swarm service gets a
+<strong>VIP</strong> (virtual IP) on its overlay network in addition to individual
+task IPs; the embedded DNS server, extended for Swarm mode, resolves the
+service name to that VIP, and the Linux kernel's IPVS (IP Virtual Server)
+module — the same load-balancing technology used elsewhere in the Linux
+networking stack — transparently load-balances connections to that VIP
+across the current set of healthy task IPs behind it. This is a strictly
+more capable version of the "multiple containers register the same DNS
+alias" mechanism from Compose's <code>--scale</code> (Level 2, module 09): here the
+balancing happens at the kernel/VIP level across potentially many
+physical hosts, rather than relying on DNS round-robin alone across
+containers on one bridge.</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Set up a two-node Swarm (a manager and one worker, both can be VMs or
+containers-in-a-VM if you don't have two physical machines available),
+deploy a 4-replica <code>nginx</code> service, confirm with <code>docker service ps</code> that
+replicas are distributed across both nodes, then drain the worker node
+and confirm all 4 replicas migrate to the manager node automatically.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 

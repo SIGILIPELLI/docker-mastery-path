@@ -94,8 +94,6 @@
   }
   </script>
   
-  <meta name="robots" content="noindex, follow">
-  
 
   </head>
   
@@ -1564,6 +1562,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Private Registries
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1580,6 +1596,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#running-a-self-hosted-registry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running a self-hosted registry
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding authentication
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tls-required-for-anything-beyond-localhost" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TLS: required for anything beyond localhost
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authenticating-against-a-managed-cloud-registry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authenticating against a managed cloud registry
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-ci-pushing-to-a-private-registry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: CI pushing to a private registry
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2129,6 +2241,91 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#running-a-self-hosted-registry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running a self-hosted registry
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding authentication
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tls-required-for-anything-beyond-localhost" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TLS: required for anything beyond localhost
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authenticating-against-a-managed-cloud-registry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authenticating against a managed cloud registry
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-ci-pushing-to-a-private-registry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: CI pushing to a private registry
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2148,22 +2345,118 @@
 
 
 <h1 id="05-private-registries">05 · Private Registries<a class="headerlink" href="#05-private-registries" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This module's full lessons and runnable examples are being written next.
-This module will cover Running a self-hosted registry and authenticating a Docker client against it.</p>
-</div>
-<p>In the meantime, <a href="../../level-1/">Level 1 · Entry</a> is fully published —
-start there if you haven't yet.</p>
+<p>Docker Hub is a public registry; most organizations also need a
+<strong>private registry</strong> for proprietary images — either self-hosted or a
+managed offering (ECR, GCR, Azure ACR, GitHub Container Registry, Harbor).
+This module covers running the open-source <code>registry</code> image yourself and
+authenticating against any registry.</p>
+<h2 id="running-a-self-hosted-registry">Running a self-hosted registry<a class="headerlink" href="#running-a-self-hosted-registry" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>registry<span class="w"> </span>-p<span class="w"> </span><span class="m">5000</span>:5000<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span>-v<span class="w"> </span>registry-data:/var/lib/registry<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span>registry:2
+</code></pre></div>
+<p>This starts a minimal, unauthenticated registry listening on port 5000.
+It's immediately usable for pushing/pulling on the host it runs on, with
+images persisted in the <code>registry-data</code> volume across restarts.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span>tag<span class="w"> </span>myapp:1.0<span class="w"> </span>localhost:5000/myapp:1.0
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>docker<span class="w"> </span>push<span class="w"> </span>localhost:5000/myapp:1.0
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>docker<span class="w"> </span>pull<span class="w"> </span>localhost:5000/myapp:1.0
+</code></pre></div>
+<p>The registry hostname/port becomes part of the image name — this is how
+Docker's client decides where to push/pull, distinguishing
+<code>localhost:5000/myapp</code> from Docker Hub's implicit <code>docker.io/library/myapp</code>.</p>
+<h2 id="adding-authentication">Adding authentication<a class="headerlink" href="#adding-authentication" title="Permanent link">&para;</a></h2>
+<p>An unauthenticated registry is fine for local experimentation only.
+Basic auth via <code>htpasswd</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>mkdir<span class="w"> </span>auth
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--entrypoint<span class="w"> </span>htpasswd<span class="w"> </span>httpd:2.4<span class="w"> </span>-Bbn<span class="w"> </span>deploy-user<span class="w"> </span>supersecret<span class="w"> </span>&gt;<span class="w"> </span>auth/htpasswd
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>registry<span class="w"> </span>-p<span class="w"> </span><span class="m">5000</span>:5000<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span>-v<span class="w"> </span>registry-data:/var/lib/registry<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span>-v<span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span><span class="s2">/auth:/auth"</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span>-e<span class="w"> </span><span class="nv">REGISTRY_AUTH</span><span class="o">=</span>htpasswd<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">  </span>-e<span class="w"> </span><span class="nv">REGISTRY_AUTH_HTPASSWD_REALM</span><span class="o">=</span><span class="s2">"Registry Realm"</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">  </span>-e<span class="w"> </span><span class="nv">REGISTRY_AUTH_HTPASSWD_PATH</span><span class="o">=</span>/auth/htpasswd<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">  </span>registry:2
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker<span class="w"> </span>login<span class="w"> </span>localhost:5000
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="c1"># Username: deploy-user</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1"># Password: supersecret</span>
+</code></pre></div>
+<h2 id="tls-required-for-anything-beyond-localhost">TLS: required for anything beyond <code>localhost</code><a class="headerlink" href="#tls-required-for-anything-beyond-localhost" title="Permanent link">&para;</a></h2>
+<p>Docker refuses to push/pull against a non-<code>localhost</code> registry over
+plain HTTP by default (treating it as "insecure") unless explicitly told
+otherwise. For a real deployment, terminate TLS in front of the registry
+(a reverse proxy, or the registry's own TLS config) with a real or
+internal CA certificate. For local testing only, a registry can be added
+to the Engine's explicit insecure-registry allowlist:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">// /etc/docker/daemon.json</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="p">{</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="nt">"insecure-registries"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"registry.internal.example.com:5000"</span><span class="p">]</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="p">}</span>
+</code></pre></div>
+<p>This is a deliberate, host-wide opt-out of transport security and should
+never be used for a registry reachable outside a fully trusted network.</p>
+<h2 id="authenticating-against-a-managed-cloud-registry">Authenticating against a managed cloud registry<a class="headerlink" href="#authenticating-against-a-managed-cloud-registry" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>aws<span class="w"> </span>ecr<span class="w"> </span>get-login-password<span class="w"> </span>--region<span class="w"> </span>us-east-1<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span>docker<span class="w"> </span>login<span class="w"> </span>--username<span class="w"> </span>AWS<span class="w"> </span>--password-stdin<span class="w"> </span><span class="m">123456789</span>.dkr.ecr.us-east-1.amazonaws.com
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>docker<span class="w"> </span>tag<span class="w"> </span>myapp:1.0<span class="w"> </span><span class="m">123456789</span>.dkr.ecr.us-east-1.amazonaws.com/myapp:1.0
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>docker<span class="w"> </span>push<span class="w"> </span><span class="m">123456789</span>.dkr.ecr.us-east-1.amazonaws.com/myapp:1.0
+</code></pre></div>
+<p><code>--password-stdin</code> avoids the password appearing in shell history or
+<code>ps</code> output, unlike an inline <code>--password</code> flag — the credential is
+piped in directly rather than passed as a process argument.</p>
+<h2 id="worked-example-ci-pushing-to-a-private-registry">Worked example: CI pushing to a private registry<a class="headerlink" href="#worked-example-ci-pushing-to-a-private-registry" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"</span><span class="nv">$REGISTRY_PASSWORD</span><span class="s2">"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>docker<span class="w"> </span>login<span class="w"> </span>registry.example.com<span class="w"> </span>-u<span class="w"> </span>ci-bot<span class="w"> </span>--password-stdin
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>registry.example.com/team/myapp:<span class="si">${</span><span class="nv">CI_COMMIT_SHA</span><span class="si">}</span><span class="w"> </span>.
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>docker<span class="w"> </span>push<span class="w"> </span>registry.example.com/team/myapp:<span class="si">${</span><span class="nv">CI_COMMIT_SHA</span><span class="si">}</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>docker<span class="w"> </span><span class="nb">logout</span><span class="w"> </span>registry.example.com
+</code></pre></div>
+<p><code>docker logout</code> at the end of a CI job removes the cached credential from
+the build agent's config, so it isn't left behind for a later,
+potentially less-trusted job on shared infrastructure.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>Where <code>docker login</code> actually stores the credential.</strong> By default,
+<code>docker login</code> writes the registry hostname and a base64-encoded
+<code>username:password</code> pair into <code>~/.docker/config.json</code> under an <code>auths</code>
+key — plaintext-equivalent (base64 is encoding, not encryption) unless a
+credential helper is configured. On systems with one available, Docker
+instead delegates to the OS's native secret store — <code>docker-credential-osxkeychain</code>
+on macOS, <code>docker-credential-wincred</code> on Windows, <code>pass</code> or <code>secretservice</code>
+on Linux — storing only a reference to the helper in <code>config.json</code> and
+the actual secret in that OS-managed, encrypted store. This is why
+copying <code>~/.docker/config.json</code> between machines "just to reuse
+credentials" doesn't work in the credential-helper case: the file only
+contains a pointer, and the real secret lives in a keychain scoped to
+the original machine/user.</p>
+<p><strong>Why the registry hostname is baked into the image reference itself,
+not passed as a separate flag.</strong> Every image reference Docker parses has
+an implicit or explicit registry component:
+<code>[registry[:port]/]repository[:tag]</code>. When no registry is given, the
+client defaults to <code>docker.io</code> (and, for a single-segment name like
+<code>nginx</code>, further defaults to the <code>library/</code> namespace). Push/pull
+operations extract that registry component and look up matching
+credentials from <code>config.json</code>'s <code>auths</code> map keyed by exact hostname —
+which is precisely why <code>docker tag myapp:1.0 localhost:5000/myapp:1.0</code>
+is a <em>required</em> step before pushing to a non-default registry: without
+that registry-qualified tag, <code>docker push myapp:1.0</code> would target
+Docker Hub, not your private registry, regardless of which registry
+you're currently logged into.</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Run a local unauthenticated registry on port 5000, push a small image to
+it, then stop and remove the registry <em>container</em> (but not its volume),
+start a fresh registry container reusing the same volume, and confirm
+the previously pushed image can still be pulled — demonstrating that a
+registry's actual storage is decoupled from any one container instance,
+the same volume/container-lifecycle separation covered in Level 2,
+module 07.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 

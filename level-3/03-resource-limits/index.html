@@ -94,8 +94,6 @@
   }
   </script>
   
-  <meta name="robots" content="noindex, follow">
-  
 
   </head>
   
@@ -1508,6 +1506,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Resource Limits (CPU/Memory)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1524,6 +1540,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#memory-limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Memory limits
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cpu-limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CPU limits
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-observing-a-memory-limit-being-enforced" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: observing a memory limit being enforced
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-limits-in-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting limits in Compose
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoring-against-limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monitoring against limits
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2129,6 +2241,91 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#memory-limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Memory limits
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cpu-limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CPU limits
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-observing-a-memory-limit-being-enforced" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: observing a memory limit being enforced
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-limits-in-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting limits in Compose
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monitoring-against-limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monitoring against limits
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2148,22 +2345,132 @@
 
 
 <h1 id="03-resource-limits-cpumemory">03 · Resource Limits (CPU/Memory)<a class="headerlink" href="#03-resource-limits-cpumemory" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This module's full lessons and runnable examples are being written next.
-This module will cover Constraining container CPU and memory usage with cgroup-backed flags, and what happens when a limit is exceeded.</p>
-</div>
-<p>In the meantime, <a href="../../level-1/">Level 1 · Entry</a> is fully published —
-start there if you haven't yet.</p>
+<p>Without limits, a single misbehaving container can consume all of a
+host's CPU or memory and starve every other container on it. Docker
+exposes cgroup-backed flags to cap what a container may use.</p>
+<h2 id="memory-limits">Memory limits<a class="headerlink" href="#memory-limits" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--memory<span class="o">=</span>512m<span class="w"> </span>--memory-swap<span class="o">=</span>512m<span class="w"> </span>myapp
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--memory</code></td>
+<td>Hard cap on RAM the container may use</td>
+</tr>
+<tr>
+<td><code>--memory-swap</code></td>
+<td>Cap on RAM <strong>plus</strong> swap combined; setting it equal to <code>--memory</code> disables swap for this container entirely</td>
+</tr>
+<tr>
+<td><code>--memory-reservation</code></td>
+<td>A soft limit — only enforced under host memory pressure, not a hard ceiling</td>
+</tr>
+</tbody>
+</table>
+<p>Exceeding <code>--memory</code> doesn't throttle the process — the kernel's
+out-of-memory killer terminates it, which is why a container that dies
+with exit code <code>137</code> and no application-level error in its logs is a
+strong signal to check whether it hit a memory limit
+(<code>docker inspect -f '{{.State.OOMKilled}}' myapp</code>).</p>
+<h2 id="cpu-limits">CPU limits<a class="headerlink" href="#cpu-limits" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--cpus<span class="o">=</span><span class="m">1</span>.5<span class="w"> </span>myapp
+</code></pre></div>
+<p><code>--cpus=1.5</code> caps the container to the equivalent of one and a half CPU
+cores' worth of processing time, averaged over each scheduling period —
+it can burst higher briefly and get throttled back down, rather than
+being pinned to specific cores.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--cpu-shares<span class="o">=</span><span class="m">512</span><span class="w"> </span>myapp<span class="w">   </span><span class="c1"># relative weight, not an absolute cap</span>
+</code></pre></div>
+<p><code>--cpu-shares</code> is fundamentally different from <code>--cpus</code>: it only matters
+when the host is under CPU contention, at which point containers get CPU
+time proportional to their share weight relative to others' — a
+container with <code>--cpu-shares=512</code> gets half the CPU time of one with
+<code>1024</code>, but <em>only</em> when both are competing for the same scarce CPU; if
+the host is otherwise idle, a low-share container can still use 100% of
+a core.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--cpuset-cpus<span class="o">=</span><span class="s2">"0,1"</span><span class="w"> </span>myapp<span class="w">   </span><span class="c1"># pin to specific physical cores</span>
+</code></pre></div>
+<h2 id="worked-example-observing-a-memory-limit-being-enforced">Worked example: observing a memory limit being enforced<a class="headerlink" href="#worked-example-observing-a-memory-limit-being-enforced" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>mem-test<span class="w"> </span>--memory<span class="o">=</span>100m<span class="w"> </span>alpine<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">"cat /dev/zero | head -c 200m | tail; sleep 30"</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>docker<span class="w"> </span><span class="nb">wait</span><span class="w"> </span>mem-test<span class="w">        </span><span class="c1"># blocks until it exits, prints the exit code</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>docker<span class="w"> </span>inspect<span class="w"> </span>-f<span class="w"> </span><span class="s1">'{{.State.OOMKilled}}'</span><span class="w"> </span>mem-test<span class="w">   </span><span class="c1"># true</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>docker<span class="w"> </span>logs<span class="w"> </span>mem-test<span class="w">         </span><span class="c1"># likely empty or truncated — killed mid-write</span>
+</code></pre></div>
+<h2 id="setting-limits-in-compose">Setting limits in Compose<a class="headerlink" href="#setting-limits-in-compose" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">services</span><span class="p">:</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nt">worker</span><span class="p">:</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="nt">build</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="nt">deploy</span><span class="p">:</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">      </span><span class="nt">resources</span><span class="p">:</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">        </span><span class="nt">limits</span><span class="p">:</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">          </span><span class="nt">cpus</span><span class="p">:</span><span class="w"> </span><span class="s">"1.0"</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">          </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">512M</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">        </span><span class="nt">reservations</span><span class="p">:</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">          </span><span class="nt">cpus</span><span class="p">:</span><span class="w"> </span><span class="s">"0.25"</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">          </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">128M</span>
+</code></pre></div>
+<p>Under plain <code>docker compose up</code> (not Swarm mode), the <code>deploy.resources</code>
+block is honored for <code>limits</code> since Compose v2 — no separate orchestrator
+required for a single-host <code>docker compose</code> project to apply CPU/memory
+caps.</p>
+<h2 id="monitoring-against-limits">Monitoring against limits<a class="headerlink" href="#monitoring-against-limits" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>docker<span class="w"> </span>stats<span class="w"> </span>--no-stream
+</code></pre></div>
+<p><code>docker stats</code> prints live CPU%, memory usage, and — critically — the
+memory <strong>limit</strong> it's calculated against, so you can see at a glance how
+close a container is running to its own ceiling before it gets OOM
+killed.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>Where the numbers actually live: cgroups, not Docker itself.</strong> Every
+container gets its own <strong>cgroup</strong> (control group) — a kernel accounting
+and limiting mechanism, unrelated to namespaces, that groups a set of
+processes for the purpose of enforcing resource limits. <code>--memory=512m</code>
+mechanically writes <code>512m</code> (converted to bytes) to that cgroup's
+<code>memory.max</code> file (cgroup v2; <code>memory.limit_in_bytes</code> under v1) under
+<code>/sys/fs/cgroup/</code>. The kernel's memory accounting subsystem then tracks
+every page the container's processes allocate against that cgroup's
+counter, and when an allocation would push the counter past <code>memory.max</code>,
+the kernel's OOM killer is invoked <em>scoped to that cgroup</em> — it selects
+and <code>SIGKILL</code>s the largest (or otherwise highest-scored) process within
+that specific cgroup, leaving every process outside it, including other
+containers and the host itself, completely unaffected. Docker's
+<code>--memory</code> flag is therefore not an application-level convention at all
+— it's a thin wrapper writing directly to kernel accounting files that
+the kernel itself enforces during page allocation.</p>
+<p><strong>Why <code>--cpus</code> produces throttling rather than a hard multi-core
+pin.</strong> <code>--cpus=1.5</code> is implemented via the CFS (Completely Fair
+Scheduler) bandwidth controller: the cgroup gets a <code>cpu.max</code> setting of
+"150000 100000" (cgroup v2 syntax) meaning "150,000 microseconds of CPU
+time allowed per 100,000-microsecond period, across however many cores
+the process actually runs on." The scheduler tracks cumulative runtime
+for all threads in that cgroup within each 100ms period; once the
+1.5-core-equivalent budget for that period is exhausted, every thread in
+the cgroup is taken off the run queue (throttled) until the next period
+begins, regardless of whether other cores sit completely idle in the
+meantime. This period-based bursting explains a common confusion:
+<code>docker stats</code> briefly showing CPU% well above the "expected" 150%
+average for part of a period, followed by a stall, rather than a smooth
+150% ceiling at all times.</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Run a CPU-bound container (<code>docker run -d --cpus=0.5 alpine sh -c "yes &gt;
+/dev/null"</code>) and watch <code>docker stats</code> for it — confirm its CPU% settles
+around 50%, not 100%, even though <code>yes</code> alone would happily consume an
+entire core. Then remove the <code>--cpus</code> flag and rerun, comparing the CPU%
+you observe.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 

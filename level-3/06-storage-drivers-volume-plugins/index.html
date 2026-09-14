@@ -94,8 +94,6 @@
   }
   </script>
   
-  <meta name="robots" content="noindex, follow">
-  
 
   </head>
   
@@ -1592,6 +1590,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Storage Drivers & Volume Plugins
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1608,6 +1624,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#checking-your-storage-driver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checking your storage driver
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-overlay2-layers-a-filesystem-at-the-directory-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How overlay2 layers a filesystem, at the directory level
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#volume-plugins-for-non-local-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Volume plugins for non-local storage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nfs-as-a-built-in-volume-option-no-plugin-needed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NFS as a built-in volume option (no plugin needed)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-inspecting-layer-sharing-directly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: inspecting layer sharing directly
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2129,6 +2241,91 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#checking-your-storage-driver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checking your storage driver
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-overlay2-layers-a-filesystem-at-the-directory-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How overlay2 layers a filesystem, at the directory level
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#volume-plugins-for-non-local-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Volume plugins for non-local storage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nfs-as-a-built-in-volume-option-no-plugin-needed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NFS as a built-in volume option (no plugin needed)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-inspecting-layer-sharing-directly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: inspecting layer sharing directly
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2148,22 +2345,112 @@
 
 
 <h1 id="06-storage-drivers-volume-plugins">06 · Storage Drivers &amp; Volume Plugins<a class="headerlink" href="#06-storage-drivers-volume-plugins" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This module's full lessons and runnable examples are being written next.
-This module will cover How Docker's storage drivers manage layered filesystems, and extending storage with volume plugins.</p>
-</div>
-<p>In the meantime, <a href="../../level-1/">Level 1 · Entry</a> is fully published —
-start there if you haven't yet.</p>
+<p>Every image layer and every container's writable layer has to be
+represented on disk somehow. The <strong>storage driver</strong> decides how; a
+<strong>volume plugin</strong> extends where volume data can physically live, beyond
+the local host's filesystem.</p>
+<h2 id="checking-your-storage-driver">Checking your storage driver<a class="headerlink" href="#checking-your-storage-driver" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker<span class="w"> </span>info<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">"Storage Driver"</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># Storage Driver: overlay2</span>
+</code></pre></div>
+<p><code>overlay2</code> is the modern default on Linux and the one covered throughout
+this course's "How It Actually Works" sections; older/alternative
+drivers (<code>aufs</code>, <code>devicemapper</code>, <code>btrfs</code>, <code>zfs</code>) exist for specific
+kernel/filesystem combinations but overlay2 is the right default choice
+for nearly all current Linux hosts.</p>
+<h2 id="how-overlay2-layers-a-filesystem-at-the-directory-level">How overlay2 layers a filesystem, at the directory level<a class="headerlink" href="#how-overlay2-layers-a-filesystem-at-the-directory-level" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span>inspect<span class="w"> </span>-f<span class="w"> </span><span class="s1">'{{.GraphDriver.Data.MergedDir}}'</span><span class="w"> </span>mycontainer
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>docker<span class="w"> </span>inspect<span class="w"> </span>-f<span class="w"> </span><span class="s1">'{{.GraphDriver.Data.UpperDir}}'</span><span class="w"> </span>mycontainer
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>docker<span class="w"> </span>inspect<span class="w"> </span>-f<span class="w"> </span><span class="s1">'{{.GraphDriver.Data.LowerDir}}'</span><span class="w"> </span>mycontainer
+</code></pre></div>
+<ul>
+<li><code>LowerDir</code>: one or more read-only directories, one per image layer,
+  stacked in order.</li>
+<li><code>UpperDir</code>: the single writable directory unique to this container —
+  everything the container writes lands here.</li>
+<li><code>MergedDir</code>: the unified view the container's process actually sees as
+  its root filesystem — overlayfs presents <code>LowerDir</code> + <code>UpperDir</code>
+  merged into one coherent tree.</li>
+</ul>
+<h2 id="volume-plugins-for-non-local-storage">Volume plugins for non-local storage<a class="headerlink" href="#volume-plugins-for-non-local-storage" title="Permanent link">&para;</a></h2>
+<p>The built-in <code>local</code> volume driver stores data on the host's own disk.
+A <strong>volume plugin</strong> implements Docker's volume driver API to back
+volumes with something else entirely — network storage, cloud block
+storage, distributed filesystems:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>docker<span class="w"> </span>plugin<span class="w"> </span>install<span class="w"> </span>rexray/ebs
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>docker<span class="w"> </span>volume<span class="w"> </span>create<span class="w"> </span>--driver<span class="w"> </span>rexray/ebs<span class="w"> </span>--name<span class="w"> </span>my-ebs-volume
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>app<span class="w"> </span>-v<span class="w"> </span>my-ebs-volume:/data<span class="w"> </span>myapp
+</code></pre></div>
+<p>From inside the container, <code>/data</code> looks like an ordinary local
+directory — the plugin handles attaching/mounting the underlying cloud
+volume transparently. This matters for scenarios plain host storage
+can't provide: a volume that must survive the <em>host</em> being terminated
+(common in autoscaled cloud fleets), or one shared concurrently across
+multiple hosts.</p>
+<h2 id="nfs-as-a-built-in-volume-option-no-plugin-needed">NFS as a built-in volume option (no plugin needed)<a class="headerlink" href="#nfs-as-a-built-in-volume-option-no-plugin-needed" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker<span class="w"> </span>volume<span class="w"> </span>create<span class="w"> </span>--driver<span class="w"> </span><span class="nb">local</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span>--opt<span class="w"> </span><span class="nv">type</span><span class="o">=</span>nfs<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span>--opt<span class="w"> </span><span class="nv">o</span><span class="o">=</span><span class="nv">addr</span><span class="o">=</span><span class="m">192</span>.168.1.100,rw<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span>--opt<span class="w"> </span><span class="nv">device</span><span class="o">=</span>:/exported/path<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span>nfs-volume
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-v<span class="w"> </span>nfs-volume:/data<span class="w"> </span>myapp
+</code></pre></div>
+<p>The <code>local</code> driver itself supports mounting NFS shares as "volumes"
+without a third-party plugin, by shelling out to the same <code>mount</code>
+options you'd otherwise use directly — a lighter-weight option than a
+full plugin when NFS is the only extra capability you need.</p>
+<h2 id="worked-example-inspecting-layer-sharing-directly">Worked example: inspecting layer sharing directly<a class="headerlink" href="#worked-example-inspecting-layer-sharing-directly" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>c1<span class="w"> </span>python:3.12-slim<span class="w"> </span>sleep<span class="w"> </span><span class="m">3600</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>c2<span class="w"> </span>python:3.12-slim<span class="w"> </span>sleep<span class="w"> </span><span class="m">3600</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>docker<span class="w"> </span>inspect<span class="w"> </span>-f<span class="w"> </span><span class="s1">'{{.GraphDriver.Data.LowerDir}}'</span><span class="w"> </span>c1
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>docker<span class="w"> </span>inspect<span class="w"> </span>-f<span class="w"> </span><span class="s1">'{{.GraphDriver.Data.LowerDir}}'</span><span class="w"> </span>c2
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="c1"># identical LowerDir chains — both containers share the exact same</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># read-only image layers on disk; only their (separate) UpperDir differs</span>
+</code></pre></div>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>What overlayfs actually does at the kernel level.</strong> <code>overlay2</code> is a
+real Linux kernel filesystem (<code>mount -t overlay</code>), not a Docker
+invention — Docker calls <code>mount</code> with <code>lowerdir=</code>, <code>upperdir=</code>, and
+<code>workdir=</code> options for each container. The kernel then presents a
+merged view where a file lookup checks <code>upperdir</code> first and falls back
+through the <code>lowerdir</code> stack; a write to a file that only exists in a
+lower (read-only) layer triggers <strong>copy-up</strong>: the kernel transparently
+copies that file into <code>upperdir</code> first, then applies the write there —
+the original lower-layer copy is untouched. This copy-up mechanism is
+the literal, kernel-level explanation for why editing a large file that
+originated in a base image (say, replacing one line in a multi-gigabyte
+file shipped in <code>python:3.12</code>) is unexpectedly slow and grows the
+container's writable layer by the <em>entire file's</em> size, not just the
+size of your edit — the kernel had to copy the whole file up before it
+could apply any part of the write.</p>
+<p><strong>Why a whiteout file, not real deletion, represents "delete" across
+layers.</strong> Because lower layers are strictly read-only, <code>overlay2</code> can't
+actually erase a file that lives in one. Deleting such a file instead
+creates a special zero-size character device (major/minor number 0/0)
+in <code>upperdir</code> with the same name — a "whiteout" — which the kernel's
+overlay lookup logic recognizes and uses to hide the lower layer's
+version from the merged view, without touching the lower layer's actual
+bytes at all. This is the same mechanism referenced back in Level 1's
+Dockerfile lesson (why <code>RUN rm</code> in a later layer doesn't shrink the
+image) — the whiteout is created in that later layer, while the deleted
+file's bytes remain physically present in whichever earlier layer
+originally introduced them, still counted in the image's total size on
+disk and during registry push/pull.</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Start a container from any base image, <code>docker exec</code> into it and modify
+a file that came from the base image (not one you <code>COPY</code>'d in), then
+inspect <code>docker diff &lt;container&gt;</code> to see it reported as changed (<code>C</code>).
+Cross-reference <code>.GraphDriver.Data.UpperDir</code> on the host (as root, if
+needed) and confirm the modified file's <em>full</em> contents now exist there
+via copy-up, even though you changed only a few bytes.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 

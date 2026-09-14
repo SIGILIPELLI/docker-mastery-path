@@ -94,8 +94,6 @@
   }
   </script>
   
-  <meta name="robots" content="noindex, follow">
-  
 
   </head>
   
@@ -1884,6 +1882,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Production Image Hardening
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1900,6 +1916,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#distroless-as-the-default-assumption-not-the-exception" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Distroless as the default assumption, not the exception
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-fully-read-only-root-filesystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A fully read-only root filesystem
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dropping-every-capability-then-re-adding-only-whats-proven-necessary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dropping every capability, then re-adding only what's proven necessary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-fully-hardened-dockerfile-run-command-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A fully hardened Dockerfile + run command together
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-confirming-a-hardened-image-resists-a-common-attack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: confirming a hardened image resists a common attack
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2129,6 +2241,91 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#distroless-as-the-default-assumption-not-the-exception" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Distroless as the default assumption, not the exception
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-fully-read-only-root-filesystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A fully read-only root filesystem
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dropping-every-capability-then-re-adding-only-whats-proven-necessary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dropping every capability, then re-adding only what's proven necessary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-fully-hardened-dockerfile-run-command-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A fully hardened Dockerfile + run command together
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-confirming-a-hardened-image-resists-a-common-attack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: confirming a hardened image resists a common attack
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2148,22 +2345,146 @@
 
 
 <h1 id="03-production-image-hardening">03 · Production Image Hardening<a class="headerlink" href="#03-production-image-hardening" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This module's full lessons and runnable examples are being written next.
-This module will cover Locking down a production image: distroless/minimal bases, read-only filesystems, and dropped capabilities.</p>
-</div>
-<p>In the meantime, <a href="../../level-1/">Level 1 · Entry</a> is fully published —
-start there if you haven't yet.</p>
+<p>Level 3's security module covered non-root users and minimal bases at an
+introductory level. Production hardening pushes further: distroless
+bases with no shell at all, a fully read-only root filesystem, and
+capability sets pared to exactly what the process needs.</p>
+<h2 id="distroless-as-the-default-assumption-not-the-exception">Distroless as the default assumption, not the exception<a class="headerlink" href="#distroless-as-the-default-assumption-not-the-exception" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">node:20</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s">build</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">COPY</span><span class="w"> </span>package.json<span class="w"> </span>package-lock.json<span class="w"> </span>./
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">RUN</span><span class="w"> </span>npm<span class="w"> </span>ci
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">RUN</span><span class="w"> </span>npm<span class="w"> </span>run<span class="w"> </span>build
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="k">FROM</span><span class="w"> </span><span class="s">gcr.io/distroless/nodejs20-debian12</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>build<span class="w"> </span>/app/dist<span class="w"> </span>./dist
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>build<span class="w"> </span>/app/node_modules<span class="w"> </span>./node_modules
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="k">USER</span><span class="w"> </span><span class="s">nonroot</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="k">EXPOSE</span><span class="w"> </span><span class="s">8000</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">"dist/server.js"</span><span class="p">]</span>
+</code></pre></div>
+<p>A distroless image contains the language runtime and its direct
+dependencies and essentially nothing else — no shell (<code>sh</code>, <code>bash</code>), no
+package manager, no coreutils. This means <code>docker exec ... sh</code> simply
+doesn't work against it, which is precisely the point: an attacker who
+achieves code execution inside the container has no shell to pivot with,
+no <code>curl</code>/<code>wget</code> to exfiltrate data or fetch a second-stage payload, and
+no package manager to install tools. Debugging shifts to <code>docker logs</code>,
+the app's own instrumentation, and — if truly necessary — a temporary
+debug image built <code>FROM</code> the same base plus a shell, never deployed.</p>
+<h2 id="a-fully-read-only-root-filesystem">A fully read-only root filesystem<a class="headerlink" href="#a-fully-read-only-root-filesystem" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--read-only<span class="w"> </span>--tmpfs<span class="w"> </span>/tmp<span class="w"> </span>--tmpfs<span class="w"> </span>/run<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span>-p<span class="w"> </span><span class="m">8000</span>:8000<span class="w"> </span>myapp:hardened
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">services</span><span class="p">:</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">api</span><span class="p">:</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myapp:hardened</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="nt">read_only</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="nt">tmpfs</span><span class="p">:</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/tmp</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/run</span>
+</code></pre></div>
+<p><code>--read-only</code> makes the entire root filesystem (everything outside
+mounted volumes) immutable at the kernel level — a compromised process
+cannot write a webshell, modify a binary, or plant a persistence
+mechanism anywhere in the image's filesystem. Most apps still need <em>some</em>
+writable space (temp files, a PID file, a Unix socket) — <code>--tmpfs</code>
+mounts an in-memory writable filesystem at specific paths without
+weakening the read-only guarantee everywhere else.</p>
+<h2 id="dropping-every-capability-then-re-adding-only-whats-proven-necessary">Dropping every capability, then re-adding only what's proven necessary<a class="headerlink" href="#dropping-every-capability-then-re-adding-only-whats-proven-necessary" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--read-only<span class="w"> </span>--tmpfs<span class="w"> </span>/tmp<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span>--cap-drop<span class="o">=</span>ALL<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span>--security-opt<span class="o">=</span>no-new-privileges<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span>-p<span class="w"> </span><span class="m">8000</span>:8000<span class="w"> </span>myapp:hardened
+</code></pre></div>
+<p><code>--security-opt=no-new-privileges</code> blocks a process (and anything it
+<code>exec</code>s) from gaining additional privileges beyond what it started with —
+specifically disabling the effect of setuid/setgid binaries and file
+capabilities that would otherwise let a process escalate mid-execution,
+closing a privilege-escalation path that surviving as non-root alone
+doesn't.</p>
+<h2 id="a-fully-hardened-dockerfile-run-command-together">A fully hardened Dockerfile + run command together<a class="headerlink" href="#a-fully-hardened-dockerfile-run-command-together" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">node:20</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s">build</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">COPY</span><span class="w"> </span>package.json<span class="w"> </span>package-lock.json<span class="w"> </span>./
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="k">RUN</span><span class="w"> </span>npm<span class="w"> </span>ci<span class="w"> </span>--omit<span class="o">=</span>dev
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="k">FROM</span><span class="w"> </span><span class="s">gcr.io/distroless/nodejs20-debian12</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>build<span class="w"> </span>--chown<span class="o">=</span>nonroot:nonroot<span class="w"> </span>/app<span class="w"> </span>/app
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="k">USER</span><span class="w"> </span><span class="s">nonroot</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="k">EXPOSE</span><span class="w"> </span><span class="s">8000</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">"src/server.js"</span><span class="p">]</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span>--read-only<span class="w"> </span>--tmpfs<span class="w"> </span>/tmp<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span>--cap-drop<span class="o">=</span>ALL<span class="w"> </span>--cap-add<span class="o">=</span>NET_BIND_SERVICE<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span>--security-opt<span class="o">=</span>no-new-privileges<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span>--memory<span class="o">=</span>256m<span class="w"> </span>--cpus<span class="o">=</span><span class="m">1</span>.0<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">  </span>-p<span class="w"> </span><span class="m">8000</span>:8000<span class="w"> </span>myapp:hardened
+</code></pre></div>
+<p>This combines every mechanism covered so far, across three modules: no
+root user, no shell in the image, read-only filesystem, minimal
+capabilities, no privilege escalation, and resource limits (Level 3,
+module 03).</p>
+<h2 id="worked-example-confirming-a-hardened-image-resists-a-common-attack">Worked example: confirming a hardened image resists a common attack<a class="headerlink" href="#worked-example-confirming-a-hardened-image-resists-a-common-attack" title="Permanent link">&para;</a></h2>
+<p>Suppose a dependency has a code-injection vulnerability that lets an
+attacker get arbitrary shell commands executed inside the container.
+Against a non-hardened image, this typically escalates to installing
+tools, writing files, or reaching other hosts. Against the image above:
+<code>sh -c "..."</code> simply fails (no shell binary present in distroless);
+attempting to write anywhere outside <code>/tmp</code> fails (read-only root); any
+attempt to <code>setuid</code> fails (<code>no-new-privileges</code>); attempting to open a raw
+socket or bind a privileged port beyond the one explicitly re-added fails
+(all capabilities dropped except <code>NET_BIND_SERVICE</code>). Each mechanism
+independently narrows what a successful code-execution vulnerability can
+actually accomplish.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>Why <code>--read-only</code> plus <code>overlay2</code> interact the way they do.</strong> Without
+<code>--read-only</code>, a container's writable layer is the <code>UpperDir</code> in the
+overlay2 stack from Level 3, module 06 — writes go there via copy-up.
+<code>--read-only</code> doesn't remove that UpperDir's <em>existence</em>; it mounts the
+final merged root filesystem view read-only at the VFS layer, so any
+write syscall against a path not separately mounted writable (a
+<code>--tmpfs</code>, a volume) is rejected by the kernel with <code>EROFS</code> before it
+ever reaches the overlay filesystem's copy-up logic at all. This is a
+strictly kernel-enforced VFS-level restriction, not an application
+convention, which is why it holds even against a process that has
+somehow bypassed the application's own logic — a raw <code>write()</code> syscall
+against a read-only-mounted path fails regardless of what userspace code
+issued it.</p>
+<p><strong>Why <code>no-new-privileges</code> specifically targets setuid binaries and file
+capabilities, not general privilege.</strong> Historically, a process could
+gain elevated privilege mid-execution in two main ways: executing a
+setuid/setgid binary (which the kernel re-execs with the <em>file owner's</em>
+UID/GID rather than the calling process's), or executing a binary with
+Linux file capabilities attached (an extended attribute granting specific
+capability bits to anyone who executes that file, regardless of their own
+process's capability set). The <code>PR_SET_NO_NEW_PRIVS</code> prctl flag — what
+<code>--security-opt=no-new-privileges</code> sets — tells the kernel to ignore both
+mechanisms for this process and all its descendants for the rest of
+their lifetime: <code>execve()</code> on a setuid binary or a file-capability binary
+proceeds, but silently <em>without</em> granting the elevated privilege it would
+otherwise confer. This closes a specific, well-known local
+privilege-escalation vector that dropping capabilities from the
+container's own process alone does not address, since dropped
+capabilities only bound what the current process already has, not what a
+setuid binary it might invoke could hand it back.</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Take the hardened Dockerfile above, deliberately try to <code>docker exec -it
+&lt;container&gt; sh</code> against it and observe the failure, then build a
+throwaway debug variant (<code>FROM gcr.io/distroless/nodejs20-debian12:debug</code>,
+which includes BusyBox) purely for local troubleshooting, and confirm it
+is never referenced by the production stack file.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 

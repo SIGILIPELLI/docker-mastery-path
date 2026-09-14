@@ -94,8 +94,6 @@
   }
   </script>
   
-  <meta name="robots" content="noindex, follow">
-  
 
   </head>
   
@@ -1076,6 +1074,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Multi-Stage Builds
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1092,6 +1108,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-problem-it-solves" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The problem it solves
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#splitting-into-stages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Splitting into stages
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-a-nodejs-app-with-a-build-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: a Node.js app with a build step
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#targeting-a-specific-stage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Targeting a specific stage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#copying-between-stages-more-than-once" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Copying between stages more than once
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2129,6 +2241,91 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-problem-it-solves" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The problem it solves
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#splitting-into-stages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Splitting into stages
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-a-nodejs-app-with-a-build-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: a Node.js app with a build step
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#targeting-a-specific-stage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Targeting a specific stage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#copying-between-stages-more-than-once" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Copying between stages more than once
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2148,22 +2345,124 @@
 
 
 <h1 id="01-multi-stage-builds">01 · Multi-Stage Builds<a class="headerlink" href="#01-multi-stage-builds" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This module's full lessons and runnable examples are being written next.
-This module will cover How multi-stage Dockerfiles produce small, production-ready images by separating build tooling from the final runtime image.</p>
-</div>
-<p>In the meantime, <a href="../../level-1/">Level 1 · Entry</a> is fully published —
-start there if you haven't yet.</p>
+<p>A <strong>multi-stage build</strong> uses more than one <code>FROM</code> in a single Dockerfile so
+that build tooling (compilers, dev dependencies, source archives) never
+ends up in the image you actually ship. Only the artifacts you explicitly
+<code>COPY --from=</code> between stages survive into the final image.</p>
+<h2 id="the-problem-it-solves">The problem it solves<a class="headerlink" href="#the-problem-it-solves" title="Permanent link">&para;</a></h2>
+<p>A naive Dockerfile for a compiled language installs the whole toolchain
+into the final image:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">golang:1.22</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">RUN</span><span class="w"> </span>go<span class="w"> </span>build<span class="w"> </span>-o<span class="w"> </span>server<span class="w"> </span>.
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">"./server"</span><span class="p">]</span>
+</code></pre></div>
+<p>This works, but <code>golang:1.22</code> is over 800MB — the compiler, standard
+library sources, and build cache all ship to production even though the
+running container only needs one static binary.</p>
+<h2 id="splitting-into-stages">Splitting into stages<a class="headerlink" href="#splitting-into-stages" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c"># ---- Stage 1: build ----</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">FROM</span><span class="w"> </span><span class="s">golang:1.22</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s">builder</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/src</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">COPY</span><span class="w"> </span>go.mod<span class="w"> </span>go.sum<span class="w"> </span>./
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">RUN</span><span class="w"> </span>go<span class="w"> </span>mod<span class="w"> </span>download
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="k">RUN</span><span class="w"> </span><span class="nv">CGO_ENABLED</span><span class="o">=</span><span class="m">0</span><span class="w"> </span>go<span class="w"> </span>build<span class="w"> </span>-o<span class="w"> </span>/out/server<span class="w"> </span>.
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="c"># ---- Stage 2: runtime ----</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="k">FROM</span><span class="w"> </span><span class="s">alpine:3.19</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="k">RUN</span><span class="w"> </span>apk<span class="w"> </span>add<span class="w"> </span>--no-cache<span class="w"> </span>ca-certificates
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>builder<span class="w"> </span>/out/server<span class="w"> </span>/usr/local/bin/server
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="k">EXPOSE</span><span class="w"> </span><span class="s">8080</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="k">ENTRYPOINT</span><span class="w"> </span><span class="p">[</span><span class="s2">"/usr/local/bin/server"</span><span class="p">]</span>
+</code></pre></div>
+<p>Each <code>FROM</code> starts a fresh, independent build stage with its own
+filesystem. <code>AS builder</code> names stage 1 so stage 2 can reference it.
+<code>COPY --from=builder /out/server ...</code> reaches into stage 1's filesystem
+and copies out just the compiled binary — none of <code>golang:1.22</code>'s 800MB
+toolchain crosses into the final image, which now inherits only from the
+~7MB <code>alpine:3.19</code> base.</p>
+<h2 id="worked-example-a-nodejs-app-with-a-build-step">Worked example: a Node.js app with a build step<a class="headerlink" href="#worked-example-a-nodejs-app-with-a-build-step" title="Permanent link">&para;</a></h2>
+<p>Frontend and backend frameworks that need a build step (bundling,
+transpiling TypeScript) benefit the same way:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">node:20</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s">deps</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">COPY</span><span class="w"> </span>package.json<span class="w"> </span>package-lock.json<span class="w"> </span>./
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">RUN</span><span class="w"> </span>npm<span class="w"> </span>ci
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="k">FROM</span><span class="w"> </span><span class="s">node:20</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s">build</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>deps<span class="w"> </span>/app/node_modules<span class="w"> </span>./node_modules
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="k">RUN</span><span class="w"> </span>npm<span class="w"> </span>run<span class="w"> </span>build
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="k">FROM</span><span class="w"> </span><span class="s">node:20-slim</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s">runtime</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>build<span class="w"> </span>/app/dist<span class="w"> </span>./dist
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>build<span class="w"> </span>/app/package.json<span class="w"> </span>./
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="k">RUN</span><span class="w"> </span>npm<span class="w"> </span>ci<span class="w"> </span>--omit<span class="o">=</span>dev
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">"node"</span><span class="p">,</span><span class="w"> </span><span class="s2">"dist/server.js"</span><span class="p">]</span>
+</code></pre></div>
+<p>The <code>deps</code> stage caches <code>npm ci</code> separately from source changes, <code>build</code>
+compiles TypeScript/bundles assets with full <code>devDependencies</code> available,
+and <code>runtime</code> starts clean from a slim base with only production
+dependencies and compiled output. (Reasoned through against normal
+<code>npm</code>/Node conventions; not run for this lesson.)</p>
+<h2 id="targeting-a-specific-stage">Targeting a specific stage<a class="headerlink" href="#targeting-a-specific-stage" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker<span class="w"> </span>build<span class="w"> </span>--target<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>myapp:build-debug<span class="w"> </span>.
+</code></pre></div>
+<p><code>--target</code> stops the build at a named stage, which is useful for building
+a debug image that keeps devDependencies and source maps without touching
+the production Dockerfile stage.</p>
+<h2 id="copying-between-stages-more-than-once">Copying between stages more than once<a class="headerlink" href="#copying-between-stages-more-than-once" title="Permanent link">&para;</a></h2>
+<p>You aren't limited to one final stage — you can pull artifacts from
+several earlier stages into a common final image:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">golang:1.22</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s">backend-builder</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>...
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">FROM</span><span class="w"> </span><span class="s">node:20</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s">frontend-builder</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>...
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="k">FROM</span><span class="w"> </span><span class="s">alpine:3.19</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>backend-builder<span class="w"> </span>/out/server<span class="w"> </span>/usr/local/bin/server
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>frontend-builder<span class="w"> </span>/app/dist<span class="w"> </span>/usr/share/web
+</code></pre></div>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>Stages are just independent image builds sharing a build cache.</strong> Each
+<code>FROM</code> line resets the builder's notion of "current image" to that base,
+with its own layer stack. Nothing about a later stage's filesystem is
+implicitly visible to it — a <code>COPY --from=builder</code> is the <em>only</em> channel
+between stages, and it works by having BuildKit keep every stage's final
+filesystem snapshot addressable (by stage name or index) until the build
+finishes, then doing an ordinary layer-diff copy from that snapshot's
+merged overlayfs view into the new stage, exactly as if you'd run
+<code>docker cp</code> from a container built from that stage into the new one. This
+is also why an unused stage still gets built (unless BuildKit can prove
+nothing references it) — the builder can't know a stage is unreachable
+until it has resolved the whole dependency graph of <code>--from=</code> references.</p>
+<p><strong>Why the final image genuinely doesn't contain earlier stages' layers.</strong>
+An image is nothing more than a manifest listing an ordered set of layer
+digests plus config. When stage 2 does <code>FROM alpine:3.19</code>, its layer list
+starts from alpine's own layers; the <code>COPY --from=builder</code> instruction
+adds <em>one new layer</em> on top, containing only the files that instruction
+copied. The builder stage's layers (the Go toolchain, <code>go mod</code> cache,
+intermediate object files) are never referenced by the final manifest, so
+they are not pushed, not pulled, and not present in the shipped image —
+they exist only transiently in the local build cache (and can be pruned
+with <code>docker builder prune</code>).</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Convert a single-stage Python Dockerfile that does <code>pip install</code> from a
+<code>requirements.txt</code> containing a compiled dependency (e.g. <code>psycopg2</code>,
+which needs build headers) into two stages: a <code>builder</code> stage based on
+<code>python:3.12</code> that installs build tools and produces wheels with
+<code>pip wheel</code>, and a final stage based on <code>python:3.12-slim</code> that installs
+those pre-built wheels with <code>pip install --no-index --find-links=/wheels</code>.
+Compare <code>docker images</code> sizes before and after.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 

@@ -94,8 +94,6 @@
   }
   </script>
   
-  <meta name="robots" content="noindex, follow">
-  
 
   </head>
   
@@ -1940,6 +1938,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Designing a Containerized Architecture
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1956,6 +1972,80 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#decomposition-one-process-per-container-grouped-by-change-rate-and-scaling-needs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decomposition: one process per container, grouped by change rate and scaling needs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#defining-boundaries-what-crosses-a-container-edge-and-how" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Defining boundaries: what crosses a container edge, and how
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-worked-example-decomposing-a-monolith" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A worked example: decomposing a monolith
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2129,6 +2219,69 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#decomposition-one-process-per-container-grouped-by-change-rate-and-scaling-needs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decomposition: one process per container, grouped by change rate and scaling needs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#defining-boundaries-what-crosses-a-container-edge-and-how" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Defining boundaries: what crosses a container edge, and how
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-worked-example-decomposing-a-monolith" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A worked example: decomposing a monolith
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2148,22 +2301,137 @@
 
 
 <h1 id="05-designing-a-containerized-architecture">05 · Designing a Containerized Architecture<a class="headerlink" href="#05-designing-a-containerized-architecture" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This module's full lessons and runnable examples are being written next.
-This module will cover Decomposing an application into services, defining their container boundaries, and planning their runtime topology.</p>
-</div>
-<p>In the meantime, <a href="../../level-1/">Level 1 · Entry</a> is fully published —
-start there if you haven't yet.</p>
+<p>Everything so far has been about containerizing something already
+decided. This module is about the decision itself: how to decompose an
+application into services, where to draw container boundaries, and how
+to plan the runtime topology before writing a single Dockerfile.</p>
+<h2 id="decomposition-one-process-per-container-grouped-by-change-rate-and-scaling-needs">Decomposition: one process per container, grouped by change rate and scaling needs<a class="headerlink" href="#decomposition-one-process-per-container-grouped-by-change-rate-and-scaling-needs" title="Permanent link">&para;</a></h2>
+<p>The classic guideline "one process per container" is really shorthand
+for two separate, more useful questions:</p>
+<ol>
+<li><strong>Does this component need to scale independently?</strong> A CPU-bound
+   image-processing worker and a lightweight API gateway have wildly
+   different resource profiles and load patterns — bundling them into one
+   container forces them to scale together even though their actual
+   demand curves don't match.</li>
+<li><strong>Does this component change/deploy independently?</strong> A component
+   deployed weekly by one team shouldn't share a container (and thus a
+   deployment unit) with one deployed multiple times a day by another —
+   coupling their release cadence via a shared container creates
+   unnecessary deployment risk and coordination overhead.</li>
+</ol>
+<p>Components that share neither concern (they always scale together,
+always deploy together, and are maintained by the same team) are
+legitimate candidates to stay in one container despite the general
+guideline — over-decomposing into many single-purpose containers
+introduces coordination and network-hop overhead (module 04's
+multi-container patterns) without a matching benefit.</p>
+<h2 id="defining-boundaries-what-crosses-a-container-edge-and-how">Defining boundaries: what crosses a container edge, and how<a class="headerlink" href="#defining-boundaries-what-crosses-a-container-edge-and-how" title="Permanent link">&para;</a></h2>
+<p>For each proposed boundary, decide explicitly:</p>
+<ul>
+<li><strong>Synchronous or asynchronous?</strong> A direct HTTP/gRPC call couples the
+  caller to the callee's availability in real time; a message queue
+  (module 04's patterns extended with a broker container) decouples
+  their uptime at the cost of eventual rather than immediate consistency.</li>
+<li><strong>Shared data or owned data?</strong> Two services reading and writing the
+  same database tables directly are not really separate services from a
+  data-ownership standpoint — schema changes in one can silently break
+  the other. Prefer each service owning its own data store (even if
+  that's "just" its own schema within a shared Postgres instance) and
+  exposing data to others only through its own API.</li>
+<li><strong>What's the network boundary's security posture?</strong> Level 3's
+  <code>internal: true</code> pattern generalizes here: draw network segments (public
+  ingress, application tier, data tier) explicitly as part of the design,
+  not as an afterthought once containers already exist.</li>
+</ul>
+<h2 id="a-worked-example-decomposing-a-monolith">A worked example: decomposing a monolith<a class="headerlink" href="#a-worked-example-decomposing-a-monolith" title="Permanent link">&para;</a></h2>
+<p>Starting point: one Rails/Django-style monolith doing web serving,
+background job processing, and scheduled reports, all against one
+Postgres database.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>                    ┌─────────────┐
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>   Internet ───────▶│    proxy     │
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>                    └──────┬──────┘
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>                           │ public network
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>                    ┌──────▼──────┐        ┌─────────────┐
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>                    │   web-api    │───────▶│    redis     │ (job queue)
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>                    └──────┬──────┘        └──────┬──────┘
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>                           │ data network          │
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>                    ┌──────▼──────┐        ┌───────▼──────┐
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>                    │   postgres   │◀───────│    worker     │
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>                    └─────────────┘        └──────────────┘
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>                                                    ▲
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>                                            ┌───────┴──────┐
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>                                            │  scheduler    │ (cron-like, triggers jobs)
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>                                            └──────────────┘
+</code></pre></div>
+<p><code>web-api</code> and <code>worker</code> are split because they scale on entirely different
+signals (<code>web-api</code> on request rate, <code>worker</code> on queue depth) and because
+a slow report job should never be able to starve web request handling by
+competing for the same process's resources. <code>scheduler</code> is its own tiny
+container specifically so its failure mode (missing a scheduled trigger)
+is isolated from both — it doesn't serve traffic and doesn't process
+jobs itself, only enqueues them.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">services</span><span class="p">:</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">proxy</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> image</span><span class="p">:</span><span class="w"> </span><span class="nv">nginx</span><span class="p p-Indicator">:</span><span class="nv">1.25</span><span class="p p-Indicator">,</span><span class="nt"> networks</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">public</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">web-api</span><span class="p">:</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nt">build</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./web</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">public</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">data</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="nt">deploy</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> resources</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> limits</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> cpus</span><span class="p">:</span><span class="w"> </span><span class="s">"1.0"</span><span class="p p-Indicator">,</span><span class="nt"> memory</span><span class="p">:</span><span class="w"> </span><span class="nv">512M</span><span class="w"> </span><span class="p p-Indicator">}</span><span class="w"> </span><span class="p p-Indicator">}</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="nt">worker</span><span class="p">:</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="nt">build</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./worker</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">data</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span><span class="nt">deploy</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> replicas</span><span class="p">:</span><span class="w"> </span><span class="nv">3</span><span class="p p-Indicator">,</span><span class="nt"> resources</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> limits</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> cpus</span><span class="p">:</span><span class="w"> </span><span class="s">"2.0"</span><span class="p p-Indicator">,</span><span class="nt"> memory</span><span class="p">:</span><span class="w"> </span><span class="s">"1G"</span><span class="w"> </span><span class="p p-Indicator">}</span><span class="w"> </span><span class="p p-Indicator">}</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">  </span><span class="nt">scheduler</span><span class="p">:</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="nt">build</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./scheduler</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">data</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">    </span><span class="nt">deploy</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> resources</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> limits</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> cpus</span><span class="p">:</span><span class="w"> </span><span class="s">"0.1"</span><span class="p p-Indicator">,</span><span class="nt"> memory</span><span class="p">:</span><span class="w"> </span><span class="nv">64M</span><span class="w"> </span><span class="p p-Indicator">}</span><span class="w"> </span><span class="p p-Indicator">}</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">  </span><span class="nt">redis</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> image</span><span class="p">:</span><span class="w"> </span><span class="nv">redis</span><span class="p p-Indicator">:</span><span class="nv">7</span><span class="p p-Indicator">,</span><span class="nt"> networks</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">data</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">  </span><span class="nt">postgres</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> image</span><span class="p">:</span><span class="w"> </span><span class="nv">postgres</span><span class="p p-Indicator">:</span><span class="nv">16</span><span class="p p-Indicator">,</span><span class="nt"> networks</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">data</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="nt">networks</span><span class="p">:</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">  </span><span class="nt">public</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">  </span><span class="nt">data</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> internal</span><span class="p">:</span><span class="w"> </span><span class="nv">true</span><span class="w"> </span><span class="p p-Indicator">}</span>
+</code></pre></div>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>Why independent scaling requirements translate directly into
+independent resource limit blocks, mechanically.</strong> As established in
+Level 3, module 03, <code>deploy.resources.limits</code> writes directly to each
+service's own cgroup. Two workloads sharing one container necessarily
+share one cgroup and one process's resource ceiling — there is no way for
+the kernel to grant "web request handling" more CPU than "report
+generation" if both run inside the same container's cgroup, because the
+kernel's CFS bandwidth controller and memory accounting operate at the
+cgroup granularity, not the function-call granularity. Splitting them
+into separate containers is therefore not merely an organizational
+convenience — it's the only way the kernel's actual resource-isolation
+primitives can be brought to bear independently on each workload.</p>
+<p><strong>Why "owns its own data store" is enforceable at the network layer, not
+just by convention.</strong> A <code>data</code>-network service (Level 3's <code>internal:
+true</code> topology) can be further partitioned so <code>worker</code> and <code>web-api</code>
+each reach only the database schema/instance they're meant to own,
+using Postgres's own per-role connection privileges plus, if warranted,
+genuinely separate database containers per service rather than one
+shared instance. Because network reachability is enforced by the kernel's
+routing tables per network namespace (Level 3, module 01), a service with
+no network path to another service's data store literally cannot bypass
+its API to read that data directly, even via a bug or a compromised
+dependency — the isolation holds regardless of what the application code
+does or doesn't correctly enforce at the ORM/query layer.</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Take a hypothetical monolith you're familiar with (or the example above)
+and produce a decomposition diagram identifying, for each proposed
+service boundary: its independent scaling justification, whether it
+communicates synchronously or asynchronously with its neighbors, which
+network segment it belongs to, and which other service (if any) legitimately
+owns the data it needs. Flag any boundary where you can't articulate a
+concrete justification — that's a signal it may not need to be a separate
+container at all.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 

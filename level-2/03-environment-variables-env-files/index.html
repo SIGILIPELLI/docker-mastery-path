@@ -94,8 +94,6 @@
   }
   </script>
   
-  <meta name="robots" content="noindex, follow">
-  
 
   </head>
   
@@ -1132,6 +1130,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Environment Variables & .env Files
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1148,6 +1164,91 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setting-variables-at-docker-run-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting variables at docker run time
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#env-files-with-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        .env files with Compose
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#distinguishing-three-separate-mechanisms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Distinguishing three separate mechanisms
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-environment-specific-overrides" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: environment-specific overrides
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2129,6 +2230,80 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setting-variables-at-docker-run-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setting variables at docker run time
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#env-files-with-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        .env files with Compose
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#distinguishing-three-separate-mechanisms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Distinguishing three separate mechanisms
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-environment-specific-overrides" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: environment-specific overrides
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2148,22 +2323,124 @@
 
 
 <h1 id="03-environment-variables-env-files">03 · Environment Variables &amp; .env Files<a class="headerlink" href="#03-environment-variables-env-files" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This module's full lessons and runnable examples are being written next.
-This module will cover Configuring containers via environment variables and .env files, and how Compose loads them.</p>
-</div>
-<p>In the meantime, <a href="../../level-1/">Level 1 · Entry</a> is fully published —
-start there if you haven't yet.</p>
+<p>Containers are configured mostly through environment variables rather
+than config files baked into the image, so the same image can run
+differently in dev, staging, and production without being rebuilt.</p>
+<h2 id="setting-variables-at-docker-run-time">Setting variables at <code>docker run</code> time<a class="headerlink" href="#setting-variables-at-docker-run-time" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-e<span class="w"> </span><span class="nv">DATABASE_URL</span><span class="o">=</span>postgres://db:5432/app<span class="w"> </span>-e<span class="w"> </span><span class="nv">DEBUG</span><span class="o">=</span><span class="nb">false</span><span class="w"> </span>myapp
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># From a file instead of individual -e flags</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>docker<span class="w"> </span>run<span class="w"> </span>--env-file<span class="w"> </span>.env.production<span class="w"> </span>myapp
+</code></pre></div>
+<p>An <code>--env-file</code> is a plain <code>KEY=VALUE</code> list, one per line, no quoting of
+values needed for simple strings:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>DATABASE_URL=postgres://db:5432/app
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>DEBUG=false
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>LOG_LEVEL=info
+</code></pre></div>
+<h2 id="env-files-with-compose"><code>.env</code> files with Compose<a class="headerlink" href="#env-files-with-compose" title="Permanent link">&para;</a></h2>
+<p>Compose treats a file literally named <code>.env</code> in the project directory
+specially: it's loaded automatically and its values are available for
+<strong>variable substitution inside <code>docker-compose.yml</code> itself</strong>, not just
+injected into containers.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a># .env
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>POSTGRES_VERSION=16
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>APP_PORT=8000
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">services</span><span class="p">:</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">db</span><span class="p">:</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres:${POSTGRES_VERSION}</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="nt">web</span><span class="p">:</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="nt">build</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"${APP_PORT}:8000"</span>
+</code></pre></div>
+<p><code>docker compose config</code> renders the final YAML with substitutions applied
+— use it to verify what's actually being sent to the Engine before
+trusting a nested <code>${VAR}</code> expression.</p>
+<h2 id="distinguishing-three-separate-mechanisms">Distinguishing three separate mechanisms<a class="headerlink" href="#distinguishing-three-separate-mechanisms" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Mechanism</th>
+<th>Where it applies</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ENV</code> in Dockerfile</td>
+<td>Baked into the image</td>
+<td>Defaults that ship with the image itself</td>
+</tr>
+<tr>
+<td><code>environment:</code> / <code>-e</code></td>
+<td>Container runtime</td>
+<td>Per-run/per-environment overrides</td>
+</tr>
+<tr>
+<td><code>.env</code> (Compose only)</td>
+<td>Compose YAML parsing</td>
+<td>Substituting values <em>into</em> the compose file text, before it's even sent to the Engine</td>
+</tr>
+</tbody>
+</table>
+<p>A common mistake is expecting <code>.env</code> to inject variables into the
+container the way <code>environment:</code> does — it doesn't, unless you also
+reference <code>${VAR}</code> under <code>environment:</code> explicitly:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">services</span><span class="p">:</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nt">web</span><span class="p">:</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">APP_PORT=${APP_PORT}</span><span class="w">   </span><span class="c1"># explicit passthrough into the container</span>
+</code></pre></div>
+<h2 id="worked-example-environment-specific-overrides">Worked example: environment-specific overrides<a class="headerlink" href="#worked-example-environment-specific-overrides" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>.env.staging<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+<p>Overriding which <code>.env</code> file Compose reads lets one <code>docker-compose.yml</code>
+serve multiple environments, provided the file only contains values that
+differ (ports, image tags, feature flags) rather than secrets — secrets
+belong in Docker secrets or a secret manager (Level 3, module 09), not in
+<code>.env</code> files that tend to get committed by accident.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>Precedence order for a variable defined in more than one place.</strong>
+Docker resolves overlapping definitions in a fixed order, highest
+priority last-write-wins: Dockerfile <code>ENV</code> sets the baseline baked into
+the image; <code>docker compose run -e</code> or <code>docker run -e</code> on the command line
+overrides it at container-create time; a <code>.env</code>-substituted value inside
+<code>environment:</code> in the compose file sits below an explicit shell-exported
+variable of the same name if you also export it before running
+<code>docker compose up</code> (shell environment wins over <code>.env</code> file for
+substitution purposes). Concretely, <code>docker inspect</code> on the resulting
+container shows only the final, flattened list under <code>Config.Env</code> — there
+is no runtime trace of which layer a given value came from, which is why
+<code>docker compose config</code> (rendering pre-Engine) and <code>docker inspect</code>
+(post-Engine) are the two tools you actually use to debug a
+"wrong value" mystery, each answering a different half of the question.</p>
+<p><strong>Why environment variables, not files, are the primary configuration
+channel for containers.</strong> A container image is meant to be immutable and
+shared across environments (the same digest promoted from staging to
+production); baking per-environment config into the filesystem would mean
+rebuilding the image per environment, defeating that guarantee. Unix
+processes have always had <code>environ</code> as a lightweight, universally
+supported key-value channel passed at <code>exec()</code> time — Docker just exposes
+it as a first-class run-time input (stored as part of the container's
+config, injected into <code>environ</code> before the container's PID 1 process is
+<code>exec()</code>'d) so the same image digest can be parameterized differently in
+each place it runs, with the twelve-factor-app convention treating env
+vars as the canonical place for anything that varies between deploys.</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Create a <code>.env</code> file with <code>IMAGE_TAG=1.25</code> and a <code>docker-compose.yml</code>
+whose <code>nginx</code> service uses <code>image: nginx:${IMAGE_TAG}</code>. Run
+<code>docker compose config</code> to confirm the substitution happened, then
+override it for one run without editing either file:
+<code>IMAGE_TAG=1.24 docker compose config</code> — confirm the shell-exported value
+wins over the <code>.env</code> file's value.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 

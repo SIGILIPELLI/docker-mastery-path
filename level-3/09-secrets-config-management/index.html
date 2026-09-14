@@ -94,8 +94,6 @@
   }
   </script>
   
-  <meta name="robots" content="noindex, follow">
-  
 
   </head>
   
@@ -1676,6 +1674,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Secrets & Config Management
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1692,6 +1708,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#docker-secrets-swarm-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Docker secrets (Swarm mode)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configs-the-non-sensitive-counterpart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configs: the non-sensitive counterpart
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#secrets-and-configs-with-docker-stack-deploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Secrets and configs with docker stack deploy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plain-compose-non-swarm-secrets-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plain Compose (non-Swarm) secrets support
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-rotating-a-secret-without-downtime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: rotating a secret without downtime
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2129,6 +2241,91 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#docker-secrets-swarm-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Docker secrets (Swarm mode)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configs-the-non-sensitive-counterpart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configs: the non-sensitive counterpart
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#secrets-and-configs-with-docker-stack-deploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Secrets and configs with docker stack deploy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plain-compose-non-swarm-secrets-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plain Compose (non-Swarm) secrets support
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-rotating-a-secret-without-downtime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: rotating a secret without downtime
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2148,22 +2345,138 @@
 
 
 <h1 id="09-secrets-config-management">09 · Secrets &amp; Config Management<a class="headerlink" href="#09-secrets-config-management" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This module's full lessons and runnable examples are being written next.
-This module will cover Managing sensitive configuration with Docker secrets and configs instead of plain environment variables.</p>
-</div>
-<p>In the meantime, <a href="../../level-1/">Level 1 · Entry</a> is fully published —
-start there if you haven't yet.</p>
+<p>Plain environment variables (module 03 of Level 2) are visible via
+<code>docker inspect</code> to anyone with Engine API access, and get written into
+Swarm's Raft-replicated state and into process listings on some
+platforms. <strong>Docker secrets</strong> and <strong>configs</strong> are purpose-built for
+sensitive and non-sensitive external data respectively, mounted as files
+rather than passed as environment variables.</p>
+<h2 id="docker-secrets-swarm-mode">Docker secrets (Swarm mode)<a class="headerlink" href="#docker-secrets-swarm-mode" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"supersecretpassword"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>docker<span class="w"> </span>secret<span class="w"> </span>create<span class="w"> </span>db_password<span class="w"> </span>-
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>docker<span class="w"> </span>secret<span class="w"> </span>ls
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span>service<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>db<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span>--secret<span class="w"> </span>db_password<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span>-e<span class="w"> </span><span class="nv">POSTGRES_PASSWORD_FILE</span><span class="o">=</span>/run/secrets/db_password<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span>postgres:16
+</code></pre></div>
+<p>The secret is mounted at <code>/run/secrets/db_password</code> inside the
+container — an in-memory (<code>tmpfs</code>) file, never written to the
+container's own writable layer on disk. <code>POSTGRES_PASSWORD_FILE</code> is a
+convention many official images support specifically for this pattern:
+read the actual secret value from a file path given by an env var,
+rather than putting the secret value itself in an env var.</p>
+<h2 id="configs-the-non-sensitive-counterpart">Configs: the non-sensitive counterpart<a class="headerlink" href="#configs-the-non-sensitive-counterpart" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>docker<span class="w"> </span>config<span class="w"> </span>create<span class="w"> </span>nginx_conf<span class="w"> </span>./nginx.conf
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>docker<span class="w"> </span>service<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>web<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span>--config<span class="w"> </span><span class="nv">source</span><span class="o">=</span>nginx_conf,target<span class="o">=</span>/etc/nginx/nginx.conf<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span>nginx:1.25
+</code></pre></div>
+<p>A <strong>config</strong> works identically to a secret mechanically (both are
+managed, versioned, mounted-as-a-file Swarm objects) but isn't
+encrypted at rest with the same guarantees, and is intended for
+non-sensitive configuration files (an nginx config, a feature-flag
+JSON) rather than credentials.</p>
+<h2 id="secrets-and-configs-with-docker-stack-deploy">Secrets and configs with <code>docker stack deploy</code><a class="headerlink" href="#secrets-and-configs-with-docker-stack-deploy" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># stack.yml</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nt">services</span><span class="p">:</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nt">db</span><span class="p">:</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres:16</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">POSTGRES_PASSWORD_FILE=/run/secrets/db_password</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="nt">secrets</span><span class="p">:</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db_password</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">  </span><span class="nt">web</span><span class="p">:</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx:1.25</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="nt">configs</span><span class="p">:</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx_conf</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">        </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/nginx/nginx.conf</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="nt">secrets</span><span class="p">:</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">  </span><span class="nt">db_password</span><span class="p">:</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">    </span><span class="nt">external</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="nt">configs</span><span class="p">:</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="w">  </span><span class="nt">nginx_conf</span><span class="p">:</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="w">    </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./nginx.conf</span>
+</code></pre></div>
+<p><code>external: true</code> on the secret means it must already exist (created via
+<code>docker secret create</code> beforehand) — Compose/Swarm deliberately doesn't
+let you define a raw secret <em>value</em> inline in a stack file, since that
+file is exactly the kind of thing that ends up committed to version
+control.</p>
+<h2 id="plain-compose-non-swarm-secrets-support">Plain Compose (non-Swarm) secrets support<a class="headerlink" href="#plain-compose-non-swarm-secrets-support" title="Permanent link">&para;</a></h2>
+<p>Compose v2 also supports a lighter-weight <code>secrets:</code> block for a single
+host, backed by files rather than Swarm's managed secret store:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">services</span><span class="p">:</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">api</span><span class="p">:</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="nt">build</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="nt">secrets</span><span class="p">:</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">api_key</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="nt">secrets</span><span class="p">:</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">  </span><span class="nt">api_key</span><span class="p">:</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">    </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./secrets/api_key.txt</span>
+</code></pre></div>
+<p>This still mounts the secret at <code>/run/secrets/api_key</code> inside the
+container, but the "management" here is just Compose bind-mounting a
+local file — appropriate for local development, not a substitute for
+Swarm's encrypted, replicated secret store in a real multi-node cluster.</p>
+<h2 id="worked-example-rotating-a-secret-without-downtime">Worked example: rotating a secret without downtime<a class="headerlink" href="#worked-example-rotating-a-secret-without-downtime" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"newpassword"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>docker<span class="w"> </span>secret<span class="w"> </span>create<span class="w"> </span>db_password_v2<span class="w"> </span>-
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>docker<span class="w"> </span>service<span class="w"> </span>update<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span>--secret-rm<span class="w"> </span>db_password<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span>--secret-add<span class="w"> </span><span class="nv">source</span><span class="o">=</span>db_password_v2,target<span class="o">=</span>db_password<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">  </span>db
+</code></pre></div>
+<p><code>target=db_password</code> keeps the in-container file path identical
+(<code>/run/secrets/db_password</code>) even though the underlying secret object's
+name changed — the application never needs to know the secret was
+rotated, only that the file at the same path now contains new content,
+and Swarm performs this as a rolling update of the service's tasks.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>Why secrets are transmitted and stored encrypted, specifically, not
+just access-controlled.</strong> In Swarm mode, the manager's Raft log (module
+08) is itself encrypted at rest using a cluster-wide encryption key, and
+secret values are additionally encrypted separately using per-secret
+keys derived from that same root key — meaning a secret's value never
+exists in the Raft log's plaintext even to someone with raw filesystem
+access to a manager's data directory. When a task needing a secret is
+scheduled onto a worker, the manager decrypts it and transmits it to
+that specific worker only over the already-mutually-TLS-authenticated
+manager-worker control channel, where the worker's Engine writes it into
+a <code>tmpfs</code> mount for that one container — never touching that worker's
+own persistent disk at any point in the journey. This is meaningfully
+different from an environment variable, which travels in whatever
+representation the caller used to set it and lands in <code>docker inspect</code>
+output and the container's own <code>/proc/&lt;pid&gt;/environ</code> in cleartext.</p>
+<p><strong>Why <code>tmpfs</code> (not a regular bind mount) is what backs <code>/run/secrets</code>.</strong>
+<code>tmpfs</code> is a Linux filesystem type backed entirely by RAM (and swap, if
+needed) rather than by any block device — files written there are never
+persisted to disk by the kernel at all, and vanish the instant the
+<code>tmpfs</code> instance is unmounted (i.e., when the container using it is
+removed). Mounting the secret this way means even a full disk-image
+forensic copy of the host, taken while the container is stopped, would
+find no trace of the secret's contents — the strongest guarantee
+available short of never materializing the plaintext value on that host
+at all.</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Create a Docker secret for an API key, deploy a single-replica Swarm
+service that mounts it, <code>docker exec</code> in to confirm it appears at
+<code>/run/secrets/&lt;name&gt;</code> with the expected content, then use
+<code>docker service update --secret-rm/--secret-add</code> to rotate it to a new
+value under the same in-container path, and confirm — without
+restarting your <code>exec</code> session, since the file path is what stays
+constant — that a fresh read of that path after the update shows the
+new value.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 

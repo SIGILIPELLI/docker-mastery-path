@@ -94,8 +94,6 @@
   }
   </script>
   
-  <meta name="robots" content="noindex, follow">
-  
 
   </head>
   
@@ -1452,6 +1450,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Docker Networking Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1468,6 +1484,113 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-drivers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The drivers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bridge-the-default-and-why-user-defined-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        bridge: the default, and why "user-defined" matters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#host-no-network-namespace-isolation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        host: no network namespace isolation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overlay-multi-host-networking-for-swarm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        overlay: multi-host networking for Swarm
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#macvlan-a-container-as-a-first-class-lan-citizen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        macvlan: a container as a first-class LAN citizen
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-comparing-bridge-vs-host-latency-characteristics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: comparing bridge vs host latency characteristics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2129,6 +2252,102 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-drivers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The drivers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bridge-the-default-and-why-user-defined-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        bridge: the default, and why "user-defined" matters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#host-no-network-namespace-isolation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        host: no network namespace isolation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overlay-multi-host-networking-for-swarm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        overlay: multi-host networking for Swarm
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#macvlan-a-container-as-a-first-class-lan-citizen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        macvlan: a container as a first-class LAN citizen
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-comparing-bridge-vs-host-latency-characteristics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: comparing bridge vs host latency characteristics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2148,22 +2367,140 @@
 
 
 <h1 id="01-docker-networking-deep-dive">01 · Docker Networking Deep Dive<a class="headerlink" href="#01-docker-networking-deep-dive" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This module's full lessons and runnable examples are being written next.
-This module will cover Bridge, host, and overlay network drivers compared, and when multi-host overlay networking is needed.</p>
-</div>
-<p>In the meantime, <a href="../../level-1/">Level 1 · Entry</a> is fully published —
-start there if you haven't yet.</p>
+<p>Level 1 and 2 used bridge networking without examining it closely. This
+module compares Docker's network drivers directly and explains when you
+need something beyond the default bridge.</p>
+<h2 id="the-drivers">The drivers<a class="headerlink" href="#the-drivers" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Driver</th>
+<th>Scope</th>
+<th>Typical use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bridge</code> (default, or user-defined)</td>
+<td>Single host</td>
+<td>Most containers on one machine; the default for <code>docker run</code> and Compose</td>
+</tr>
+<tr>
+<td><code>host</code></td>
+<td>Single host, no isolation</td>
+<td>Maximum network performance, at the cost of no port-mapping isolation</td>
+</tr>
+<tr>
+<td><code>overlay</code></td>
+<td>Multiple hosts</td>
+<td>Swarm services that need containers on different machines to talk to each other as if on one network</td>
+</tr>
+<tr>
+<td><code>none</code></td>
+<td>No networking at all</td>
+<td>Fully isolated batch jobs that shouldn't touch the network</td>
+</tr>
+<tr>
+<td><code>macvlan</code></td>
+<td>Single host, direct L2</td>
+<td>Giving a container its own MAC/IP on the physical LAN, as if it were a separate physical machine</td>
+</tr>
+</tbody>
+</table>
+<h2 id="bridge-the-default-and-why-user-defined-matters"><code>bridge</code>: the default, and why "user-defined" matters<a class="headerlink" href="#bridge-the-default-and-why-user-defined-matters" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker<span class="w"> </span>network<span class="w"> </span>create<span class="w"> </span>mynet
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>a<span class="w"> </span>--network<span class="w"> </span>mynet<span class="w"> </span>nginx
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>b<span class="w"> </span>--network<span class="w"> </span>mynet<span class="w"> </span>alpine<span class="w"> </span>sleep<span class="w"> </span><span class="m">3600</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>b<span class="w"> </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">"getent hosts a"</span><span class="w">   </span><span class="c1"># resolves — user-defined bridge networks get embedded DNS</span>
+</code></pre></div>
+<p>Docker's original default bridge (<code>docker0</code>) predates user-defined
+networks and does <strong>not</strong> provide automatic DNS resolution between
+containers by name — only linking by IP or the legacy <code>--link</code> flag
+works there. Any user-defined bridge network (<code>docker network create ...</code>,
+or anything Compose creates) does get the embedded DNS server described
+in Level 2. This is the concrete, practical reason to always create an
+explicit network rather than relying on the legacy default bridge.</p>
+<h2 id="host-no-network-namespace-isolation"><code>host</code>: no network namespace isolation<a class="headerlink" href="#host-no-network-namespace-isolation" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--network<span class="w"> </span>host<span class="w"> </span>nginx
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># nginx now listens on port 80 of the HOST directly — no -p mapping needed or possible</span>
+</code></pre></div>
+<p>A <code>host</code>-networked container shares the host's network namespace
+entirely: same interfaces, same IP, same port space. There is no
+container-to-host port translation, which removes a small amount of
+overhead but also means two containers can't both bind the same port,
+and the container can see/bind every interface the host itself has —
+appropriate for niche performance-critical cases, rarely appropriate as a
+default choice given the isolation you give up.</p>
+<h2 id="overlay-multi-host-networking-for-swarm"><code>overlay</code>: multi-host networking for Swarm<a class="headerlink" href="#overlay-multi-host-networking-for-swarm" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>docker<span class="w"> </span>network<span class="w"> </span>create<span class="w"> </span>--driver<span class="w"> </span>overlay<span class="w"> </span>--attachable<span class="w"> </span>my-overlay
+</code></pre></div>
+<p>An overlay network makes containers on <em>different Docker hosts</em> (joined
+into a Swarm, module 08) reach each other by service name as if they
+were on one flat network, by encapsulating container traffic inside
+VXLAN tunnels between hosts. <code>--attachable</code> allows standalone
+<code>docker run</code> containers (not just Swarm services) to join it too — useful
+for debugging a Swarm-based application from an ad hoc container.</p>
+<h2 id="macvlan-a-container-as-a-first-class-lan-citizen"><code>macvlan</code>: a container as a first-class LAN citizen<a class="headerlink" href="#macvlan-a-container-as-a-first-class-lan-citizen" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker<span class="w"> </span>network<span class="w"> </span>create<span class="w"> </span>-d<span class="w"> </span>macvlan<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span>--subnet<span class="o">=</span><span class="m">192</span>.168.1.0/24<span class="w"> </span>--gateway<span class="o">=</span><span class="m">192</span>.168.1.1<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span>-o<span class="w"> </span><span class="nv">parent</span><span class="o">=</span>eth0<span class="w"> </span>mac-lan
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--network<span class="w"> </span>mac-lan<span class="w"> </span>--ip<span class="o">=</span><span class="m">192</span>.168.1.50<span class="w"> </span>nginx
+</code></pre></div>
+<p>The container gets its own MAC address and an IP from the physical LAN's
+own address space, appearing to the rest of the network (switches, DHCP
+servers, other physical machines) as an independent device rather than
+something behind the host's IP via NAT — used when legacy network
+tooling expects to see and address containers as if they were physical
+hosts.</p>
+<h2 id="worked-example-comparing-bridge-vs-host-latency-characteristics">Worked example: comparing <code>bridge</code> vs <code>host</code> latency characteristics<a class="headerlink" href="#worked-example-comparing-bridge-vs-host-latency-characteristics" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>bridged<span class="w"> </span>--network<span class="w"> </span>mynet<span class="w"> </span>-p<span class="w"> </span><span class="m">8080</span>:80<span class="w"> </span>nginx
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>hosted<span class="w"> </span>--network<span class="w"> </span>host<span class="w"> </span>nginx
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1"># hosted skips one layer of NAT/port-translation per packet compared to bridged,</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># measurable under high-throughput/low-latency workloads via a benchmark tool</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1"># such as wrk against each; not benchmarked here, but the mechanism below explains why</span>
+</code></pre></div>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>Bridge networking's per-packet cost is real and comes from netfilter
+NAT, not from namespaces themselves.</strong> A bridge-networked container's
+published port (<code>-p 8080:80</code>) works via an <code>iptables</code>/<code>nftables</code> DNAT
+rule the daemon installs on the host: an inbound packet to
+<code>host_ip:8080</code> gets its destination rewritten to
+<code>container_ip:80</code> before being forwarded across the veth pair into the
+container's network namespace, and the reverse NAT happens on the return
+path. Every packet pays this rewrite cost. <code>host</code> networking has no veth
+pair and no DNAT rule at all — the container's process binds directly to
+a socket in the host's own network namespace, so packets take the exact
+same path they would for any other host process, which is the concrete
+mechanism behind the "less overhead" claim, not merely a configuration
+convenience.</p>
+<p><strong>Why overlay networks need VXLAN, specifically.</strong> A container's IP on an
+overlay network is meaningful only within that overlay's virtual address
+space, which has no relationship to the underlying hosts' real IP
+addresses or routing. VXLAN solves this by encapsulating each container's
+Ethernet frame inside a UDP packet addressed to the <em>destination host's</em>
+real IP (looked up via a distributed key-value mapping the Swarm
+control-plane maintains of "which host currently runs which overlay
+IP"), which is then decapsulated back into a native frame on the
+receiving host's <code>overlay</code> bridge before local delivery to the target
+container's veth. This tunnel-in-a-tunnel design is precisely what
+allows two containers with private, overlapping-possible overlay IPs to
+communicate correctly even when the physical hosts sit on completely
+unrelated real networks with firewalls in between (provided the VXLAN UDP
+port itself is permitted).</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Create two user-defined bridge networks, <code>net-a</code> and <code>net-b</code>. Start a
+container attached to both, and one container each attached to only one.
+Use <code>docker network connect</code>/<code>disconnect</code> to move the dual-homed
+container off <code>net-a</code> while it's running, and confirm with <code>docker exec
+... getent hosts</code> that name resolution for the peer on <code>net-a</code> stops
+working immediately, without restarting any container.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 

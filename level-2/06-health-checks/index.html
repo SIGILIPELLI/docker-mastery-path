@@ -94,8 +94,6 @@
   }
   </script>
   
-  <meta name="robots" content="noindex, follow">
-  
 
   </head>
   
@@ -1216,6 +1214,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Health Checks
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1232,6 +1248,91 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#healthcheck-in-a-dockerfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HEALTHCHECK in a Dockerfile
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#observing-health-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Observing health status
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#health-checks-in-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Health checks in Compose
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-a-database-dependent-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: a database-dependent service
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2129,6 +2230,80 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#healthcheck-in-a-dockerfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HEALTHCHECK in a Dockerfile
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#observing-health-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Observing health status
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#health-checks-in-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Health checks in Compose
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-a-database-dependent-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: a database-dependent service
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2148,22 +2323,144 @@
 
 
 <h1 id="06-health-checks">06 · Health Checks<a class="headerlink" href="#06-health-checks" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This module's full lessons and runnable examples are being written next.
-This module will cover Defining HEALTHCHECK instructions and Compose healthcheck blocks so orchestration tools know when a service is truly ready.</p>
-</div>
-<p>In the meantime, <a href="../../level-1/">Level 1 · Entry</a> is fully published —
-start there if you haven't yet.</p>
+<p><code>docker ps</code> showing <code>Up</code> only means the main process hasn't exited — it
+says nothing about whether the app inside is actually able to serve
+traffic. A <strong>health check</strong> runs a command periodically inside the
+container and reports <code>healthy</code>/<code>unhealthy</code>/<code>starting</code>, giving tooling a
+real readiness signal.</p>
+<h2 id="healthcheck-in-a-dockerfile"><code>HEALTHCHECK</code> in a Dockerfile<a class="headerlink" href="#healthcheck-in-a-dockerfile" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">nginx:1.25</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">HEALTHCHECK</span><span class="w"> </span>--interval<span class="o">=</span>10s<span class="w"> </span>--timeout<span class="o">=</span>3s<span class="w"> </span>--start-period<span class="o">=</span>5s<span class="w"> </span>--retries<span class="o">=</span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span>CMD<span class="w"> </span>curl<span class="w"> </span>-f<span class="w"> </span>http://localhost/<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--interval</code></td>
+<td>Time between checks (default 30s)</td>
+</tr>
+<tr>
+<td><code>--timeout</code></td>
+<td>How long a single check may run before it's considered failed</td>
+</tr>
+<tr>
+<td><code>--start-period</code></td>
+<td>Grace period after container start during which failures don't count toward <code>--retries</code> (for slow-starting apps)</td>
+</tr>
+<tr>
+<td><code>--retries</code></td>
+<td>Consecutive failures required before marking <code>unhealthy</code></td>
+</tr>
+</tbody>
+</table>
+<p>The check command must exit <code>0</code> for healthy, <code>1</code> for unhealthy — exactly
+like any shell command's exit code convention. <code>curl -f</code> (fail on HTTP
+error status) is a common check for HTTP services; for services without
+<code>curl</code> installed, a small script using the runtime's own HTTP client
+(e.g. Python's <code>urllib</code>) avoids adding a dependency just for this.</p>
+<h2 id="observing-health-status">Observing health status<a class="headerlink" href="#observing-health-status" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span>ps
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># STATUS column shows "Up 2 minutes (healthy)" or "(unhealthy)"</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>docker<span class="w"> </span>inspect<span class="w"> </span>-f<span class="w"> </span><span class="s1">'{{.State.Health.Status}}'</span><span class="w"> </span>myapp
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>docker<span class="w"> </span>inspect<span class="w"> </span>-f<span class="w"> </span><span class="s1">'{{json .State.Health.Log}}'</span><span class="w"> </span>myapp<span class="w"> </span><span class="p">|</span><span class="w"> </span>python3<span class="w"> </span>-m<span class="w"> </span>json.tool
+</code></pre></div>
+<p><code>.State.Health.Log</code> keeps the last several check results (output,
+duration, exit code) — the first place to look when a container is stuck
+<code>unhealthy</code> and it isn't obvious why.</p>
+<h2 id="health-checks-in-compose">Health checks in Compose<a class="headerlink" href="#health-checks-in-compose" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">services</span><span class="p">:</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">api</span><span class="p">:</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nt">build</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="nt">healthcheck</span><span class="p">:</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">      </span><span class="nt">test</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">"CMD"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"curl"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"-f"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"http://localhost:8000/health"</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">      </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10s</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">      </span><span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3s</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">      </span><span class="nt">start_period</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5s</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">      </span><span class="nt">retries</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">  </span><span class="nt">worker</span><span class="p">:</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">    </span><span class="nt">build</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./worker</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">      </span><span class="nt">api</span><span class="p">:</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">        </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">service_healthy</span>
+</code></pre></div>
+<p><code>depends_on</code> with <code>condition: service_healthy</code> is what turns "start
+order" into "actual readiness" — <code>worker</code> won't start until <code>api</code>'s
+health check reports healthy, not merely running. Without a health check,
+<code>depends_on</code> only guarantees <code>api</code>'s container process has begun
+starting, which for anything with its own startup time (loading models,
+running migrations, warming a cache) is not the same as being ready to
+serve requests.</p>
+<h2 id="worked-example-a-database-dependent-service">Worked example: a database-dependent service<a class="headerlink" href="#worked-example-a-database-dependent-service" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">services</span><span class="p">:</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">db</span><span class="p">:</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres:16</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">POSTGRES_PASSWORD=devpassword</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="nt">healthcheck</span><span class="p">:</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">      </span><span class="nt">test</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">"CMD-SHELL"</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">"pg_isready</span><span class="nv"> </span><span class="s">-U</span><span class="nv"> </span><span class="s">postgres"</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">      </span><span class="nt">interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5s</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">      </span><span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3s</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">      </span><span class="nt">retries</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">  </span><span class="nt">web</span><span class="p">:</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">    </span><span class="nt">build</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">      </span><span class="nt">db</span><span class="p">:</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">        </span><span class="nt">condition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">service_healthy</span>
+</code></pre></div>
+<p><code>pg_isready</code> is Postgres's own bundled readiness-probe binary — preferring
+a service's own health-check tool (over guessing with a raw TCP connect)
+avoids false "healthy" reports from a database that has accepted a TCP
+connection but hasn't finished recovery/initialization yet.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>The health check runs as its own short-lived process inside the
+container's namespaces, on a timer owned by the daemon.</strong> The Docker
+daemon maintains a per-container timer; on each tick it uses the same
+<code>exec</code>-into-container mechanism as <code>docker exec</code> (joining the container's
+namespaces via <code>setns()</code>) to run the check command, capturing its exit
+code, stdout+stderr (truncated), and duration into
+<code>.State.Health.Log</code>. This is why a healthcheck sees exactly what
+<code>docker exec</code> would see — the container's own filesystem, network stack,
+and installed binaries — and why a <code>HEALTHCHECK</code> command that hangs
+matters: it doesn't get killed automatically at <code>--timeout</code>'s natural
+end without daemon involvement, but rather the daemon marks that
+individual check attempt as failed once <code>--timeout</code> elapses and moves on,
+which is why a check command should itself be one that returns quickly
+rather than one that can block indefinitely.</p>
+<p><strong>Why <code>--start-period</code> exists as a genuinely separate concept from
+<code>--interval</code>.</strong> Without it, a slow-starting service (JVM warm-up, model
+loading) would rack up <code>--retries</code> consecutive failures before it's ever
+had a fair chance to become ready, tripping <code>unhealthy</code> even though
+nothing is actually wrong. The daemon tracks two separate counters:
+elapsed wall-clock time since container start (compared against
+<code>--start-period</code>) and a consecutive-failure count (compared against
+<code>--retries</code>) — failures during the start period still run and still get
+logged, but they don't increment the counter that can flip the container
+to <code>unhealthy</code>. Once <code>--start-period</code> has elapsed, ordinary
+<code>--interval</code>/<code>--retries</code> accounting takes over for the rest of the
+container's life, including any future failures after a period of being
+healthy.</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Add a <code>HEALTHCHECK</code> to a Dockerfile for a simple HTTP service (any
+language) that checks <code>GET /</code> every 5 seconds with a 2-second timeout and
+3 retries. Deliberately make the app sleep for 8 seconds before binding
+its port on startup, and use <code>--start-period</code> correctly so the container
+doesn't flip to <code>unhealthy</code> during that startup window. Verify with
+<code>docker inspect -f '{{json .State.Health}}'</code>.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 

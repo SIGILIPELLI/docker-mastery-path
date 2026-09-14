@@ -94,8 +94,6 @@
   }
   </script>
   
-  <meta name="robots" content="noindex, follow">
-  
 
   </head>
   
@@ -1244,6 +1242,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Compose Networks & Volumes
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1260,6 +1276,91 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-declare-networks-explicitly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why declare networks explicitly
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#named-volumes-vs-bind-mounts-declared-in-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Named volumes vs. bind mounts, declared in Compose
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#marking-a-volume-external" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Marking a volume external
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-isolated-tiers-with-a-shared-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: isolated tiers with a shared cache
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2129,6 +2230,80 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-declare-networks-explicitly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why declare networks explicitly
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#named-volumes-vs-bind-mounts-declared-in-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Named volumes vs. bind mounts, declared in Compose
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#marking-a-volume-external" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Marking a volume external
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-isolated-tiers-with-a-shared-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: isolated tiers with a shared cache
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2148,22 +2323,134 @@
 
 
 <h1 id="07-compose-networks-volumes">07 · Compose Networks &amp; Volumes<a class="headerlink" href="#07-compose-networks-volumes" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This module's full lessons and runnable examples are being written next.
-This module will cover Declaring named networks and volumes inside docker-compose.yml for multi-service isolation and persistence.</p>
-</div>
-<p>In the meantime, <a href="../../level-1/">Level 1 · Entry</a> is fully published —
-start there if you haven't yet.</p>
+<p>Beyond the default network Compose creates automatically, you can declare
+<strong>named networks</strong> and <strong>named volumes</strong> explicitly for finer control
+over which services can reach each other and where persistent data lives.</p>
+<h2 id="why-declare-networks-explicitly">Why declare networks explicitly<a class="headerlink" href="#why-declare-networks-explicitly" title="Permanent link">&para;</a></h2>
+<p>By default every service in a <code>docker-compose.yml</code> joins one shared
+network, meaning every service can reach every other service. For a stack
+with, say, a public web tier and an internal database, that's more access
+than necessary — a compromised web container shouldn't be able to see
+services it has no business talking to.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">services</span><span class="p">:</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">web</span><span class="p">:</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">build</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nt">networks</span><span class="p">:</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">frontend</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">backend</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="nt">db</span><span class="p">:</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres:16</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="nt">networks</span><span class="p">:</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">backend</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="nt">cache</span><span class="p">:</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">redis:7</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="nt">networks</span><span class="p">:</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">backend</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="nt">networks</span><span class="p">:</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">  </span><span class="nt">frontend</span><span class="p">:</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">  </span><span class="nt">backend</span><span class="p">:</span>
+</code></pre></div>
+<p><code>web</code> sits on both networks and can reach <code>db</code>/<code>cache</code>; nothing on
+<code>frontend</code> alone could reach <code>db</code> or <code>cache</code>, and — if there were a public
+proxy service on <code>frontend</code> only — it would have no route to the database
+at all, since they don't share a network.</p>
+<h2 id="named-volumes-vs-bind-mounts-declared-in-compose">Named volumes vs. bind mounts, declared in Compose<a class="headerlink" href="#named-volumes-vs-bind-mounts-declared-in-compose" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">services</span><span class="p">:</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">db</span><span class="p">:</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres:16</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db-data:/var/lib/postgresql/data</span><span class="w">       </span><span class="c1"># named volume: Docker-managed</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./init-scripts:/docker-entrypoint-initdb.d</span><span class="w">  </span><span class="c1"># bind mount: host path</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="nt">volumes</span><span class="p">:</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span><span class="nt">db-data</span><span class="p">:</span>
+</code></pre></div>
+<p>A <strong>named volume</strong> (<code>db-data</code>) is created and managed by Docker itself
+(under <code>/var/lib/docker/volumes/</code> on Linux) — it persists across
+<code>docker compose down</code> and container recreation, and its lifecycle is
+independent of any specific container. A <strong>bind mount</strong> (<code>./init-scripts</code>)
+maps a literal host path into the container — useful for injecting files
+you edit on the host (init scripts, local source code for live-reload
+during development) but tying the container to that host's filesystem
+layout.</p>
+<h2 id="marking-a-volume-external">Marking a volume external<a class="headerlink" href="#marking-a-volume-external" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">volumes</span><span class="p">:</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">db-data</span><span class="p">:</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nt">external</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
+<p><code>external: true</code> tells Compose the volume already exists (created outside
+this project, or by a previous <code>docker compose up</code>) and it must not try
+to create or manage its lifecycle — <code>docker compose down -v</code> will refuse
+to remove it. This matters when a volume holds production data that must
+outlive any particular Compose project's teardown.</p>
+<h2 id="worked-example-isolated-tiers-with-a-shared-cache">Worked example: isolated tiers with a shared cache<a class="headerlink" href="#worked-example-isolated-tiers-with-a-shared-cache" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">services</span><span class="p">:</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">api</span><span class="p">:</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nt">build</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">public</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">data</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span><span class="nt">admin</span><span class="p">:</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="nt">build</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./admin</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">public</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">data</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">  </span><span class="nt">db</span><span class="p">:</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres:16</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">data</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pgdata:/var/lib/postgresql/data</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="nt">networks</span><span class="p">:</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">  </span><span class="nt">public</span><span class="p">:</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">  </span><span class="nt">data</span><span class="p">:</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">    </span><span class="nt">internal</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">   </span><span class="c1"># no route to the outside world at all, even for containers on it</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="nt">volumes</span><span class="p">:</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">  </span><span class="nt">pgdata</span><span class="p">:</span>
+</code></pre></div>
+<p><code>internal: true</code> on the <code>data</code> network additionally blocks that network
+from routing to the outside internet (not just isolating it from other
+Compose networks) — appropriate for a database tier that has no business
+making outbound connections.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>Each Compose network is an ordinary Docker bridge network under the
+hood.</strong> <code>docker network ls</code> after <code>docker compose up</code> shows
+<code>&lt;project&gt;_frontend</code> and <code>&lt;project&gt;_backend</code> as real bridge networks,
+each getting its own Linux bridge interface and IP subnet from the
+daemon's address-pool allocator, with veth pairs connecting each attached
+container's network namespace to that bridge. A service on two networks
+(like <code>web</code> above) simply has two veth pairs and two IP addresses — one
+per bridge — and the kernel's normal routing table inside that
+container's network namespace decides which interface a given
+destination IP routes through. There's no Compose-specific network
+technology involved; "networks:" is purely a declarative way of driving
+<code>docker network create</code> and <code>docker network connect</code> for you in the
+right order.</p>
+<p><strong>Why a named volume survives <code>docker compose down</code> but a container's
+writable layer doesn't.</strong> A named volume's actual data lives in a
+directory on the host (<code>/var/lib/docker/volumes/&lt;name&gt;/_data</code>) that
+exists completely independently of any container's lifecycle — it's
+created once by <code>docker volume create</code> (or implicitly by Compose) and
+only ever removed by an explicit <code>docker volume rm</code> (or <code>docker compose
+down -v</code>, which does that on your behalf). A container's writable layer,
+in contrast, is an overlayfs "upper directory" tied one-to-one to that
+specific container's identity, torn down the moment <code>docker rm</code> deletes
+it. Mounting a named volume at <code>/var/lib/postgresql/data</code> bypasses that
+container-scoped upper directory entirely for that path — the volume's
+host directory is bind-mounted directly into the container's mount
+namespace at that path, so writes there go straight to storage that isn't
+part of the overlayfs layer stack at all and isn't affected by
+recreating, or even completely removing, the container that mounts it.</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Build a three-service Compose file (<code>proxy</code>, <code>app</code>, <code>db</code>) where <code>proxy</code>
+and <code>app</code> share a <code>public</code> network, <code>app</code> and <code>db</code> share an isolated
+<code>internal: true</code> network named <code>data</code>, and <code>proxy</code> has no route to <code>db</code>
+at all. Verify with <code>docker compose exec proxy sh -c "getent hosts db"</code>
+failing to resolve, while the same command from <code>app</code> succeeds.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 

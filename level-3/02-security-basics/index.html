@@ -94,8 +94,6 @@
   }
   </script>
   
-  <meta name="robots" content="noindex, follow">
-  
 
   </head>
   
@@ -1480,6 +1478,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Security Basics
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1496,6 +1512,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#running-as-a-non-root-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running as a non-root user
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#choosing-a-minimal-base-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choosing a minimal base image
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scanning-images-for-known-vulnerabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scanning images for known vulnerabilities
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dropping-linux-capabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dropping Linux capabilities
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-a-hardened-dockerfile-end-to-end" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: a hardened Dockerfile end to end
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2129,6 +2241,91 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#running-as-a-non-root-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running as a non-root user
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#choosing-a-minimal-base-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choosing a minimal base image
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scanning-images-for-known-vulnerabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scanning images for known vulnerabilities
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dropping-linux-capabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dropping Linux capabilities
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-a-hardened-dockerfile-end-to-end" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: a hardened Dockerfile end to end
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2148,22 +2345,161 @@
 
 
 <h1 id="02-security-basics">02 · Security Basics<a class="headerlink" href="#02-security-basics" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This module's full lessons and runnable examples are being written next.
-This module will cover Running as a non-root user, choosing minimal base images, and scanning images for known vulnerabilities.</p>
-</div>
-<p>In the meantime, <a href="../../level-1/">Level 1 · Entry</a> is fully published —
-start there if you haven't yet.</p>
+<p>Three habits eliminate most of the container-security mistakes seen in
+practice: don't run as root inside the container, start from the
+smallest base image that works, and scan images for known
+vulnerabilities before shipping them.</p>
+<h2 id="running-as-a-non-root-user">Running as a non-root user<a class="headerlink" href="#running-as-a-non-root-user" title="Permanent link">&para;</a></h2>
+<p>By default, a container's main process runs as <code>root</code> <em>inside</em> the
+container's user namespace — which, without additional isolation, maps
+to the same UID as the host's root unless user-namespace remapping is
+configured. A process that shouldn't need root privileges (most web
+apps, workers, APIs) should not run as root even inside the container.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">node:20-slim</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">COPY</span><span class="w"> </span>package.json<span class="w"> </span>package-lock.json<span class="w"> </span>./
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">RUN</span><span class="w"> </span>npm<span class="w"> </span>ci<span class="w"> </span>--omit<span class="o">=</span>dev
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c"># Create an unprivileged user and switch to it for the rest of the build</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="c"># and for the runtime process</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="k">RUN</span><span class="w"> </span>groupadd<span class="w"> </span>-r<span class="w"> </span>appgroup<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>useradd<span class="w"> </span>-r<span class="w"> </span>-g<span class="w"> </span>appgroup<span class="w"> </span>appuser
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="k">USER</span><span class="w"> </span><span class="s">appuser</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">"node"</span><span class="p">,</span><span class="w"> </span><span class="s2">"src/server.js"</span><span class="p">]</span>
+</code></pre></div>
+<p>Many official images already ship a non-root user for exactly this
+purpose (e.g. <code>node</code> images include a <code>node</code> user):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">node:20-slim</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">COPY</span><span class="w"> </span>--chown<span class="o">=</span>node:node<span class="w"> </span>.<span class="w"> </span>.
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">USER</span><span class="w"> </span><span class="s">node</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">"node"</span><span class="p">,</span><span class="w"> </span><span class="s2">"src/server.js"</span><span class="p">]</span>
+</code></pre></div>
+<p><code>--chown</code> on <code>COPY</code> sets ownership at copy time, avoiding a separate
+<code>RUN chown -R</code> layer that would otherwise duplicate the copied files'
+size in the layer diff.</p>
+<h2 id="choosing-a-minimal-base-image">Choosing a minimal base image<a class="headerlink" href="#choosing-a-minimal-base-image" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Base</th>
+<th>Approx. size</th>
+<th>Trade-off</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ubuntu:22.04</code></td>
+<td>~78MB</td>
+<td>Familiar tooling, but a larger attack surface (shell, package manager, many libraries)</td>
+</tr>
+<tr>
+<td><code>debian:12-slim</code></td>
+<td>~30MB</td>
+<td>Good middle ground</td>
+</tr>
+<tr>
+<td><code>alpine:3.19</code></td>
+<td>~7MB</td>
+<td>Very small, but uses <code>musl</code> libc instead of <code>glibc</code> — can surface subtle compatibility issues with prebuilt binaries</td>
+</tr>
+<tr>
+<td><code>gcr.io/distroless/*</code></td>
+<td>a few MB</td>
+<td>No shell, no package manager at all — smallest attack surface, but harder to debug interactively</td>
+</tr>
+</tbody>
+</table>
+<p>Smaller isn't automatically better for every situation — <code>alpine</code>'s musl
+libc has tripped up compiled dependencies that assume glibc, and a fully
+distroless image can't be <code>docker exec</code>'d into with a shell for
+debugging. Choose based on your actual runtime needs, not size alone.</p>
+<h2 id="scanning-images-for-known-vulnerabilities">Scanning images for known vulnerabilities<a class="headerlink" href="#scanning-images-for-known-vulnerabilities" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>docker<span class="w"> </span>scout<span class="w"> </span>cveS<span class="w"> </span>myapp:latest
+</code></pre></div>
+<p><code>docker scout</code> (bundled with recent Docker Desktop/CLI) checks an
+image's installed packages against vulnerability databases and reports
+known CVEs by severity, including which layer introduced them —
+directing your fix to "upgrade this base image" or "update this
+dependency" rather than a vague warning. Third-party equivalents (Trivy,
+Grype) do the same job and are commonly wired into CI.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>trivy<span class="w"> </span>image<span class="w"> </span>myapp:latest
+</code></pre></div>
+<h2 id="dropping-linux-capabilities">Dropping Linux capabilities<a class="headerlink" href="#dropping-linux-capabilities" title="Permanent link">&para;</a></h2>
+<p>Even as non-root, a container process by default retains a set of Linux
+<strong>capabilities</strong> (fine-grained slices of what used to be all-or-nothing
+root privilege). Dropping ones the app doesn't need shrinks what an
+exploited process could do:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--cap-drop<span class="o">=</span>ALL<span class="w"> </span>--cap-add<span class="o">=</span>NET_BIND_SERVICE<span class="w"> </span>myapp
+</code></pre></div>
+<p><code>--cap-drop=ALL</code> removes every capability, then <code>--cap-add=NET_BIND_SERVICE</code>
+re-adds only the one needed to bind a port below 1024 — a common
+combination for an app that must listen on, say, port 80 but has no
+other reason to hold elevated Linux capabilities.</p>
+<h2 id="worked-example-a-hardened-dockerfile-end-to-end">Worked example: a hardened Dockerfile end to end<a class="headerlink" href="#worked-example-a-hardened-dockerfile-end-to-end" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">node:20-slim</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s">deps</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">COPY</span><span class="w"> </span>package.json<span class="w"> </span>package-lock.json<span class="w"> </span>./
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="k">RUN</span><span class="w"> </span>npm<span class="w"> </span>ci<span class="w"> </span>--omit<span class="o">=</span>dev
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="k">FROM</span><span class="w"> </span><span class="s">gcr.io/distroless/nodejs20-debian12</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>deps<span class="w"> </span>/app/node_modules<span class="w"> </span>./node_modules
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="k">USER</span><span class="w"> </span><span class="s">nonroot</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="k">EXPOSE</span><span class="w"> </span><span class="s">8000</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">"src/server.js"</span><span class="p">]</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--read-only<span class="w"> </span>--cap-drop<span class="o">=</span>ALL<span class="w"> </span>--cap-add<span class="o">=</span>NET_BIND_SERVICE<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span>-p<span class="w"> </span><span class="m">8000</span>:8000<span class="w"> </span>myapp:hardened
+</code></pre></div>
+<p><code>--read-only</code> makes the container's root filesystem read-only at the
+kernel level (module 03/Level 4 module 03 cover this and its
+implications for apps that need a writable <code>/tmp</code>).</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>Why running as root inside a container is meaningfully risky even
+though namespaces isolate it.</strong> A container's PID/mount/network
+namespaces isolate <em>what the process can see and name</em>, but by default
+they do not remap UID 0 inside the container to a different UID outside
+it — root inside is the same root the kernel has always known, UID 0,
+just operating within a restricted view. If a container-escape
+vulnerability (a kernel bug, a misconfigured mount, a Docker socket
+exposed into the container) lets a process step outside its namespace
+boundary, whether it lands with root or unprivileged permissions on the
+host is decided by that UID, not by the namespace boundary that failed.
+Running as a non-root UID inside the container means a successful escape
+still hands the attacker only an unprivileged host UID, containing the
+blast radius of that specific class of failure — user-namespace
+remapping (mapping container UID 0 to an unprivileged host UID
+project-wide) hardens this further but is a separate, host-level daemon
+configuration.</p>
+<p><strong>What a Linux capability actually is, mechanically.</strong> Traditional Unix
+had exactly two privilege levels for security checks: UID 0 (root, can
+do anything) and everything else (subject to normal permission checks).
+Capabilities split "anything" into about 40 independent bits stored in
+each process's kernel-tracked credential structure — <code>CAP_NET_BIND_SERVICE</code>
+(bind ports &lt; 1024), <code>CAP_SYS_ADMIN</code> (a notoriously broad grab-bag),
+<code>CAP_CHOWN</code>, and so on — and the kernel checks the specific bit relevant
+to each privileged operation rather than a single root/non-root flag.
+<code>--cap-drop=ALL --cap-add=X</code> sets a container's process capability set
+to have every bit cleared except the one(s) explicitly re-added,
+enforced by the kernel on every relevant syscall for that process's
+lifetime — this is real kernel-level access control, not an
+application-level convention Docker is layering on top.</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Take any Dockerfile from an earlier module that doesn't set <code>USER</code>, add
+a non-root user, run it with <code>--cap-drop=ALL</code>, and observe what (if
+anything) breaks — a service binding a low port will fail with a
+permission error unless you also <code>--cap-add=NET_BIND_SERVICE</code>, which is
+the intended lesson: capabilities should be granted deliberately, one at
+a time, based on what actually failed.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 

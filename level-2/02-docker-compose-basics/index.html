@@ -94,8 +94,6 @@
   }
   </script>
   
-  <meta name="robots" content="noindex, follow">
-  
 
   </head>
   
@@ -1104,6 +1102,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Docker Compose Basics
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1120,6 +1136,91 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#a-minimal-docker-composeyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A minimal docker-compose.yml
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-each-top-level-key-does" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What each top-level key does
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-build-run-in-one-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: build + run in one step
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-implicit-network-and-service-discovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The implicit network and service discovery
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2129,6 +2230,80 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#a-minimal-docker-composeyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A minimal docker-compose.yml
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-each-top-level-key-does" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What each top-level key does
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-build-run-in-one-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: build + run in one step
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-implicit-network-and-service-discovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The implicit network and service discovery
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2148,22 +2323,139 @@
 
 
 <h1 id="02-docker-compose-basics">02 · Docker Compose Basics<a class="headerlink" href="#02-docker-compose-basics" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This module's full lessons and runnable examples are being written next.
-This module will cover Defining services, networks, and volumes declaratively in a docker-compose.yml file and running a multi-container app with one command.</p>
-</div>
-<p>In the meantime, <a href="../../level-1/">Level 1 · Entry</a> is fully published —
-start there if you haven't yet.</p>
+<p><strong>Compose</strong> lets you describe a multi-container application declaratively
+in a YAML file and bring the whole thing up or down with one command,
+instead of chaining together long <code>docker run</code>, <code>docker network create</code>,
+and <code>docker volume create</code> invocations by hand.</p>
+<h2 id="a-minimal-docker-composeyml">A minimal <code>docker-compose.yml</code><a class="headerlink" href="#a-minimal-docker-composeyml" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">services</span><span class="p">:</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">web</span><span class="p">:</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">build</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"8000:8000"</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PYTHONUNBUFFERED=1</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="nt">db</span><span class="p">:</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres:16</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">POSTGRES_PASSWORD=devpassword</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db-data:/var/lib/postgresql/data</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="nt">volumes</span><span class="p">:</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">  </span><span class="nt">db-data</span><span class="p">:</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w">       </span><span class="c1"># build (if needed) and start both services</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>docker<span class="w"> </span>compose<span class="w"> </span>ps<span class="w">          </span><span class="c1"># list services and their status</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>web<span class="w"> </span><span class="c1"># follow logs for one service</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>docker<span class="w"> </span>compose<span class="w"> </span>down<span class="w">        </span><span class="c1"># stop and remove containers, network (keeps named volumes)</span>
+</code></pre></div>
+<h2 id="what-each-top-level-key-does">What each top-level key does<a class="headerlink" href="#what-each-top-level-key-does" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>services</code></td>
+<td>One entry per container Compose manages; the key (<code>web</code>, <code>db</code>) becomes both the container's name prefix and its hostname on the Compose network</td>
+</tr>
+<tr>
+<td><code>build</code></td>
+<td>Build an image from a local Dockerfile instead of pulling one</td>
+</tr>
+<tr>
+<td><code>image</code></td>
+<td>Pull (or reference) an existing image by name/tag</td>
+</tr>
+<tr>
+<td><code>ports</code></td>
+<td><code>HOST:CONTAINER</code> port publishing, same semantics as <code>docker run -p</code></td>
+</tr>
+<tr>
+<td><code>environment</code></td>
+<td>Environment variables injected into the container</td>
+</tr>
+<tr>
+<td><code>volumes</code> (service-level)</td>
+<td>Bind mounts or named-volume mounts for that service</td>
+</tr>
+<tr>
+<td><code>volumes</code> (top-level)</td>
+<td>Declares named volumes so Compose knows to create/manage them</td>
+</tr>
+<tr>
+<td><code>depends_on</code></td>
+<td>Controls <strong>start order</strong> only — it does not wait for the dependency to be <em>ready</em> (see module 06 for that)</td>
+</tr>
+<tr>
+<td><code>networks</code></td>
+<td>Custom networks beyond the default one Compose creates automatically</td>
+</tr>
+</tbody>
+</table>
+<h2 id="worked-example-build-run-in-one-step">Worked example: build + run in one step<a class="headerlink" href="#worked-example-build-run-in-one-step" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--build
+</code></pre></div>
+<p><code>--build</code> forces Compose to rebuild the <code>web</code> image from its Dockerfile
+before starting, which matters after you've changed source code or the
+Dockerfile itself — <code>docker compose up</code> alone reuses a previously built
+image if one already exists with that name.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>web<span class="w"> </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s2">"python manage.py migrate"</span>
+</code></pre></div>
+<p><code>docker compose exec</code> runs a one-off command inside an already-running
+service container, analogous to <code>docker exec</code> but addressed by service
+name instead of container ID.</p>
+<h2 id="the-implicit-network-and-service-discovery">The implicit network and service discovery<a class="headerlink" href="#the-implicit-network-and-service-discovery" title="Permanent link">&para;</a></h2>
+<p>Compose creates one default bridge network per project (named after the
+project directory) and attaches every service to it. Inside that network,
+each service is reachable by its service name as a DNS hostname — so in
+the example above, <code>web</code>'s code connects to the database at host <code>db</code>,
+port <code>5432</code>, not <code>localhost</code>. This works with zero explicit <code>networks:</code>
+configuration.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>Compose is a thin orchestration layer over the same Docker Engine
+primitives you'd use manually.</strong> <code>docker compose up</code> on the example above
+is functionally equivalent to: <code>docker network create &lt;project&gt;_default</code>,
+<code>docker volume create &lt;project&gt;_db-data</code>, then <code>docker run</code> for <code>db</code> and
+<code>web</code> each attached (<code>--network &lt;project&gt;_default</code>) with their declared
+ports/env/volumes, plus each container registered under its service name
+as a network alias. Nothing about Compose's runtime behavior is special
+to Compose itself — it is generating and sequencing ordinary Engine API
+calls, which is why anything you can do with <code>docker run</code> flags has a
+corresponding YAML key, and why <code>docker inspect</code> on a Compose-managed
+container looks just like any other container's inspect output (with
+<code>com.docker.compose.*</code> labels added for bookkeeping).</p>
+<p><strong>Service-name DNS resolution.</strong> The Docker Engine runs an embedded DNS
+server (at <code>127.0.0.11</code> inside each container's network namespace) for
+every user-defined bridge network. When a container looks up hostname
+<code>db</code>, its <code>/etc/resolv.conf</code> (rewritten by the Engine at container start)
+points resolution at <code>127.0.0.11</code>, which answers with the current IP of
+whatever container is attached to that network under the alias <code>db</code> —
+resolved dynamically from the Engine's internal network-to-container
+mapping, not baked into <code>/etc/hosts</code> as a static entry (though a static
+entry is <em>also</em> written for the container's own name, for compatibility).
+This is why service discovery keeps working even if <code>db</code>'s container is
+recreated with a new IP: the alias, not the IP, is what other containers
+resolve.</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Write a <code>docker-compose.yml</code> for a two-service app: a <code>redis:7</code> cache
+service (no ports published, only reachable internally) and a <code>worker</code>
+service built from a local Dockerfile that connects to it at hostname
+<code>redis</code>, port <code>6379</code>. Bring it up with <code>docker compose up -d</code>, confirm
+with <code>docker compose exec worker sh -c "getent hosts redis"</code> that the
+hostname resolves, then tear it down with <code>docker compose down -v</code>.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 

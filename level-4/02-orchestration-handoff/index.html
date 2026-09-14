@@ -94,8 +94,6 @@
   }
   </script>
   
-  <meta name="robots" content="noindex, follow">
-  
 
   </head>
   
@@ -1856,6 +1854,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Orchestration Handoff (Kubernetes/Swarm)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1872,6 +1888,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#signals-its-time-to-move-beyond-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Signals it's time to move beyond Compose
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signals-swarm-or-plain-compose-is-still-the-right-size" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Signals Swarm (or plain Compose) is still the right size
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concept-mapping-swarm-to-kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concept mapping: Swarm to Kubernetes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-compose-files-rough-kubernetes-shape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A Compose file's rough Kubernetes shape
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-a-migration-decision-reasoned-through" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: a migration decision, reasoned through
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2129,6 +2241,91 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#signals-its-time-to-move-beyond-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Signals it's time to move beyond Compose
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#signals-swarm-or-plain-compose-is-still-the-right-size" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Signals Swarm (or plain Compose) is still the right size
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#concept-mapping-swarm-to-kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Concept mapping: Swarm to Kubernetes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-compose-files-rough-kubernetes-shape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A Compose file's rough Kubernetes shape
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-a-migration-decision-reasoned-through" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: a migration decision, reasoned through
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2148,22 +2345,159 @@
 
 
 <h1 id="02-orchestration-handoff-kubernetesswarm">02 · Orchestration Handoff (Kubernetes/Swarm)<a class="headerlink" href="#02-orchestration-handoff-kubernetesswarm" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This module's full lessons and runnable examples are being written next.
-This module will cover Recognizing when a workload has outgrown plain Docker/Compose and needs an orchestrator like Kubernetes or Swarm.</p>
-</div>
-<p>In the meantime, <a href="../../level-1/">Level 1 · Entry</a> is fully published —
-start there if you haven't yet.</p>
+<p>Swarm (Level 3, module 08) covers a real, useful slice of orchestration.
+This module is about recognizing the point where a workload has outgrown
+plain Docker/Compose or Swarm and genuinely needs Kubernetes — and being
+honest that not every project reaches that point.</p>
+<h2 id="signals-its-time-to-move-beyond-compose">Signals it's time to move beyond Compose<a class="headerlink" href="#signals-its-time-to-move-beyond-compose" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>More than a handful of hosts</strong>, especially with heterogeneous
+  hardware/scheduling constraints (GPU nodes, spot instances mixed with
+  on-demand).</li>
+<li><strong>Multiple teams deploying independently</strong> onto shared infrastructure,
+  needing namespace-level isolation and RBAC rather than one shared
+  Docker daemon.</li>
+<li><strong>Autoscaling based on real metrics</strong> (request rate, queue depth), not
+  just a fixed replica count.</li>
+<li><strong>A need for the broader ecosystem</strong> — Helm charts for third-party
+  software, operators that manage stateful services (databases, message
+  queues) declaratively, service meshes for fine-grained traffic control.</li>
+</ul>
+<h2 id="signals-swarm-or-plain-compose-is-still-the-right-size">Signals Swarm (or plain Compose) is still the right size<a class="headerlink" href="#signals-swarm-or-plain-compose-is-still-the-right-size" title="Permanent link">&para;</a></h2>
+<ul>
+<li>A single team, a handful of hosts, and predictable load — Swarm's
+  operational simplicity (module 08: <code>docker swarm init</code>, no separate
+  control-plane components to run) can be a genuine advantage, not a
+  limitation, at this scale.</li>
+<li>The team has no existing Kubernetes operational expertise and the
+  workload doesn't need anything Kubernetes uniquely provides — adopting
+  Kubernetes purely for its reputation, without a concrete requirement it
+  satisfies, tends to add operational burden without matching benefit.</li>
+</ul>
+<h2 id="concept-mapping-swarm-to-kubernetes">Concept mapping: Swarm to Kubernetes<a class="headerlink" href="#concept-mapping-swarm-to-kubernetes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Swarm concept</th>
+<th>Kubernetes equivalent</th>
+<th>Key difference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Service (<code>docker service create</code>)</td>
+<td>Deployment + Service</td>
+<td>Kubernetes splits "desired replica set" (Deployment) from "stable network identity" (Service) into two objects</td>
+</tr>
+<tr>
+<td>Task</td>
+<td>Pod</td>
+<td>A Pod can hold multiple co-scheduled containers sharing a network namespace (module 04 of Level 3's sidecar pattern, natively)</td>
+</tr>
+<tr>
+<td>Overlay network</td>
+<td>CNI network plugin</td>
+<td>Kubernetes delegates networking to a pluggable CNI implementation rather than a single built-in driver</td>
+</tr>
+<tr>
+<td><code>docker secret</code></td>
+<td>Kubernetes <code>Secret</code></td>
+<td>Conceptually identical (mounted as files/env, module 09 of Level 3); Kubernetes secrets are base64-encoded by default, not encrypted, unless encryption-at-rest is separately configured</td>
+</tr>
+<tr>
+<td><code>docker config</code></td>
+<td>Kubernetes <code>ConfigMap</code></td>
+<td>Same purpose, same distinction from Secret</td>
+</tr>
+<tr>
+<td><code>docker stack deploy -c stack.yml</code></td>
+<td><code>kubectl apply -f manifests/</code></td>
+<td>Both apply a declarative desired state; Kubernetes's object model is far larger (dozens of resource kinds vs. Compose's handful)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="a-compose-files-rough-kubernetes-shape">A Compose file's rough Kubernetes shape<a class="headerlink" href="#a-compose-files-rough-kubernetes-shape" title="Permanent link">&para;</a></h2>
+<p>The <code>stack.yml</code> from Level 3's capstone maps conceptually onto:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># deployment.yaml (illustrative — not exhaustive)</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nt">metadata</span><span class="p">:</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">api</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nt">spec</span><span class="p">:</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> app</span><span class="p">:</span><span class="w"> </span><span class="nv">api</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="nt">template</span><span class="p">:</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">      </span><span class="nt">labels</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> app</span><span class="p">:</span><span class="w"> </span><span class="nv">api</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">      </span><span class="nt">containers</span><span class="p">:</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">api</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">          </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">registry.example.com/team/link-shortener:1.0.0</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">          </span><span class="nt">resources</span><span class="p">:</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">            </span><span class="nt">limits</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> cpu</span><span class="p">:</span><span class="w"> </span><span class="s">"1"</span><span class="p p-Indicator">,</span><span class="nt"> memory</span><span class="p">:</span><span class="w"> </span><span class="s">"256Mi"</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">            </span><span class="nt">requests</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> cpu</span><span class="p">:</span><span class="w"> </span><span class="s">"250m"</span><span class="p p-Indicator">,</span><span class="nt"> memory</span><span class="p">:</span><span class="w"> </span><span class="s">"128Mi"</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">          </span><span class="nt">volumeMounts</span><span class="p">:</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db-secret</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">              </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/run/secrets</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">      </span><span class="nt">volumes</span><span class="p">:</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db-secret</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">          </span><span class="nt">secret</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> secretName</span><span class="p">:</span><span class="w"> </span><span class="nv">database-url</span><span class="w"> </span><span class="p p-Indicator">}</span>
+</code></pre></div>
+<p>The <code>resources.limits</code>/<code>requests</code> block is the direct Kubernetes analog
+of Swarm's <code>deploy.resources.limits</code>/<code>reservations</code> (Level 3, module 03's
+cgroup mechanism underlies both identically — Kubernetes ultimately
+configures the same kernel cgroups via its container runtime).</p>
+<h2 id="worked-example-a-migration-decision-reasoned-through">Worked example: a migration decision, reasoned through<a class="headerlink" href="#worked-example-a-migration-decision-reasoned-through" title="Permanent link">&para;</a></h2>
+<p>A team running the Level 3 capstone stack on 3 Swarm nodes starts needing
+per-tenant namespace isolation for a new enterprise customer requirement,
+autoscaling <code>api</code> based on request latency, and a managed Postgres
+operator for automated failover. None of these are things Swarm provides
+natively. That combination of concrete requirements — not vague
+"Kubernetes is more mature" reasoning — is the actual trigger to migrate,
+and the migration path is translating the existing <code>stack.yml</code> service by
+service using the table above, rather than a rewrite from scratch.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>Why Kubernetes needing a pluggable CNI, while Swarm ships one built-in
+driver, reflects a real architectural difference, not just extra
+options.</strong> Swarm's overlay networking (Level 3, module 01) is baked
+directly into the Docker Engine's own code — one implementation, VXLAN,
+covering every Swarm cluster. Kubernetes instead defines the Container
+Network Interface as a plugin contract (a binary the kubelet invokes with
+a defined JSON input/output) precisely because different clusters have
+genuinely different networking requirements — cloud-native clusters
+often want a plugin that maps Pod IPs directly onto the cloud provider's
+own VPC routing (avoiding VXLAN encapsulation overhead entirely), while
+on-prem clusters commonly do need VXLAN or a similar overlay. This
+pluggability is a direct consequence of Kubernetes targeting far more
+heterogeneous deployment environments than Swarm was designed for.</p>
+<p><strong>Why splitting "Deployment" and "Service" reflects a genuine
+separation of concerns Swarm collapses into one object.</strong> In Swarm, one
+<code>docker service create</code> simultaneously declares the replica count <em>and</em>
+the stable VIP/DNS name backing it. Kubernetes deliberately decouples
+these: a Deployment only manages Pod replica lifecycle (create, replace,
+roll out new versions) and has no inherent stable network identity at
+all; a separate Service object provides the stable ClusterIP/DNS name and
+uses a label selector to dynamically discover <em>whichever</em> Pods currently
+match, regardless of which Deployment (or even multiple Deployments)
+created them. This decoupling is what enables patterns Swarm can't
+express directly, like a single Service load-balancing across two
+different Deployments during a blue-green rollout, each independently
+scaled.</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Take the <code>stack.yml</code> from Level 3's capstone and, without necessarily
+running it, write out the equivalent Kubernetes Deployment + Service +
+Secret + NetworkPolicy YAML for just the <code>api</code> and <code>db</code> services,
+explicitly noting where the <code>internal: true</code> overlay network's isolation
+guarantee (Level 3, module 01/10) would need to be reproduced with a
+Kubernetes NetworkPolicy instead, since Kubernetes has no direct
+equivalent of "internal: true" on a network object itself.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 

@@ -94,8 +94,6 @@
   }
   </script>
   
-  <meta name="robots" content="noindex, follow">
-  
 
   </head>
   
@@ -1912,6 +1910,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Build Optimization at Scale
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1928,6 +1944,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#shared-build-caches-across-many-ci-runners" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shared build caches across many CI runners
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#remote-builders-for-consistent-powerful-build-hosts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remote builders for consistent, powerful build hosts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parallelizing-builds-across-a-monorepo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parallelizing builds across a monorepo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-platform-builds-without-duplicating-ci-runners" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-platform builds without duplicating CI runners
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-measuring-the-effect-of-a-warm-shared-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: measuring the effect of a warm shared cache
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2129,6 +2241,91 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#shared-build-caches-across-many-ci-runners" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shared build caches across many CI runners
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#remote-builders-for-consistent-powerful-build-hosts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remote builders for consistent, powerful build hosts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parallelizing-builds-across-a-monorepo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parallelizing builds across a monorepo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-platform-builds-without-duplicating-ci-runners" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-platform builds without duplicating CI runners
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-measuring-the-effect-of-a-warm-shared-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: measuring the effect of a warm shared cache
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2148,22 +2345,120 @@
 
 
 <h1 id="04-build-optimization-at-scale">04 · Build Optimization at Scale<a class="headerlink" href="#04-build-optimization-at-scale" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This module's full lessons and runnable examples are being written next.
-This module will cover Shared build caches, remote builders, and parallelizing image builds across a large codebase.</p>
-</div>
-<p>In the meantime, <a href="../../level-1/">Level 1 · Entry</a> is fully published —
-start there if you haven't yet.</p>
+<p>A single team's Dockerfile might build in seconds. A large codebase with
+many services, many CI jobs running concurrently, and a large monorepo
+needs its build infrastructure treated as a system to optimize, not just
+individual Dockerfiles.</p>
+<h2 id="shared-build-caches-across-many-ci-runners">Shared build caches across many CI runners<a class="headerlink" href="#shared-build-caches-across-many-ci-runners" title="Permanent link">&para;</a></h2>
+<p>Module 01's <code>cache-from</code>/<code>cache-to</code> with <code>type=registry</code> scales to many
+concurrent runners sharing one cache image, but a single cache tag
+becomes a write-contention bottleneck under heavy concurrency. A common
+refinement is per-branch cache tags with a fallback chain:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker/build-push-action@v5</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">          </span><span class="nt">cache-from</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">            </span><span class="no">type=registry,ref=registry.example.com/team/myapp:buildcache-${{ github.ref_name }}</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">            </span><span class="no">type=registry,ref=registry.example.com/team/myapp:buildcache-main</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">          </span><span class="nt">cache-to</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">type=registry,ref=registry.example.com/team/myapp:buildcache-${{ github.ref_name }},mode=max</span>
+</code></pre></div>
+<p>Each branch reads its own cache first, falling back to <code>main</code>'s cache for
+layers it hasn't built yet (e.g. a new branch's first build) — this
+keeps feature-branch builds fast without every branch fighting over one
+shared, frequently-overwritten cache tag.</p>
+<h2 id="remote-builders-for-consistent-powerful-build-hosts">Remote builders for consistent, powerful build hosts<a class="headerlink" href="#remote-builders-for-consistent-powerful-build-hosts" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span>buildx<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>remote-builder<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span>--driver<span class="w"> </span>remote<span class="w"> </span>tcp://build-farm.internal:1234
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>docker<span class="w"> </span>buildx<span class="w"> </span>use<span class="w"> </span>remote-builder
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>docker<span class="w"> </span>buildx<span class="w"> </span>build<span class="w"> </span>--push<span class="w"> </span>-t<span class="w"> </span>registry.example.com/team/myapp:1.0<span class="w"> </span>.
+</code></pre></div>
+<p>A <strong>remote builder</strong> runs BuildKit on dedicated, consistently-provisioned
+hardware rather than whatever CI runner happened to be assigned —
+valuable when CI runners are small/ephemeral but builds need substantial
+CPU/memory (large monorepo builds, heavy compilation), or when you want
+one warm, persistent build cache shared across every CI job rather than
+re-establishing it per runner via the registry each time.</p>
+<h2 id="parallelizing-builds-across-a-monorepo">Parallelizing builds across a monorepo<a class="headerlink" href="#parallelizing-builds-across-a-monorepo" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Build only the services whose source actually changed</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nv">CHANGED</span><span class="o">=</span><span class="k">$(</span>git<span class="w"> </span>diff<span class="w"> </span>--name-only<span class="w"> </span>origin/main...<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d/<span class="w"> </span>-f1<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-u<span class="k">)</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">for</span><span class="w"> </span>svc<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">$CHANGED</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span>docker<span class="w"> </span>buildx<span class="w"> </span>build<span class="w"> </span>--push<span class="w"> </span>-t<span class="w"> </span>registry.example.com/team/<span class="nv">$svc</span>:<span class="si">${</span><span class="nv">GITHUB_SHA</span><span class="si">}</span><span class="w"> </span>./<span class="nv">$svc</span><span class="w"> </span><span class="p">&amp;</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">done</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="nb">wait</span>
+</code></pre></div>
+<p>Building every service on every commit regardless of what changed wastes
+CI time linearly with monorepo size. Detecting the changed subset (via
+<code>git diff</code> against the merge-base, as above, or a purpose-built tool like
+Bazel/Turborepo/Nx for dependency-aware change detection) and building
+only those, in parallel, keeps CI time roughly proportional to the size
+of a single change rather than the whole repo.</p>
+<h2 id="multi-platform-builds-without-duplicating-ci-runners">Multi-platform builds without duplicating CI runners<a class="headerlink" href="#multi-platform-builds-without-duplicating-ci-runners" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker<span class="w"> </span>buildx<span class="w"> </span>build<span class="w"> </span>--platform<span class="w"> </span>linux/amd64,linux/arm64<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span>--push<span class="w"> </span>-t<span class="w"> </span>registry.example.com/team/myapp:1.0<span class="w"> </span>.
+</code></pre></div>
+<p>Buildx with the <code>docker-container</code> driver can build multiple target
+architectures from one invocation, using QEMU emulation (or native
+builders per architecture registered as separate nodes for better
+performance) and pushing a single <strong>manifest list</strong> that lets <code>docker
+pull</code> on either architecture automatically fetch the right variant —
+avoiding a separate CI job/runner type per target architecture for
+straightforward cases.</p>
+<h2 id="worked-example-measuring-the-effect-of-a-warm-shared-cache">Worked example: measuring the effect of a warm shared cache<a class="headerlink" href="#worked-example-measuring-the-effect-of-a-warm-shared-cache" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Cold cache (first build on a fresh runner)</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nb">time</span><span class="w"> </span>docker<span class="w"> </span>buildx<span class="w"> </span>build<span class="w"> </span>--cache-from<span class="w"> </span><span class="nv">type</span><span class="o">=</span>registry,ref<span class="o">=</span>...:buildcache<span class="w"> </span>.
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1"># e.g. 4m12s for a large dependency-heavy image</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1"># Warm cache (subsequent build, no dependency changes)</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="nb">time</span><span class="w"> </span>docker<span class="w"> </span>buildx<span class="w"> </span>build<span class="w"> </span>--cache-from<span class="w"> </span><span class="nv">type</span><span class="o">=</span>registry,ref<span class="o">=</span>...:buildcache<span class="w"> </span>.
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># e.g. 18s — nearly every layer hits cache</span>
+</code></pre></div>
+<p>(Illustrative figures reasoned through from typical dependency-install
+costs, not measured on a specific machine — the ratio, not the absolute
+numbers, is the point: a warm cache typically turns minutes into seconds
+for unchanged layers.)</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>Why a <code>type=registry</code> cache export writes a real, separate image
+manifest rather than reusing the application image's own layers
+directly.</strong> BuildKit's registry cache exporter serializes its internal
+cache metadata (a graph of which build steps produced which layer
+digests, keyed by the exact instruction+input hash from Level 2 module
+04) as a specially-structured OCI image, pushed under the <code>:buildcache</code>
+tag, distinct from the application's own tagged images. On the next
+build, <code>cache-from</code> pulls just that manifest and metadata (not
+necessarily every blob immediately — BuildKit lazily fetches only the
+layer blobs it actually needs to satisfy a cache hit) and reconstructs
+its local cache index from it before evaluating which steps can be
+skipped. This separation is why the cache image can grow to include far
+more historical layers than any single application image would ever
+need (with <code>mode=max</code> capturing every intermediate stage's layers, per
+module 01) without bloating the actual deployed image — they are
+entirely separate registry objects.</p>
+<p><strong>Why QEMU-based cross-architecture builds are slower, mechanically, than
+native per-architecture builders.</strong> When building <code>linux/arm64</code> on an
+<code>amd64</code> CI runner, <code>RUN</code> instructions for that stage execute inside a
+container whose binaries are ARM64 machine code — the <code>amd64</code> kernel
+cannot execute that code natively, so <code>binfmt_misc</code> (a kernel mechanism
+mapping an executable's magic bytes to a registered interpreter) invokes
+QEMU's user-mode emulator to translate each ARM64 instruction to <code>amd64</code>
+instructions dynamically, instruction-by-instruction, as the process
+runs. This per-instruction translation overhead is why compilation-heavy
+<code>RUN</code> steps under emulation can run several times slower than the
+equivalent native build — registering a genuinely separate <code>arm64</code> build
+node (real ARM64 hardware or a cloud ARM64 instance) as an additional
+buildx builder avoids emulation entirely for that platform's stages,
+trading additional infrastructure for native-speed builds.</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Set up a <code>docker buildx build --platform linux/amd64,linux/arm64</code> for any
+small multi-stage Dockerfile, time the <code>RUN npm ci</code>-equivalent step under
+QEMU emulation for the non-native architecture, then (if you have access
+to real ARM64 hardware, or an ARM64 cloud instance) register it as a
+second builder node and compare the same step's wall-clock time running
+natively.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 

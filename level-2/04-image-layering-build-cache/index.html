@@ -94,8 +94,6 @@
   }
   </script>
   
-  <meta name="robots" content="noindex, follow">
-  
 
   </head>
   
@@ -1160,6 +1158,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Image Layering & Build Cache
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1176,6 +1192,91 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-cache-invalidation-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The cache invalidation rule
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ordering-for-maximum-cache-reuse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ordering for maximum cache reuse
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-measuring-the-effect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: measuring the effect
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#buildkit-cache-mounts-for-package-managers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BuildKit cache mounts for package managers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2129,6 +2230,80 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-cache-invalidation-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The cache invalidation rule
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ordering-for-maximum-cache-reuse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ordering for maximum cache reuse
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-measuring-the-effect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: measuring the effect
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#buildkit-cache-mounts-for-package-managers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BuildKit cache mounts for package managers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2148,22 +2323,113 @@
 
 
 <h1 id="04-image-layering-build-cache">04 · Image Layering &amp; Build Cache<a class="headerlink" href="#04-image-layering-build-cache" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This module's full lessons and runnable examples are being written next.
-This module will cover Ordering Dockerfile instructions and using BuildKit cache mounts to minimize rebuild time.</p>
-</div>
-<p>In the meantime, <a href="../../level-1/">Level 1 · Entry</a> is fully published —
-start there if you haven't yet.</p>
+<p>Every instruction in a Dockerfile that changes the filesystem (<code>RUN</code>,
+<code>COPY</code>, <code>ADD</code>) produces a new, independent, content-addressed layer.
+Docker caches each layer and reuses it on later builds when nothing that
+could affect it has changed — which is why instruction <em>order</em> has a
+direct, measurable effect on build speed.</p>
+<h2 id="the-cache-invalidation-rule">The cache invalidation rule<a class="headerlink" href="#the-cache-invalidation-rule" title="Permanent link">&para;</a></h2>
+<p>For each instruction, the builder checks whether it can reuse a
+previously built layer:</p>
+<ul>
+<li>For <code>RUN</code>, the cache key is the exact command string plus the parent
+  layer's identity — same command, same starting point, same cached
+  result reused.</li>
+<li>For <code>COPY</code>/<code>ADD</code>, the cache key additionally includes a checksum of the
+  files being copied — if even one byte of a copied file changed, that
+  layer (and every layer after it) is rebuilt.</li>
+</ul>
+<p>The critical consequence: <strong>once one layer misses the cache, every
+subsequent layer misses too</strong>, even if their own inputs didn't change,
+because their "starting point" (the previous layer) is now different.</p>
+<h2 id="ordering-for-maximum-cache-reuse">Ordering for maximum cache reuse<a class="headerlink" href="#ordering-for-maximum-cache-reuse" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.12-slim</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c"># Copy ONLY the dependency manifest first</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">COPY</span><span class="w"> </span>requirements.txt<span class="w"> </span>.
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--no-cache-dir<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="c"># Application source changes far more often than dependencies —</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="c"># putting COPY . . last means edits to app code never invalidate</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c"># the (usually slow) pip install layer above it.</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">"python"</span><span class="p">,</span><span class="w"> </span><span class="s2">"app.py"</span><span class="p">]</span>
+</code></pre></div>
+<p>Compare to the naive ordering:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.<span class="w">                                    </span>#<span class="w"> </span>any<span class="w"> </span>code<span class="w"> </span>change<span class="w"> </span>invalidates<span class="w"> </span>everything<span class="w"> </span>below
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--no-cache-dir<span class="w"> </span>-r<span class="w"> </span>requirements.txt<span class="w">   </span>#<span class="w"> </span>reinstalled<span class="w"> </span>on<span class="w"> </span>every<span class="w"> </span>code<span class="w"> </span>edit
+</code></pre></div>
+<h2 id="worked-example-measuring-the-effect">Worked example: measuring the effect<a class="headerlink" href="#worked-example-measuring-the-effect" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># First build: everything is cold</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">time</span><span class="w"> </span>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>myapp<span class="w"> </span>.
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># Edit only app.py, leave requirements.txt untouched</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>myapp<span class="w"> </span>.
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1"># With the good ordering: pip install layer says "CACHED", build takes ~1s</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># With COPY . . first: pip install reruns from scratch, taking as long as build #1</span>
+</code></pre></div>
+<h2 id="buildkit-cache-mounts-for-package-managers">BuildKit cache mounts for package managers<a class="headerlink" href="#buildkit-cache-mounts-for-package-managers" title="Permanent link">&para;</a></h2>
+<p>Even with good layer ordering, a <em>changed</em> <code>requirements.txt</code> still
+re-downloads every package from scratch by default. A <strong>cache mount</strong>
+persists a directory (like pip's or npm's download cache) across builds,
+independent of the layer cache:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c"># syntax=docker/dockerfile:1</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.12-slim</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">COPY</span><span class="w"> </span>requirements.txt<span class="w"> </span>.
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">RUN</span><span class="w"> </span>--mount<span class="o">=</span><span class="nv">type</span><span class="o">=</span>cache,target<span class="o">=</span>/root/.cache/pip<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">node:20</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">COPY</span><span class="w"> </span>package.json<span class="w"> </span>package-lock.json<span class="w"> </span>./
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="k">RUN</span><span class="w"> </span>--mount<span class="o">=</span><span class="nv">type</span><span class="o">=</span>cache,target<span class="o">=</span>/root/.npm<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span>npm<span class="w"> </span>ci
+</code></pre></div>
+<p>The <code>--mount=type=cache</code> directory is <em>not</em> committed as part of the
+image layer — it's a persistent cache directory reused across separate
+builds (even ones that would otherwise be cache misses), separate from
+the layer cache that keys off the Dockerfile instruction and input hash.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>Layers are content-addressed, and the cache key chains through
+history.</strong> Each layer's ID is a hash of its own diff content combined
+with its parent layer's ID — so a layer's identity mechanically encodes
+"the entire sequence of instructions that produced it," not just its own
+diff. When BuildKit decides whether a <code>RUN</code> can reuse cache, it hashes
+the instruction text plus that chained parent ID; if the parent ID
+differs from last time (because an earlier <code>COPY</code> produced different
+content), the hash can't match anything in the cache store even though
+the <code>RUN</code> command's <em>text</em> is identical — this is the mechanical reason a
+single upstream cache miss cascades forward through the rest of the
+Dockerfile.</p>
+<p><strong>Why <code>--mount=type=cache</code> survives what the layer cache doesn't.</strong>
+BuildKit implements cache mounts as named, persistent directories on the
+build host (or a shared cache backend), mounted into the ephemeral build
+container for the duration of that one <code>RUN</code> instruction only, then
+unmounted — so their contents never become part of any layer's diff and
+are never hashed into the layer's content-addressed ID. This decouples
+"did the layer cache hit" from "is the package-manager download cache
+warm": a <code>requirements.txt</code> change always invalidates the <code>RUN pip
+install</code> <em>layer</em> (because <code>COPY requirements.txt .</code>'s content hash
+changed), but the cache-mounted <code>/root/.cache/pip</code> directory is untouched
+by that invalidation and still has the previously downloaded wheel files
+sitting on disk, so <code>pip</code> only needs to fetch genuinely new/changed
+packages instead of everything.</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Take a Dockerfile that does <code>COPY . .</code> before <code>RUN npm install</code>, and
+rewrite it to copy <code>package.json</code>/<code>package-lock.json</code> first, run
+<code>npm ci</code> with a <code>--mount=type=cache,target=/root/.npm</code>, then copy the
+rest of the source. Build twice, editing only a source file (not
+<code>package.json</code>) between builds, and confirm via the build output that the
+<code>npm ci</code> layer shows <code>CACHED</code> on the second build.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 

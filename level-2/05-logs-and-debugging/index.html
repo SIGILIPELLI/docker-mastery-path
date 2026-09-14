@@ -94,8 +94,6 @@
   }
   </script>
   
-  <meta name="robots" content="noindex, follow">
-  
 
   </head>
   
@@ -1188,6 +1186,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Container Logs & Debugging
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1204,6 +1220,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#docker-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        docker logs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-exec-a-shell-inside-a-running-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        docker exec — a shell inside a running container
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-inspect-for-configuration-and-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        docker inspect for configuration and state
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-diagnosing-a-crash-looping-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: diagnosing a crash-looping container
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-stats-for-resource-related-symptoms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        docker stats for resource-related symptoms
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2129,6 +2241,91 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#docker-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        docker logs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-exec-a-shell-inside-a-running-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        docker exec — a shell inside a running container
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-inspect-for-configuration-and-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        docker inspect for configuration and state
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#worked-example-diagnosing-a-crash-looping-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example: diagnosing a crash-looping container
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-stats-for-resource-related-symptoms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        docker stats for resource-related symptoms
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2148,22 +2345,107 @@
 
 
 <h1 id="05-container-logs-debugging">05 · Container Logs &amp; Debugging<a class="headerlink" href="#05-container-logs-debugging" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Coming soon</p>
-<p>This module's full lessons and runnable examples are being written next.
-This module will cover Using docker logs, docker exec, and docker inspect to diagnose a misbehaving container.</p>
-</div>
-<p>In the meantime, <a href="../../level-1/">Level 1 · Entry</a> is fully published —
-start there if you haven't yet.</p>
+<p>When a container misbehaves, three commands cover almost every diagnosis:
+<code>docker logs</code> (what did it print), <code>docker exec</code> (poke at it while it's
+running), and <code>docker inspect</code> (what is its actual configuration and
+state).</p>
+<h2 id="docker-logs"><code>docker logs</code><a class="headerlink" href="#docker-logs" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker<span class="w"> </span>logs<span class="w"> </span>myapp<span class="w">             </span><span class="c1"># everything captured so far</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>docker<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>myapp<span class="w">          </span><span class="c1"># follow, like tail -f</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>docker<span class="w"> </span>logs<span class="w"> </span>--tail<span class="w"> </span><span class="m">100</span><span class="w"> </span>myapp<span class="w">  </span><span class="c1"># last 100 lines only</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>docker<span class="w"> </span>logs<span class="w"> </span>--since<span class="w"> </span>10m<span class="w"> </span>myapp<span class="w"> </span><span class="c1"># only the last 10 minutes</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>docker<span class="w"> </span>logs<span class="w"> </span>-t<span class="w"> </span>myapp<span class="w">          </span><span class="c1"># prefix each line with a timestamp</span>
+</code></pre></div>
+<p><code>docker logs</code> only shows what the container's PID 1 process wrote to
+<strong>stdout/stderr</strong> — it is not a general-purpose log viewer for arbitrary
+files the application might also write inside the container. An app that
+logs only to <code>/var/log/app.log</code> and never to stdout will show nothing
+here (fixable at the app's logging config, or by symlinking that file to
+<code>/dev/stdout</code>).</p>
+<h2 id="docker-exec-a-shell-inside-a-running-container"><code>docker exec</code> — a shell inside a running container<a class="headerlink" href="#docker-exec-a-shell-inside-a-running-container" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>myapp<span class="w"> </span>sh<span class="w">          </span><span class="c1"># interactive shell (bash if available)</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>myapp<span class="w"> </span>cat<span class="w"> </span>/etc/hosts<span class="w">  </span><span class="c1"># one-off command, no interactive session</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>myapp<span class="w"> </span>env<span class="w">             </span><span class="c1"># inspect the actual environment variables it sees</span>
+</code></pre></div>
+<p><code>-it</code> combines <code>-i</code> (keep stdin open) and <code>-t</code> (allocate a pseudo-TTY) —
+both are needed for an interactive shell to behave like a normal
+terminal; a one-off diagnostic command like <code>cat</code> needs neither.</p>
+<h2 id="docker-inspect-for-configuration-and-state"><code>docker inspect</code> for configuration and state<a class="headerlink" href="#docker-inspect-for-configuration-and-state" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>docker<span class="w"> </span>inspect<span class="w"> </span>myapp
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>docker<span class="w"> </span>inspect<span class="w"> </span>-f<span class="w"> </span><span class="s1">'{{.State.Status}}'</span><span class="w"> </span>myapp
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>docker<span class="w"> </span>inspect<span class="w"> </span>-f<span class="w"> </span><span class="s1">'{{json .Config.Env}}'</span><span class="w"> </span>myapp
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>docker<span class="w"> </span>inspect<span class="w"> </span>-f<span class="w"> </span><span class="s1">'{{.NetworkSettings.IPAddress}}'</span><span class="w"> </span>myapp
+</code></pre></div>
+<p><code>--format</code>/<code>-f</code> with Go template syntax extracts one field instead of
+scrolling through hundreds of lines of JSON — invaluable when scripting
+health checks or debugging why a container isn't reachable on the network
+you expect.</p>
+<h2 id="worked-example-diagnosing-a-crash-looping-container">Worked example: diagnosing a crash-looping container<a class="headerlink" href="#worked-example-diagnosing-a-crash-looping-container" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker<span class="w"> </span>ps<span class="w"> </span>-a<span class="w"> </span>--filter<span class="w"> </span><span class="nv">name</span><span class="o">=</span>myapp
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="c1"># STATUS shows "Restarting (1) 4 seconds ago" — crash-looping</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>docker<span class="w"> </span>logs<span class="w"> </span>--tail<span class="w"> </span><span class="m">50</span><span class="w"> </span>myapp
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1"># reveals the actual stack trace/error from the last crash</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>docker<span class="w"> </span>inspect<span class="w"> </span>-f<span class="w"> </span><span class="s1">'{{.State.ExitCode}}'</span><span class="w"> </span>myapp
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="c1"># 1 — an application error, not a SIGKILL (which would show 137)</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>docker<span class="w"> </span>inspect<span class="w"> </span>-f<span class="w"> </span><span class="s1">'{{json .Config.Env}}'</span><span class="w"> </span>myapp<span class="w"> </span><span class="p">|</span><span class="w"> </span>python3<span class="w"> </span>-m<span class="w"> </span>json.tool
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="c1"># confirms whether a required env var is actually set as expected</span>
+</code></pre></div>
+<p>If the container restarts too fast to <code>exec</code> into it, temporarily
+override its restart policy and command to keep it alive for inspection:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--entrypoint<span class="w"> </span>sh<span class="w"> </span>myimage
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1"># drops you into a shell instead of running the normal (crashing) CMD</span>
+</code></pre></div>
+<h2 id="docker-stats-for-resource-related-symptoms"><code>docker stats</code> for resource-related symptoms<a class="headerlink" href="#docker-stats-for-resource-related-symptoms" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>docker<span class="w"> </span>stats<span class="w"> </span>myapp<span class="w"> </span>--no-stream
+</code></pre></div>
+<p>Shows live CPU%, memory usage/limit, and network I/O — useful when the
+symptom is "slow" or "OOM-killed" rather than "crashes immediately," and
+complements <code>docker inspect</code>'s static config with a runtime snapshot.</p>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>Where <code>docker logs</code> output actually comes from.</strong> The Docker daemon
+doesn't read a container's stdout live off some shared pipe every time
+you run <code>docker logs</code> — it captures stdout/stderr once, continuously, the
+moment the container starts, via the configured <strong>logging driver</strong>
+(default: <code>json-file</code>). Concretely, the container's stdout/stderr file
+descriptors are connected to a pipe whose other end the daemon reads, and
+the daemon writes each line to a JSON-lines file under
+<code>/var/lib/docker/containers/&lt;id&gt;/&lt;id&gt;-json.log</code> (tagged with a
+timestamp). <code>docker logs</code> is simply reading and formatting that file (or
+tailing it, for <code>-f</code>) — which is also why logs survive a container
+restart (same file, same container ID) but disappear entirely once you
+<code>docker rm</code> it, and why an extremely chatty container with the default
+driver can quietly fill your disk (module 07 covers alternative drivers).</p>
+<p><strong>What <code>docker exec</code> actually attaches to, mechanically.</strong> Unlike
+<code>docker run</code>, which creates an entirely new PID/mount/network namespace
+set, <code>docker exec</code> uses the <code>setns()</code> syscall to make a <em>new</em> process
+join the <strong>existing</strong> namespaces of the target container's PID 1 — same
+filesystem view (same mount namespace, so it sees the container's
+overlayfs merged view, not the host's), same network namespace (same IP,
+same open ports), same PID namespace (so <code>ps</code> inside the exec'd shell
+shows the container's other processes, not the host's). This is why
+<code>docker exec</code> feels like "getting a shell inside the container" despite
+not being the original containerized process at all — it's a genuinely
+separate process that happens to have joined all the same kernel
+namespaces, which also means killing the <code>docker exec</code> shell has no
+effect whatsoever on the container's actual PID 1 or its restart
+behavior.</p>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>Run <code>docker run -d --name debug-demo alpine sh -c "echo starting; sleep 300"</code>.
+Use <code>docker logs debug-demo</code> to see the startup message, <code>docker exec -it
+debug-demo sh</code> to get a shell and confirm <code>ps</code> shows only that container's
+processes (not your host's), then <code>docker inspect -f
+'{{.State.Pid}}' debug-demo</code> to find its PID as seen from the host, and
+compare it to the PID that process reports for itself inside the
+container via <code>docker exec debug-demo sh -c "echo \$\$"</code>.</p>
 
 
 
 
 
 
-
-  
-  
 
 
 
