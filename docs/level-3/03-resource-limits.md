@@ -1,3 +1,7 @@
+---
+description: "Resource Limits (CPU/Memory) — Without limits, a single misbehaving container can consume all of a host's CPU or memory and starve every other container…"
+---
+
 # 03 · Resource Limits (CPU/Memory)
 
 Without limits, a single misbehaving container can consume all of a

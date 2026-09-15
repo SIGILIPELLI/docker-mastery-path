@@ -1,3 +1,7 @@
+---
+description: "Orchestration Handoff (Kubernetes/Swarm) — Swarm (Level 3, module 08) covers a real, useful slice of orchestration. This module is about recognizing the…"
+---
+
 # 02 · Orchestration Handoff (Kubernetes/Swarm)
 
 Swarm (Level 3, module 08) covers a real, useful slice of orchestration.

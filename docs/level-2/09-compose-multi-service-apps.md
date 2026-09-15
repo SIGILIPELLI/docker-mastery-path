@@ -1,3 +1,7 @@
+---
+description: "Compose for Multi-Service Apps — A realistic application is rarely one container — it's a web tier, an API, a database, and often a cache, wired together…"
+---
+
 # 09 · Compose for Multi-Service Apps
 
 A realistic application is rarely one container — it's a web tier, an

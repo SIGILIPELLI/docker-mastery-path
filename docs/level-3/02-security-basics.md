@@ -1,3 +1,7 @@
+---
+description: "Security Basics — Three habits eliminate most of the container-security mistakes seen in practice: don't run as root inside the container, start from the…"
+---
+
 # 02 · Security Basics
 
 Three habits eliminate most of the container-security mistakes seen in

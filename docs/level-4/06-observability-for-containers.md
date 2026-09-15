@@ -1,3 +1,7 @@
+---
+description: "Observability for Containers — Logs (Level 3, module 07) are one of three observability pillars. Metrics and traces fill in what logs alone can't…"
+---
+
 # 06 · Observability for Containers
 
 Logs (Level 3, module 07) are one of three observability pillars. Metrics

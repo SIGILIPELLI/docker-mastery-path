@@ -1,3 +1,7 @@
+---
+description: "Container Logs & Debugging — When a container misbehaves, three commands cover almost every diagnosis: docker logs (what did it print), docker exec (poke…"
+---
+
 # 05 · Container Logs & Debugging
 
 When a container misbehaves, three commands cover almost every diagnosis:

@@ -1,3 +1,7 @@
+---
+description: "Zero-Downtime Deployments — Every deployment mechanism we've used so far — docker service update (module 08, Level 3), docker stack deploy, a bare docker…"
+---
+
 # 07 · Zero-Downtime Deployments
 
 Every deployment mechanism we've used so far — `docker service update`

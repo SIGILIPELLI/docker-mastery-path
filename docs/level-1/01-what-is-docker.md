@@ -1,3 +1,7 @@
+---
+description: "What Is Docker & Why Containers? — Docker is a platform for packaging an application together with everything it needs to run — code, runtime, system…"
+---
+
 # 01 · What Is Docker & Why Containers?
 
 Docker is a platform for packaging an application together with everything

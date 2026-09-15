@@ -1,3 +1,7 @@
+---
+description: "Multi-Container App Patterns — Beyond 'one container per service,' a few recurring patterns compose containers to solve problems that don't fit neatly…"
+---
+
 # 04 · Multi-Container App Patterns
 
 Beyond "one container per service," a few recurring patterns compose

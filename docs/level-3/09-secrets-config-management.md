@@ -1,3 +1,7 @@
+---
+description: "Secrets & Config Management — Plain environment variables (module 03 of Level 2) are visible via docker inspect to anyone with Engine API access, and get…"
+---
+
 # 09 · Secrets & Config Management
 
 Plain environment variables (module 03 of Level 2) are visible via

@@ -1,3 +1,7 @@
+---
+description: "Multi-Stage Builds — A multi-stage build uses more than one FROM in a single Dockerfile so that build tooling (compilers, dev dependencies, source…"
+---
+
 # 01 · Multi-Stage Builds
 
 A **multi-stage build** uses more than one `FROM` in a single Dockerfile so

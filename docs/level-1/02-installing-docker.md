@@ -1,3 +1,7 @@
+---
+description: "Installing Docker — Docker ships in a few different distributions depending on your OS. This module covers what to install, and the commands you'll use…"
+---
+
 # 02 · Installing Docker
 
 Docker ships in a few different distributions depending on your OS. This

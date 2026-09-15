@@ -1,3 +1,7 @@
+---
+description: "Project — Containerize a Small App — This capstone combines every Level 1 module into one project: writing a Dockerfile, building an image, running it…"
+---
+
 # 11 · Project — Containerize a Small App
 
 This capstone combines every Level 1 module into one project: writing a

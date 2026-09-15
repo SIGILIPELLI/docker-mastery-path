@@ -1,3 +1,7 @@
+---
+description: "Project — Multi-Container Compose App — This project pulls together everything from Level 2: multi-stage builds, Compose services/networks/volumes…"
+---
+
 # 10 · Project — Multi-Container Compose App
 
 This project pulls together everything from Level 2: multi-stage builds,

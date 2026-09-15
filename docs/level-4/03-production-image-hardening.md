@@ -1,3 +1,7 @@
+---
+description: "Production Image Hardening — Level 3's security module covered non-root users and minimal bases at an introductory level. Production hardening pushes…"
+---
+
 # 03 · Production Image Hardening
 
 Level 3's security module covered non-root users and minimal bases at an

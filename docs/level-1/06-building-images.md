@@ -1,3 +1,7 @@
+---
+description: "Building Images — Once you have a Dockerfile, docker build turns it into an image. This module covers the build command, tagging, and reading build output."
+---
+
 # 06 · Building Images
 
 Once you have a Dockerfile, `docker build` turns it into an image. This

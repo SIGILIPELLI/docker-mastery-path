@@ -1,3 +1,7 @@
+---
+description: "Compose Networks & Volumes — Beyond the default network Compose creates automatically, you can declare named networks and named volumes explicitly for…"
+---
+
 # 07 · Compose Networks & Volumes
 
 Beyond the default network Compose creates automatically, you can declare

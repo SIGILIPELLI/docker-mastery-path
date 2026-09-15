@@ -1,3 +1,7 @@
+---
+description: "Private Registries — Docker Hub is a public registry; most organizations also need a private registry for proprietary images — either self-hosted or a…"
+---
+
 # 05 · Private Registries
 
 Docker Hub is a public registry; most organizations also need a

@@ -1,3 +1,7 @@
+---
+description: "Images vs Containers — This distinction trips up almost everyone at first, so it's worth making precise before writing a single Dockerfile."
+---
+
 # 03 · Images vs Containers
 
 This distinction trips up almost everyone at first, so it's worth making

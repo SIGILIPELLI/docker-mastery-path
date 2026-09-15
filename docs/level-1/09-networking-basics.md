@@ -1,3 +1,7 @@
+---
+description: "Networking Basics — Containers need to talk to the outside world, to the host, and to each other. Docker sets up virtual networking for this…"
+---
+
 # 09 · Networking Basics
 
 Containers need to talk to the outside world, to the host, and to each

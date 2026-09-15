@@ -1,3 +1,7 @@
+---
+description: "Managing Images & Tags — An image name like myapp:1.4.2 has two parts — the repository (myapp) and the tag (1.4.2) — and how you assign and clean up tags…"
+---
+
 # 08 · Managing Images & Tags
 
 An image name like `myapp:1.4.2` has two parts — the **repository**

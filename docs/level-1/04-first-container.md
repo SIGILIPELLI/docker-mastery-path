@@ -1,3 +1,7 @@
+---
+description: "Running Your First Container — With the concepts from the last two modules in place, this module is hands-on: running containers, understanding docker…"
+---
+
 # 04 · Running Your First Container
 
 With the concepts from the last two modules in place, this module is

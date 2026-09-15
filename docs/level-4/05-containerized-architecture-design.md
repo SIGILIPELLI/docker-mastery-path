@@ -1,3 +1,7 @@
+---
+description: "Designing a Containerized Architecture — Everything so far has been about containerizing something already decided. This module is about the decision…"
+---
+
 # 05 · Designing a Containerized Architecture
 
 Everything so far has been about containerizing something already

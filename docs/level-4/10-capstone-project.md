@@ -1,3 +1,7 @@
+---
+description: "Capstone Project — This capstone pulls together the entire path — Dockerfiles (Level 1), Compose and multi-container patterns (Level 2/3), orchestration…"
+---
+
 # 10 · Capstone Project
 
 This capstone pulls together the entire path — Dockerfiles (Level 1),

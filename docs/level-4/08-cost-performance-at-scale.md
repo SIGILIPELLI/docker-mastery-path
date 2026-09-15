@@ -1,3 +1,7 @@
+---
+description: "Cost & Performance at Scale — At small scale, an oversized container or a bloated image costs nothing you'd notice. At fleet scale — dozens of services…"
+---
+
 # 08 · Cost & Performance at Scale
 
 At small scale, an oversized container or a bloated image costs nothing

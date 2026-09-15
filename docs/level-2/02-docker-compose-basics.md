@@ -1,3 +1,7 @@
+---
+description: "Docker Compose Basics — --build forces Compose to rebuild the web image from its Dockerfile before starting, which matters after you've changed source…"
+---
+
 # 02 · Docker Compose Basics
 
 **Compose** lets you describe a multi-container application declaratively

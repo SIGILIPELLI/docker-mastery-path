@@ -1,3 +1,7 @@
+---
+description: "Health Checks — docker ps showing Up only means the main process hasn't exited — it says nothing about whether the app inside is actually able to serve…"
+---
+
 # 06 · Health Checks
 
 `docker ps` showing `Up` only means the main process hasn't exited — it

@@ -1,3 +1,7 @@
+---
+description: "Disaster Recovery & Backups — Everything containerized is, by design, disposable — a container can be destroyed and recreated from its image in seconds…"
+---
+
 # 09 · Disaster Recovery & Backups
 
 Everything containerized is, by design, disposable — a container can be

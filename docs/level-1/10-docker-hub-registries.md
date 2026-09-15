@@ -1,3 +1,7 @@
+---
+description: "Docker Hub & Registries — Images need somewhere to live so they can be shared between machines — your laptop, a CI runner, a production server. That's…"
+---
+
 # 10 · Docker Hub & Registries
 
 Images need somewhere to live so they can be shared between machines —

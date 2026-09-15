@@ -1,3 +1,7 @@
+---
+description: "Docker Swarm Basics — This turns the current host into a Swarm manager and prints a docker swarm join command (with a join token) to run on other hosts to…"
+---
+
 # 08 · Docker Swarm Basics
 
 **Swarm** is Docker's own built-in orchestrator — no separate

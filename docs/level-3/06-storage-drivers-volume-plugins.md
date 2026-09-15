@@ -1,3 +1,7 @@
+---
+description: "Storage Drivers & Volume Plugins — Every image layer and every container's writable layer has to be represented on disk somehow. The storage driver…"
+---
+
 # 06 · Storage Drivers & Volume Plugins
 
 Every image layer and every container's writable layer has to be

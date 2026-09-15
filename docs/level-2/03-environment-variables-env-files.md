@@ -1,3 +1,7 @@
+---
+description: "Environment Variables & .env Files — Containers are configured mostly through environment variables rather than config files baked into the image, so the…"
+---
+
 # 03 · Environment Variables & .env Files
 
 Containers are configured mostly through environment variables rather

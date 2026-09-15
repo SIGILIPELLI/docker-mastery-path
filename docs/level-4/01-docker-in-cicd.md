@@ -1,3 +1,7 @@
+---
+description: "Docker in CI/CD Pipelines — Building, testing, and pushing images should happen automatically on every commit, not by hand from a developer's laptop. This…"
+---
+
 # 01 · Docker in CI/CD Pipelines
 
 Building, testing, and pushing images should happen automatically on

@@ -1,3 +1,7 @@
+---
+description: "Logging Drivers & Centralized Logging — Module 05 of Level 2 relied on the default json-file logging driver. For production, especially with many hosts…"
+---
+
 # 07 · Logging Drivers & Centralized Logging
 
 Module 05 of Level 2 relied on the default `json-file` logging driver.

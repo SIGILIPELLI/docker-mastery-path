@@ -1,3 +1,7 @@
+---
+description: "Project — Secure, Resource-Limited Production Stack — This capstone for Level 3 combines security hardening, resource limits, multi-container patterns…"
+---
+
 # 10 · Project — Secure, Resource-Limited Production Stack
 
 This capstone for Level 3 combines security hardening, resource limits,

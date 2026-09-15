@@ -1,3 +1,7 @@
+---
+description: "Docker Networking Deep Dive — Level 1 and 2 used bridge networking without examining it closely. This module compares Docker's network drivers directly…"
+---
+
 # 01 · Docker Networking Deep Dive
 
 Level 1 and 2 used bridge networking without examining it closely. This

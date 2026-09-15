@@ -1,3 +1,7 @@
+---
+description: "Build Optimization at Scale — A single team's Dockerfile might build in seconds. A large codebase with many services, many CI jobs running concurrently…"
+---
+
 # 04 · Build Optimization at Scale
 
 A single team's Dockerfile might build in seconds. A large codebase with

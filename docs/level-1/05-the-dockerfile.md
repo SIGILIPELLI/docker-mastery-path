@@ -1,3 +1,7 @@
+---
+description: "The Dockerfile — A Dockerfile is a plain-text recipe: a sequence of instructions that Docker executes, in order, to produce an image. Each instruction…"
+---
+
 # 05 · The Dockerfile
 
 A **Dockerfile** is a plain-text recipe: a sequence of instructions that

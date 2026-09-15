@@ -1,3 +1,7 @@
+---
+description: "Image Layering & Build Cache — Every instruction in a Dockerfile that changes the filesystem (RUN, COPY, ADD) produces a new, independent…"
+---
+
 # 04 · Image Layering & Build Cache
 
 Every instruction in a Dockerfile that changes the filesystem (`RUN`,
