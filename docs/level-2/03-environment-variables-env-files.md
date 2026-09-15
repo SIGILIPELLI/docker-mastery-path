@@ -116,6 +116,10 @@ config, injected into `environ` before the container's PID 1 process is
 each place it runs, with the twelve-factor-app convention treating env
 vars as the canonical place for anything that varies between deploys.
 
+## 🔀 Related lessons on other tracks
+
+- [Server Ops — 07 · Environment Variables & Config Management](https://sigilipelli.github.io/server-ops-mastery-path/level-1/07-environment-variables-config/)
+
 ## Exercise
 
 Create a `.env` file with `IMAGE_TAG=1.25` and a `docker-compose.yml`

@@ -130,6 +130,11 @@ to `unhealthy`. Once `--start-period` has elapsed, ordinary
 container's life, including any future failures after a period of being
 healthy.
 
+## 🔀 Related lessons on other tracks
+
+- [Kubernetes — 04 · Health Checks (Liveness & Readiness Probes)](https://sigilipelli.github.io/kubernetes-mastery-path/level-2/04-health-checks-probes/)
+- [Server Ops — 01 · High Availability Concepts (redundancy, failover, health checks)](https://sigilipelli.github.io/server-ops-mastery-path/level-3/01-ha-concepts/)
+
 ## Exercise
 
 Add a `HEALTHCHECK` to a Dockerfile for a simple HTTP service (any

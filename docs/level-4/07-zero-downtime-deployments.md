@@ -191,6 +191,11 @@ in the worked example matters: it makes the *application* exit cleanly
 just under Docker's own kill deadline, rather than leaving the outcome to
 whichever timeout fires first.
 
+## 🔀 Related lessons on other tracks
+
+- [REST API — 09 · Zero-Downtime Deployments & Migrations](https://sigilipelli.github.io/rest-api-mastery-path/level-4/09-zero-downtime-migrations/)
+- [Server Ops — 05 · Zero-Downtime Deploy Patterns](https://sigilipelli.github.io/server-ops-mastery-path/level-2/05-zero-downtime-deploy/)
+
 ## Exercise
 
 Take a Compose service with two replicas (`docker compose up --scale

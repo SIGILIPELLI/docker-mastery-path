@@ -139,6 +139,10 @@ the same inode — detecting a rotation by an inode/path mismatch rather
 than by any signal from Docker itself, since Docker's `json-file` driver
 does not notify external processes about rotation at all.
 
+## 🔀 Related lessons on other tracks
+
+- [Server Ops — 09 · Centralized Logging Basics](https://sigilipelli.github.io/server-ops-mastery-path/level-2/09-centralized-logging-basics/)
+
 ## Exercise
 
 Set `max-size: "1m"` and `max-file: "2"` on a container that logs

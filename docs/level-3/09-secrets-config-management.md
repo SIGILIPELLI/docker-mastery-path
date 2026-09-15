@@ -148,6 +148,12 @@ find no trace of the secret's contents — the strongest guarantee
 available short of never materializing the plaintext value on that host
 at all.
 
+## 🔀 Related lessons on other tracks
+
+- [Embedded Python — Device Provisioning & Secrets Management](https://sigilipelli.github.io/embedded-python-mastery-path/level-4/03-provisioning-secrets/)
+- [Server Ops — 07 · Environment Variables & Config Management](https://sigilipelli.github.io/server-ops-mastery-path/level-1/07-environment-variables-config/)
+- [Terraform — 08 · Secrets Management Patterns](https://sigilipelli.github.io/terraform-mastery-path/level-3/08-secrets-management/)
+
 ## Exercise
 
 Create a Docker secret for an API key, deploy a single-replica Swarm

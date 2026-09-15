@@ -163,6 +163,11 @@ leaving the bloated build-stage layers to exist only in the intermediate
 image that gets discarded, not in anything that's ever pushed, pulled, or
 billed for.
 
+## 🔀 Related lessons on other tracks
+
+- [ETL & Data Lake — 04 · Cost & Performance Optimization for Lake Storage](https://sigilipelli.github.io/etl-datalake-mastery-path/level-3/04-cost-performance-optimization/)
+- [Pyspark — 03 · Cost Performance Tradeoffs](https://sigilipelli.github.io/pyspark-mastery-path/level-4/03-cost-performance-tradeoffs/)
+
 ## Exercise
 
 Pick a service you've built in an earlier module, run it under load for a

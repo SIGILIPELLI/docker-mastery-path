@@ -130,6 +130,10 @@ meantime. This period-based bursting explains a common confusion:
 average for part of a period, followed by a stall, rather than a smooth
 150% ceiling at all times.
 
+## 🔀 Related lessons on other tracks
+
+- [Kubernetes — 03 · Resource Requests, Limits & Scheduling](https://sigilipelli.github.io/kubernetes-mastery-path/level-2/03-resource-requests-limits/)
+
 ## Exercise
 
 Run a CPU-bound container (`docker run -d --cpus=0.5 alpine sh -c "yes >

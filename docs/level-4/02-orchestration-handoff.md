@@ -123,6 +123,10 @@ express directly, like a single Service load-balancing across two
 different Deployments during a blue-green rollout, each independently
 scaled.
 
+## 🔀 Related lessons on other tracks
+
+- [Kubernetes — 01 · What Is Kubernetes & Why Orchestration?](https://sigilipelli.github.io/kubernetes-mastery-path/level-1/01-what-is-kubernetes/)
+
 ## Exercise
 
 Take the `stack.yml` from Level 3's capstone and, without necessarily

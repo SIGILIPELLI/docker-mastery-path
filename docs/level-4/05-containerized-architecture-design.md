@@ -134,6 +134,11 @@ its API to read that data directly, even via a bug or a compromised
 dependency — the isolation holds regardless of what the application code
 does or doesn't correctly enforce at the ORM/query layer.
 
+## 🔀 Related lessons on other tracks
+
+- [Kubernetes — 06 · Designing Production-Grade Cluster Architecture](https://sigilipelli.github.io/kubernetes-mastery-path/level-4/06-production-cluster-architecture/)
+- [Terraform — 06 · Designing a Platform's Terraform Architecture](https://sigilipelli.github.io/terraform-mastery-path/level-4/06-platform-architecture/)
+
 ## Exercise
 
 Take a hypothetical monolith you're familiar with (or the example above)
