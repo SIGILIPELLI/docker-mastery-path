@@ -118,7 +118,7 @@ vars as the canonical place for anything that varies between deploys.
 
 ## 🔀 Related lessons on other tracks
 
-- [Server Ops — 07 · Environment Variables & Config Management](https://sigilipelli.github.io/server-ops-mastery-path/level-1/07-environment-variables-config/)
+- [Server Ops — 07 · Environment Variables & Config Management](https://learnmasterypath.com/server-ops-mastery-path/level-1/07-environment-variables-config/)
 
 ## Exercise
 

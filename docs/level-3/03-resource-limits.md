@@ -132,7 +132,7 @@ average for part of a period, followed by a stall, rather than a smooth
 
 ## 🔀 Related lessons on other tracks
 
-- [Kubernetes — 03 · Resource Requests, Limits & Scheduling](https://sigilipelli.github.io/kubernetes-mastery-path/level-2/03-resource-requests-limits/)
+- [Kubernetes — 03 · Resource Requests, Limits & Scheduling](https://learnmasterypath.com/kubernetes-mastery-path/level-2/03-resource-requests-limits/)
 
 ## Exercise
 

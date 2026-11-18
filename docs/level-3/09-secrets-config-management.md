@@ -150,9 +150,9 @@ at all.
 
 ## 🔀 Related lessons on other tracks
 
-- [Embedded Python — Device Provisioning & Secrets Management](https://sigilipelli.github.io/embedded-python-mastery-path/level-4/03-provisioning-secrets/)
-- [Server Ops — 07 · Environment Variables & Config Management](https://sigilipelli.github.io/server-ops-mastery-path/level-1/07-environment-variables-config/)
-- [Terraform — 08 · Secrets Management Patterns](https://sigilipelli.github.io/terraform-mastery-path/level-3/08-secrets-management/)
+- [Embedded Python — Device Provisioning & Secrets Management](https://learnmasterypath.com/embedded-python-mastery-path/level-4/03-provisioning-secrets/)
+- [Server Ops — 07 · Environment Variables & Config Management](https://learnmasterypath.com/server-ops-mastery-path/level-1/07-environment-variables-config/)
+- [Terraform — 08 · Secrets Management Patterns](https://learnmasterypath.com/terraform-mastery-path/level-3/08-secrets-management/)
 
 ## Exercise
 

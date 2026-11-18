@@ -125,7 +125,7 @@ scaled.
 
 ## 🔀 Related lessons on other tracks
 
-- [Kubernetes — 01 · What Is Kubernetes & Why Orchestration?](https://sigilipelli.github.io/kubernetes-mastery-path/level-1/01-what-is-kubernetes/)
+- [Kubernetes — 01 · What Is Kubernetes & Why Orchestration?](https://learnmasterypath.com/kubernetes-mastery-path/level-1/01-what-is-kubernetes/)
 
 ## Exercise
 

@@ -136,8 +136,8 @@ does or doesn't correctly enforce at the ORM/query layer.
 
 ## 🔀 Related lessons on other tracks
 
-- [Kubernetes — 06 · Designing Production-Grade Cluster Architecture](https://sigilipelli.github.io/kubernetes-mastery-path/level-4/06-production-cluster-architecture/)
-- [Terraform — 06 · Designing a Platform's Terraform Architecture](https://sigilipelli.github.io/terraform-mastery-path/level-4/06-platform-architecture/)
+- [Kubernetes — 06 · Designing Production-Grade Cluster Architecture](https://learnmasterypath.com/kubernetes-mastery-path/level-4/06-production-cluster-architecture/)
+- [Terraform — 06 · Designing a Platform's Terraform Architecture](https://learnmasterypath.com/terraform-mastery-path/level-4/06-platform-architecture/)
 
 ## Exercise
 

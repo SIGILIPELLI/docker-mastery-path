@@ -141,7 +141,7 @@ does not notify external processes about rotation at all.
 
 ## 🔀 Related lessons on other tracks
 
-- [Server Ops — 09 · Centralized Logging Basics](https://sigilipelli.github.io/server-ops-mastery-path/level-2/09-centralized-logging-basics/)
+- [Server Ops — 09 · Centralized Logging Basics](https://learnmasterypath.com/server-ops-mastery-path/level-2/09-centralized-logging-basics/)
 
 ## Exercise
 

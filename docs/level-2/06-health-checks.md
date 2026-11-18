@@ -132,8 +132,8 @@ healthy.
 
 ## 🔀 Related lessons on other tracks
 
-- [Kubernetes — 04 · Health Checks (Liveness & Readiness Probes)](https://sigilipelli.github.io/kubernetes-mastery-path/level-2/04-health-checks-probes/)
-- [Server Ops — 01 · High Availability Concepts (redundancy, failover, health checks)](https://sigilipelli.github.io/server-ops-mastery-path/level-3/01-ha-concepts/)
+- [Kubernetes — 04 · Health Checks (Liveness & Readiness Probes)](https://learnmasterypath.com/kubernetes-mastery-path/level-2/04-health-checks-probes/)
+- [Server Ops — 01 · High Availability Concepts (redundancy, failover, health checks)](https://learnmasterypath.com/server-ops-mastery-path/level-3/01-ha-concepts/)
 
 ## Exercise
 
