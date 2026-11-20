@@ -1,3 +1,7 @@
+---
+description: "Level 2 (Intermediate) of the free Docker Mastery Path. Compose multi-container applications, optimize image builds, and debug running containers like a…"
+---
+
 # Level 2 · Intermediate <span class="level-badge">Intermediate</span>
 
 Goal: compose multi-container applications, optimize image builds, and debug running containers like a working engineer.

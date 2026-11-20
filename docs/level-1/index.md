@@ -1,3 +1,7 @@
+---
+description: "Level 1 (Entry) of the free Docker Mastery Path. Understand what Docker is and why it exists, get it installed and running, and be able to write a…"
+---
+
 # Level 1 · Entry <span class="level-badge">Foundations</span>
 
 Goal: understand what Docker is and why it exists, get it installed and

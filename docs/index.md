@@ -1,6 +1,6 @@
 ---
 title: "Learn Docker Free: Beginner to Master Course"
-description: "Free Docker containerization course from beginner to advanced -- hands-on lessons with runnable Dockerfile and CLI examples and real capstone projects. Part of a 40-course free learning library."
+description: "Free Docker containerization course from beginner to advanced -- hands-on lessons with runnable Dockerfile and CLI examples and real capstone projects. Part of a 100+ course free learning library."
 ---
 
 # Docker Mastery Path

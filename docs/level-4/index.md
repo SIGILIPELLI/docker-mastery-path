@@ -1,3 +1,7 @@
+---
+description: "Level 4 (Master) of the free Docker Mastery Path. Design, ship, and operate containerized systems at the scale and rigor of a production engineering…"
+---
+
 # Level 4 · Master <span class="level-badge">Production</span>
 
 Goal: design, ship, and operate containerized systems at the scale and rigor of a production engineering organization.

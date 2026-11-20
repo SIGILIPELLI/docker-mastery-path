@@ -1,3 +1,7 @@
+---
+description: "Level 3 (Advanced) of the free Docker Mastery Path. Harden, network, and scale containerized systems the way they run in real infrastructure."
+---
+
 # Level 3 · Advanced <span class="level-badge">Advanced</span>
 
 Goal: harden, network, and scale containerized systems the way they run in real infrastructure.
