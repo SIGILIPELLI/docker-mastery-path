@@ -83,8 +83,8 @@ not_in_nav: |
 
 nav:
   - Home: index.md
-  - "💼 Interview Questions": interview-questions.md
-  - "📋 Cheat Sheet": cheat-sheet.md
+  - Interview Questions: interview-questions.md
+  - Cheat Sheet: cheat-sheet.md
   - "Level 1 · Entry":
       - Overview: level-1/index.md
       - "01 · What Is Docker & Why Containers?": level-1/01-what-is-docker.md
@@ -134,5 +134,5 @@ nav:
       - "08 · Cost & Performance at Scale": level-4/08-cost-performance-at-scale.md
       - "09 · Disaster Recovery & Backups": level-4/09-disaster-recovery-backups.md
       - "10 · Capstone Project": level-4/10-capstone-project.md
-  - "🎯 Final Quiz": quiz.md
+  - Final Quiz: quiz.md
 
