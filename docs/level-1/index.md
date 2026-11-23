@@ -14,13 +14,12 @@ with a mounted volume and a mapped port, and push/pull from a registry.
 2. [Installing Docker](02-installing-docker.md)
 3. [Images vs Containers](03-images-vs-containers.md)
 4. [Running Your First Container](04-first-container.md)
-5. [The Dockerfile](05-the-dockerfile.md)
-6. [Building Images](06-building-images.md)
-7. [Container Lifecycle](07-container-lifecycle.md)
-8. [Volumes & Bind Mounts](08-volumes-bind-mounts.md)
-9. [Networking Basics](09-networking-basics.md)
-10. [Docker Hub & Registries](10-docker-hub-registries.md)
-11. [Project — Containerize an App](11-project-containerize-app.md)
+5. [The Dockerfile & Building Images](05-dockerfile-building-images.md)
+6. [Container Lifecycle](06-container-lifecycle.md)
+7. [Volumes & Bind Mounts](07-volumes-bind-mounts.md)
+8. [Networking Basics](08-networking-basics.md)
+9. [Docker Hub & Registries](09-docker-hub-registries.md)
+10. [Project — Containerize a Small App](10-project-containerize-app.md)
 
 By the end of this level you'll be able to write a Dockerfile from scratch,
 build and tag an image, run it as a container with persistent storage and a

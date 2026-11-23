@@ -171,7 +171,7 @@ exits 0 (success) and one that exits 1 (a crashed migration) both leave
 the container in a `Exited` state indistinguishable by mere presence or
 absence, so Compose specifically checks the recorded exit code before
 satisfying that dependency condition. This is the same underlying signal
-covered in the lifecycle module (Level 1, module 07) and the OOM
+covered in the lifecycle module (Level 1, module 06) and the OOM
 discussion (module 03 here) — Compose's dependency graph is, at bottom,
 just automated polling of the same `State.ExitCode`/`State.Health`
 fields you can inspect manually.

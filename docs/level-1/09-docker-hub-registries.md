@@ -2,7 +2,7 @@
 description: "Docker Hub & Registries — Images need somewhere to live so they can be shared between machines — your laptop, a CI runner, a production server. That's…"
 ---
 
-# 10 · Docker Hub & Registries
+# 09 · Docker Hub & Registries
 
 Images need somewhere to live so they can be shared between machines —
 your laptop, a CI runner, a production server. That's what a **registry**
@@ -218,7 +218,7 @@ around that structure.
 
 Create a free Docker Hub account if you don't have one, `docker login`
 from the CLI, then tag and push any small image you've built in this
-level (e.g. the Dockerfile from module 05/06) under
+level (e.g. the Dockerfile from module 05) under
 `yourusername/<some-name>:1.0`. Remove the local image with `docker
 rmi`, then `docker pull` it back down and run it, confirming the round
 trip through the registry worked end to end.

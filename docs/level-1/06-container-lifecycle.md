@@ -2,7 +2,7 @@
 description: "Container Lifecycle — docker run is shorthand for docker create followed immediately by docker start (with -a to attach, unless -d is given) — knowing…"
 ---
 
-# 07 · Container Lifecycle
+# 06 · Container Lifecycle
 
 A container moves through a small set of states, and Docker gives you a
 command for each transition. Understanding this state machine explains

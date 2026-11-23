@@ -5,7 +5,7 @@ description: "A free Docker cheat sheet: 20 quick-reference tables from every le
 
 # Docker Cheat Sheet
 
-Quick-reference tables from **20 lessons** of the free Docker Mastery Path, in course order from beginner to advanced. Each section links to the full lesson with explanations and runnable examples.
+Quick-reference tables from **19 lessons** of the free Docker Mastery Path, in course order from beginner to advanced. Each section links to the full lesson with explanations and runnable examples.
 
 ## Level 1 · Entry
 
@@ -57,22 +57,20 @@ Quick-reference tables from **20 lessons** of the free Docker Mastery Path, in c
 | `-p host:container` | Publish a port to the host |
 | `-e KEY=VALUE` | Set an environment variable |
 | `--rm` | Auto-remove the container when it stops |
-| `-v host:container` | Mount a volume or bind mount (module 08) |
+| `-v host:container` | Mount a volume or bind mount (module 07) |
 
-### [05 · The Dockerfile](level-1/05-the-dockerfile.md)
+### [05 · The Dockerfile &amp; Building Images](level-1/05-dockerfile-building-images.md)
 
-*Other instructions worth knowing now*
+*Part 1 · The Dockerfile: Other instructions worth knowing now*
 
 | Instruction | Purpose |
 |---|---|
 | `ARG` | A build-time-only variable, available during `docker build` (via `--build-arg`), not present in the final running container unless also assigned to an `ENV` |
 | `USER` | Switch to a non-root user for subsequent instructions and at runtime (covered in depth in Level 3's security module) |
-| `VOLUME` | Declare a mount point intended for persistent/external data (module 08) |
+| `VOLUME` | Declare a mount point intended for persistent/external data (module 07) |
 | `LABEL` | Attach arbitrary key-value metadata to the image |
 
-### [06 · Building Images](level-1/06-building-images.md)
-
-*Common build errors and what they mean*
+*Part 2 · Building Images: Common build errors and what they mean*
 
 | Error | Cause |
 |---|---|
@@ -81,7 +79,7 @@ Quick-reference tables from **20 lessons** of the free Docker Mastery Path, in c
 | `unable to prepare context: path ... does not exist` | You ran `docker build` from the wrong directory, or gave the wrong context path |
 | Build is unexpectedly huge/slow | Missing a `.dockerignore`, so large directories like `.git` or `node_modules` are being sent and possibly copied |
 
-### [07 · Container Lifecycle](level-1/07-container-lifecycle.md)
+### [06 · Container Lifecycle](level-1/06-container-lifecycle.md)
 
 *The states*
 
@@ -93,7 +91,7 @@ Quick-reference tables from **20 lessons** of the free Docker Mastery Path, in c
 | **Stopped / Exited** | The main process has exited (normally or via signal); filesystem still exists |
 | **Removed** | Container and its writable layer are gone entirely |
 
-### [08 · Volumes &amp; Bind Mounts](level-1/08-volumes-bind-mounts.md)
+### [07 · Volumes &amp; Bind Mounts](level-1/07-volumes-bind-mounts.md)
 
 *Volumes vs bind mounts*
 
@@ -105,7 +103,7 @@ Quick-reference tables from **20 lessons** of the free Docker Mastery Path, in c
 | Typical use | Databases, persistent application state | Local development (live-editing source code), injecting host config files |
 | Referenced as | `-v <volume-name>:<container-path>` | `-v <host-absolute-path>:<container-path>` |
 
-### [09 · Networking Basics](level-1/09-networking-basics.md)
+### [08 · Networking Basics](level-1/08-networking-basics.md)
 
 *Other network drivers, briefly*
 
@@ -116,7 +114,7 @@ Quick-reference tables from **20 lessons** of the free Docker Mastery Path, in c
 | `none` | The container gets no network interface at all beyond loopback |
 | `overlay` | Spans multiple Docker hosts (used in Swarm/multi-host setups) — covered in Level 3 |
 
-### [10 · Docker Hub &amp; Registries](level-1/10-docker-hub-registries.md)
+### [09 · Docker Hub &amp; Registries](level-1/09-docker-hub-registries.md)
 
 *Official images vs user/organization images*
 
@@ -127,7 +125,7 @@ Quick-reference tables from **20 lessons** of the free Docker Mastery Path, in c
 | `myusername/myapp` | An image you publish under your own Docker Hub username |
 | `ghcr.io/someorg/someimage` | An image hosted on GitHub Container Registry instead of Docker Hub |
 
-### [11 · Project — Containerize a Small App](level-1/11-project-containerize-app.md)
+### [10 · Project — Containerize a Small App](level-1/10-project-containerize-app.md)
 
 *What this project proved*
 

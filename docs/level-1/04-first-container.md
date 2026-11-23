@@ -128,7 +128,7 @@ explicitly `docker rm` them.
 | `-p host:container` | Publish a port to the host |
 | `-e KEY=VALUE` | Set an environment variable |
 | `--rm` | Auto-remove the container when it stops |
-| `-v host:container` | Mount a volume or bind mount (module 08) |
+| `-v host:container` | Mount a volume or bind mount (module 07) |
 
 ## Worked example: a tiny web server, start to finish
 
