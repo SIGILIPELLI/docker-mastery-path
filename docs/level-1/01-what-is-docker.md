@@ -114,7 +114,7 @@ docker run hello-app
 
 No "which Python version do you have," no "did you forget to install
 `requests`" — the image *is* the environment. We'll unpack `FROM`, `COPY`,
-`RUN`, and `CMD` in detail in [module 05](05-the-dockerfile.md); for now,
+`RUN`, and `CMD` in detail in [module 05](05-dockerfile-building-images.md); for now,
 notice that the whole environment is described in five lines and produces
 one portable image.
 

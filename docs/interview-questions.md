@@ -116,7 +116,7 @@ When it exits, the container stops.
 
 The default tag is latest.
 
-### [05 · The Dockerfile](level-1/05-the-dockerfile.md)
+### [05 · The Dockerfile &amp; Building Images](level-1/05-dockerfile-building-images.md)
 
 **Q17.** Why prefer WORKDIR /app over `RUN cd /app && ...`?
 
@@ -142,8 +142,6 @@ COPY copies from the build context.
 
 Use the exec (JSON array) form for CMD.
 
-### [06 · Building Images](level-1/06-building-images.md)
-
 **Q21.** What is the build context in `docker build -t hello-app:1.0 .`?
 
 **Answer:** The directory (.) whose contents are sent to the daemon; COPY can't reference files outside it
@@ -168,7 +166,7 @@ The default tag is latest.
 
 It keeps the context small and secrets out.
 
-### [07 · Container Lifecycle](level-1/07-container-lifecycle.md)
+### [06 · Container Lifecycle](level-1/06-container-lifecycle.md)
 
 **Q25.** What is `docker run` shorthand for?
 
@@ -194,7 +192,7 @@ unpause resumes it.
 
 Without -f the container must be stopped first.
 
-### [08 · Volumes &amp; Bind Mounts](level-1/08-volumes-bind-mounts.md)
+### [07 · Volumes &amp; Bind Mounts](level-1/07-volumes-bind-mounts.md)
 
 **Q29.** What happens to data in a container's writable layer when it's removed?
 
@@ -220,7 +218,7 @@ docker volume create just makes intent clearer.
 
 It's handy for development; volumes suit durable app data.
 
-### [09 · Networking Basics](level-1/09-networking-basics.md)
+### [08 · Networking Basics](level-1/08-networking-basics.md)
 
 **Q33.** What does the default bridge network provide?
 
@@ -246,7 +244,7 @@ From frontend, the hostname backend resolves automatically.
 
 Use names on a user-defined network.
 
-### [10 · Docker Hub &amp; Registries](level-1/10-docker-hub-registries.md)
+### [09 · Docker Hub &amp; Registries](level-1/09-docker-hub-registries.md)
 
 **Q37.** What does `docker pull nginx:1.27` resolve to?
 
@@ -272,7 +270,7 @@ For example docker tag hello-app:1.0 yourusername/hello-app:1.0.
 
 Subsequent push and pull use it.
 
-### [11 · Project — Containerize a Small App](level-1/11-project-containerize-app.md)
+### [10 · Project — Containerize a Small App](level-1/10-project-containerize-app.md)
 
 **Q41.** Why does the Dockerfile copy requirements.txt and install before copying app.py?
 

@@ -2,7 +2,7 @@
 description: "Project — Containerize a Small App — This capstone combines every Level 1 module into one project: writing a Dockerfile, building an image, running it…"
 ---
 
-# 11 · Project — Containerize a Small App
+# 10 · Project — Containerize a Small App
 
 This capstone combines every Level 1 module into one project: writing a
 Dockerfile, building an image, running it with a mounted volume *and* a
@@ -66,7 +66,7 @@ EXPOSE 5000
 CMD ["python", "app.py"]
 ```
 
-Notice the ordering from module 05/06: `requirements.txt` is copied and
+Notice the ordering from module 05: `requirements.txt` is copied and
 installed *before* `app.py`, so editing the app later won't invalidate the
 (slower) dependency-install layer.
 
@@ -92,7 +92,7 @@ docker volume create visit-counter-data
 ```
 
 This volume will hold `count.txt` at `/data` inside the container,
-independent of the container's own lifecycle (module 08).
+independent of the container's own lifecycle (module 07).
 
 ## Run it: mounted volume + published port
 
@@ -108,11 +108,11 @@ docker run -d \
 This single command exercises the three requirements together:
 
 - `-p 8080:5000` — publishes the container's Flask port (5000) to host
-  port 8080 (module 04/09).
+  port 8080 (module 04/08).
 - `-v visit-counter-data:/data` — mounts the named volume so `count.txt`
-  outlives the container (module 08).
+  outlives the container (module 07).
 - `--restart unless-stopped` — a lifecycle policy so it comes back up
-  automatically after a host reboot or crash (module 07).
+  automatically after a host reboot or crash (module 06).
 
 ## Verify it end to end
 
@@ -147,7 +147,7 @@ The count continued from `4`, not reset to `1`, because the *volume* —
 not the container — held the state, and the volume was reattached to the
 brand-new container.
 
-## Push it to a registry (optional, ties in module 10)
+## Push it to a registry (optional, ties in module 09)
 
 ```bash
 docker tag visit-counter:1.0 yourusername/visit-counter:1.0
@@ -210,7 +210,7 @@ work behind a one-line command.
   which is the literal reason `docker rm -f visit-counter` followed by a
   fresh `docker run -v visit-counter-data:/data ...` reattaches the exact
   same inode-backed files and the counter resumes at 4 instead of resetting.
-- **Port publishing.** As covered in module 09, `-p 8080:5000` installs an
+- **Port publishing.** As covered in module 08, `-p 8080:5000` installs an
   iptables DNAT rule mapping the host's port 8080 into this specific
   container's network namespace at port 5000 — `curl http://localhost:8080`
   never talks to Flask directly, it talks to the kernel's netfilter layer,
@@ -229,5 +229,5 @@ counter to zero on the next visit), rebuild the image with a new tag
 (`visit-counter:1.1`), and run a fresh container from it using the *same*
 `visit-counter-data` volume as before. Confirm that visiting `/` after
 `/reset` starts counting from `1` again — this checks that you understand
-both how to iterate on an image (module 06) and that the volume's content,
+both how to iterate on an image (module 05) and that the volume's content,
 not the image version, determines the running state.

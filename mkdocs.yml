@@ -91,13 +91,12 @@ nav:
       - "02 · Installing Docker": level-1/02-installing-docker.md
       - "03 · Images vs Containers": level-1/03-images-vs-containers.md
       - "04 · Running Your First Container": level-1/04-first-container.md
-      - "05 · The Dockerfile": level-1/05-the-dockerfile.md
-      - "06 · Building Images": level-1/06-building-images.md
-      - "07 · Container Lifecycle": level-1/07-container-lifecycle.md
-      - "08 · Volumes & Bind Mounts": level-1/08-volumes-bind-mounts.md
-      - "09 · Networking Basics": level-1/09-networking-basics.md
-      - "10 · Docker Hub & Registries": level-1/10-docker-hub-registries.md
-      - "11 · Project — Containerize an App": level-1/11-project-containerize-app.md
+      - "05 · The Dockerfile & Building Images": level-1/05-dockerfile-building-images.md
+      - "06 · Container Lifecycle": level-1/06-container-lifecycle.md
+      - "07 · Volumes & Bind Mounts": level-1/07-volumes-bind-mounts.md
+      - "08 · Networking Basics": level-1/08-networking-basics.md
+      - "09 · Docker Hub & Registries": level-1/09-docker-hub-registries.md
+      - "10 · Project — Containerize a Small App": level-1/10-project-containerize-app.md
   - "Level 2 · Intermediate":
       - Overview: level-2/index.md
       - "01 · Multi-Stage Builds": level-2/01-multi-stage-builds.md

@@ -2,7 +2,7 @@
 description: "Volumes & Bind Mounts — By default, anything a container writes lives in its writable layer, and is destroyed along with the container when it's removed…"
 ---
 
-# 08 · Volumes & Bind Mounts
+# 07 · Volumes & Bind Mounts
 
 By default, anything a container writes lives in its writable layer, and
 is destroyed along with the container when it's removed (module 03). For

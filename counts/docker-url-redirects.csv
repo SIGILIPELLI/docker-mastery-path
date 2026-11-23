@@ -1,0 +1,8 @@
+old_url,new_url
+/docker-mastery-path/level-1/05-the-dockerfile/,/docker-mastery-path/level-1/05-dockerfile-building-images/
+/docker-mastery-path/level-1/06-building-images/,/docker-mastery-path/level-1/05-dockerfile-building-images/#part-2-building-images
+/docker-mastery-path/level-1/07-container-lifecycle/,/docker-mastery-path/level-1/06-container-lifecycle/
+/docker-mastery-path/level-1/08-volumes-bind-mounts/,/docker-mastery-path/level-1/07-volumes-bind-mounts/
+/docker-mastery-path/level-1/09-networking-basics/,/docker-mastery-path/level-1/08-networking-basics/
+/docker-mastery-path/level-1/10-docker-hub-registries/,/docker-mastery-path/level-1/09-docker-hub-registries/
+/docker-mastery-path/level-1/11-project-containerize-app/,/docker-mastery-path/level-1/10-project-containerize-app/
