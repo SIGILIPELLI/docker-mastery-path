@@ -14,7 +14,7 @@ a hands-on project at the end of each level.
 
 | Level | Focus | Modules |
 |-------|-------|---------|
-| [Level 1 · Entry](level-1/index.md) | Containers, images, Dockerfiles | 10 topics + 1 project |
+| [Level 1 · Entry](level-1/index.md) | Containers, images, Dockerfiles | 9 topics + 1 project |
 | [Level 2 · Intermediate](level-2/index.md) | Compose, caching, debugging | 9 topics + 1 project |
 | [Level 3 · Advanced](level-3/index.md) | Networking, security, scale | 9 topics + 1 project |
 | [Level 4 · Master](level-4/index.md) | CI/CD, orchestration, architecture | 9 topics + 1 capstone |
