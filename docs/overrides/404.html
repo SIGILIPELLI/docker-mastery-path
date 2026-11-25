@@ -1,4 +1,9 @@
 {% extends "main.html" %}
+{#- mp-redirects: lessons renamed by the count standardisation (counts/docker-url-redirects.csv). GitHub Pages cannot send 301s, so this course 404 page forwards old URLs. -#}
+{% block extrahead %}
+  {{ super() }}
+  <script>(function(){var m={"/docker-mastery-path/level-1/05-the-dockerfile/":"/docker-mastery-path/level-1/05-dockerfile-building-images/","/docker-mastery-path/level-1/06-building-images/":"/docker-mastery-path/level-1/05-dockerfile-building-images/#part-2-building-images","/docker-mastery-path/level-1/07-container-lifecycle/":"/docker-mastery-path/level-1/06-container-lifecycle/","/docker-mastery-path/level-1/08-volumes-bind-mounts/":"/docker-mastery-path/level-1/07-volumes-bind-mounts/","/docker-mastery-path/level-1/09-networking-basics/":"/docker-mastery-path/level-1/08-networking-basics/","/docker-mastery-path/level-1/10-docker-hub-registries/":"/docker-mastery-path/level-1/09-docker-hub-registries/","/docker-mastery-path/level-1/11-project-containerize-app/":"/docker-mastery-path/level-1/10-project-containerize-app/"};var p=location.pathname.replace(/\/?$/,"/");var t=m[p];if(t){var h=location.hash;location.replace(t.indexOf("#")>=0||!h?t:t+h);}})();</script>
+{% endblock %}
 {% block content %}
 <div class="mp-404">
   <div class="mp-404-code">404</div>
