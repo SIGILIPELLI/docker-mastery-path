@@ -1,0 +1,4241 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="183 Docker interview questions with answers and explanations, from beginner to advanced, organised by level. Free, from the Docker Mastery Path.">
+      
+      
+      
+        <link rel="canonical" href="https://learnmasterypath.com/docker-mastery-path/interview-questions/">
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../cheat-sheet/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/favicon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+  
+  <title>Docker Interview Questions and Answers (183 Questions)</title>
+
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../stylesheets/progress-tracker.css">
+    
+      <link rel="stylesheet" href="../stylesheets/final-quiz.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-05VBGCXN12"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-05VBGCXN12');
+  </script>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mastery Path">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="Docker Interview Questions and Answers (183 Questions)">
+  <meta property="og:description" content="183 Docker interview questions with answers and explanations, from beginner to advanced, organised by level. Free, from the Docker Mastery Path.">
+  <meta property="og:url" content="https://learnmasterypath.com/docker-mastery-path/interview-questions/">
+  <meta property="og:image" content="https://learnmasterypath.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Mastery Path: free structured courses, beginner to master">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Docker Interview Questions and Answers (183 Questions)">
+  <meta name="twitter:description" content="183 Docker interview questions with answers and explanations, from beginner to advanced, organised by level. Free, from the Docker Mastery Path.">
+  <meta name="twitter:image" content="https://learnmasterypath.com/og-image.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9440969811959397"
+     crossorigin="anonymous"></script><script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Mastery Path", "item": "https://learnmasterypath.com/"},
+      {"@type": "ListItem", "position": 2, "name": "Docker Mastery Path", "item": "https://learnmasterypath.com/docker-mastery-path/"},
+      {"@type": "ListItem", "position": 3, "name": "Interview Questions", "item": "https://learnmasterypath.com/docker-mastery-path/interview-questions/"}
+    ]
+  }
+  </script>
+  <style>
+    .md-banner a:hover { text-decoration: underline !important; }
+    .mp-related { margin-top: 2.4rem; padding-top: 1rem; border-top: 1px solid var(--md-default-fg-color--lightest); font-size: .78rem; }
+    .mp-related h2 { font-size: .9rem; margin: 0 0 .5rem; }
+    .mp-related ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .4rem .9rem; }
+    .mp-related li { margin: 0 !important; }
+  </style>
+  <script type="application/json" id="mp-course-meta">{"home": false, "id": "docker-mastery-path", "name": "Docker Mastery Path", "repo": "https://github.com/SIGILIPELLI/docker-mastery-path", "src": "interview-questions.md", "url": "https://learnmasterypath.com/docker-mastery-path/"}</script>
+  <link rel="stylesheet" href="https://learnmasterypath.com/assets/learn.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://learnmasterypath.com/assets/course.css?v=1">
+  <script src="https://learnmasterypath.com/assets/learn.js" defer></script>
+  <script src="https://learnmasterypath.com/assets/signup.js" defer></script>
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#docker-interview-questions-and-answers" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+  <a href="https://learnmasterypath.com/" style="color: inherit; text-decoration: none;">
+    &larr; Mastery Path &middot; all 100+ free courses
+  </a>
+  <span style="opacity: .6; margin: 0 .6em;">|</span>
+  <a href="https://learnmasterypath.com/search/" style="color: inherit; text-decoration: none;">Search all courses</a>
+  <span style="opacity: .6; margin: 0 .6em;">|</span>
+  <a href="https://learnmasterypath.com/resume/" style="color: inherit; font-weight: 700; text-decoration: none;">
+    Got the skills? Free resume ATS check &rarr;
+  </a>
+
+          </div>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Docker Mastery Path" class="md-header__button md-logo" aria-label="Docker Mastery Path" data-md-component="logo">
+      <svg class="mp-mark" viewBox="0 0 160 160" role="img" aria-label="Mastery Path logo">
+  <circle cx="80" cy="80" r="74" fill="#FAF7EF" stroke="#2FA98D" stroke-width="5"/>
+  <rect class="mp-bar mp-bar-1" x="36" y="90" width="17" height="24" rx="5" fill="#2FA98D"/>
+  <rect class="mp-bar mp-bar-2" x="59" y="74" width="17" height="40" rx="5" fill="#7FC9B7"/>
+  <rect class="mp-bar mp-bar-3" x="82" y="56" width="17" height="58" rx="5" fill="#E0B457"/>
+  <rect class="mp-bar mp-bar-4" x="105" y="38" width="17" height="76" rx="5" fill="#C97B4A"/>
+  <circle class="mp-dot" cx="44.5" cy="82" r="7" fill="#22261f"/>
+</svg>
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Docker Mastery Path
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Docker Interview Questions and Answers (183 Questions)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SIGILIPELLI/docker-mastery-path" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    docker-mastery-path
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Interview Questions
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../cheat-sheet/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Cheat Sheet
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../level-1/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Level 1 · Entry
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../level-2/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Level 2 · Intermediate
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../level-3/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Level 3 · Advanced
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../level-4/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Level 4 · Master
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../quiz/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Final Quiz
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Docker Mastery Path" class="md-nav__button md-logo" aria-label="Docker Mastery Path" data-md-component="logo">
+      <svg class="mp-mark" viewBox="0 0 160 160" role="img" aria-label="Mastery Path logo">
+  <circle cx="80" cy="80" r="74" fill="#FAF7EF" stroke="#2FA98D" stroke-width="5"/>
+  <rect class="mp-bar mp-bar-1" x="36" y="90" width="17" height="24" rx="5" fill="#2FA98D"/>
+  <rect class="mp-bar mp-bar-2" x="59" y="74" width="17" height="40" rx="5" fill="#7FC9B7"/>
+  <rect class="mp-bar mp-bar-3" x="82" y="56" width="17" height="58" rx="5" fill="#E0B457"/>
+  <rect class="mp-bar mp-bar-4" x="105" y="38" width="17" height="76" rx="5" fill="#C97B4A"/>
+  <circle class="mp-dot" cx="44.5" cy="82" r="7" fill="#22261f"/>
+</svg>
+    </a>
+    Docker Mastery Path
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SIGILIPELLI/docker-mastery-path" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    docker-mastery-path
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Questions
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#level-1-entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 1 · Entry
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Level 1 · Entry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#01-what-is-docker-why-containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        01 · What Is Docker &amp; Why Containers?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02-installing-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        02 · Installing Docker
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#03-images-vs-containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        03 · Images vs Containers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#04-running-your-first-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        04 · Running Your First Container
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#05-the-dockerfile-building-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        05 · The Dockerfile &amp; Building Images
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#06-container-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        06 · Container Lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#07-volumes-bind-mounts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07 · Volumes &amp; Bind Mounts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#08-networking-basics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        08 · Networking Basics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#09-docker-hub-registries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        09 · Docker Hub &amp; Registries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-project-containerize-a-small-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10 · Project — Containerize a Small App
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level-2-intermediate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 2 · Intermediate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Level 2 · Intermediate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#01-multi-stage-builds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        01 · Multi-Stage Builds
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02-docker-compose-basics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        02 · Docker Compose Basics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#03-environment-variables-env-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        03 · Environment Variables &amp; .env Files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#04-image-layering-build-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        04 · Image Layering &amp; Build Cache
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#05-container-logs-debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        05 · Container Logs &amp; Debugging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#06-health-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        06 · Health Checks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#07-compose-networks-volumes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07 · Compose Networks &amp; Volumes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#08-managing-images-tags" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        08 · Managing Images &amp; Tags
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#09-compose-for-multi-service-apps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        09 · Compose for Multi-Service Apps
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-project-multi-container-compose-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10 · Project — Multi-Container Compose App
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level-3-advanced" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 3 · Advanced
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Level 3 · Advanced">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#01-docker-networking-deep-dive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        01 · Docker Networking Deep Dive
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02-security-basics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        02 · Security Basics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#03-resource-limits-cpumemory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        03 · Resource Limits (CPU/Memory)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#04-multi-container-app-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        04 · Multi-Container App Patterns
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#05-private-registries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        05 · Private Registries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#06-storage-drivers-volume-plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        06 · Storage Drivers &amp; Volume Plugins
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#07-logging-drivers-centralized-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07 · Logging Drivers &amp; Centralized Logging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#08-docker-swarm-basics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        08 · Docker Swarm Basics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#09-secrets-config-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        09 · Secrets &amp; Config Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-project-secure-resource-limited-production-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10 · Project — Secure, Resource-Limited Production Stack
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level-4-master" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 4 · Master
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Level 4 · Master">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#01-docker-in-cicd-pipelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        01 · Docker in CI/CD Pipelines
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02-orchestration-handoff-kubernetesswarm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        02 · Orchestration Handoff (Kubernetes/Swarm)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#03-production-image-hardening" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        03 · Production Image Hardening
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#04-build-optimization-at-scale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        04 · Build Optimization at Scale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#05-designing-a-containerized-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        05 · Designing a Containerized Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#06-observability-for-containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        06 · Observability for Containers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#07-zero-downtime-deployments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07 · Zero-Downtime Deployments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#08-cost-performance-at-scale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        08 · Cost &amp; Performance at Scale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#09-disaster-recovery-backups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        09 · Disaster Recovery &amp; Backups
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-capstone-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10 · Capstone Project
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mixed-questions-across-all-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mixed questions across all levels
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practical-coding-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practical coding questions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Practical coding questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#isolate-the-tiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Isolate the tiers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reorder-for-the-build-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reorder for the build cache
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cheat-sheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheat Sheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../level-1/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Level 1 · Entry
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Level 1 · Entry
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-1/01-what-is-docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · What Is Docker & Why Containers?
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-1/02-installing-docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Installing Docker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-1/03-images-vs-containers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Images vs Containers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-1/04-first-container/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Running Your First Container
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-1/05-dockerfile-building-images/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · The Dockerfile & Building Images
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-1/06-container-lifecycle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Container Lifecycle
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-1/07-volumes-bind-mounts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Volumes & Bind Mounts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-1/08-networking-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Networking Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-1/09-docker-hub-registries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Docker Hub & Registries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-1/10-project-containerize-app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Project — Containerize a Small App
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../level-2/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Level 2 · Intermediate
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Level 2 · Intermediate
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-2/01-multi-stage-builds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Multi-Stage Builds
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-2/02-docker-compose-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Docker Compose Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-2/03-environment-variables-env-files/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Environment Variables & .env Files
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-2/04-image-layering-build-cache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Image Layering & Build Cache
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-2/05-logs-and-debugging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Container Logs & Debugging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-2/06-health-checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Health Checks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-2/07-compose-networks-volumes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Compose Networks & Volumes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-2/08-managing-images-tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Managing Images & Tags
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-2/09-compose-multi-service-apps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Compose for Multi-Service Apps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-2/10-project-compose-app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Project — Multi-Container Compose App
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../level-3/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Level 3 · Advanced
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Level 3 · Advanced
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-3/01-networking-deep-dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Docker Networking Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-3/02-security-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Security Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-3/03-resource-limits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Resource Limits (CPU/Memory)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-3/04-multi-container-patterns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Multi-Container App Patterns
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-3/05-private-registries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Private Registries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-3/06-storage-drivers-volume-plugins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Storage Drivers & Volume Plugins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-3/07-logging-drivers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Logging Drivers & Centralized Logging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-3/08-docker-swarm-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Docker Swarm Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-3/09-secrets-config-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Secrets & Config Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-3/10-project-secure-stack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Project — Secure Production Stack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../level-4/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Level 4 · Master
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Level 4 · Master
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-4/01-docker-in-cicd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Docker in CI/CD Pipelines
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-4/02-orchestration-handoff/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Orchestration Handoff (Kubernetes/Swarm)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-4/03-production-image-hardening/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Production Image Hardening
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-4/04-build-optimization-at-scale/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · Build Optimization at Scale
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-4/05-containerized-architecture-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · Designing a Containerized Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-4/06-observability-for-containers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Observability for Containers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-4/07-zero-downtime-deployments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Zero-Downtime Deployments
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-4/08-cost-performance-at-scale/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · Cost & Performance at Scale
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-4/09-disaster-recovery-backups/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Disaster Recovery & Backups
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-4/10-capstone-project/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Capstone Project
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Final Quiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#level-1-entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 1 · Entry
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Level 1 · Entry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#01-what-is-docker-why-containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        01 · What Is Docker &amp; Why Containers?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02-installing-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        02 · Installing Docker
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#03-images-vs-containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        03 · Images vs Containers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#04-running-your-first-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        04 · Running Your First Container
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#05-the-dockerfile-building-images" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        05 · The Dockerfile &amp; Building Images
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#06-container-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        06 · Container Lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#07-volumes-bind-mounts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07 · Volumes &amp; Bind Mounts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#08-networking-basics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        08 · Networking Basics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#09-docker-hub-registries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        09 · Docker Hub &amp; Registries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-project-containerize-a-small-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10 · Project — Containerize a Small App
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level-2-intermediate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 2 · Intermediate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Level 2 · Intermediate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#01-multi-stage-builds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        01 · Multi-Stage Builds
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02-docker-compose-basics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        02 · Docker Compose Basics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#03-environment-variables-env-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        03 · Environment Variables &amp; .env Files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#04-image-layering-build-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        04 · Image Layering &amp; Build Cache
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#05-container-logs-debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        05 · Container Logs &amp; Debugging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#06-health-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        06 · Health Checks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#07-compose-networks-volumes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07 · Compose Networks &amp; Volumes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#08-managing-images-tags" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        08 · Managing Images &amp; Tags
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#09-compose-for-multi-service-apps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        09 · Compose for Multi-Service Apps
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-project-multi-container-compose-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10 · Project — Multi-Container Compose App
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level-3-advanced" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 3 · Advanced
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Level 3 · Advanced">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#01-docker-networking-deep-dive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        01 · Docker Networking Deep Dive
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02-security-basics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        02 · Security Basics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#03-resource-limits-cpumemory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        03 · Resource Limits (CPU/Memory)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#04-multi-container-app-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        04 · Multi-Container App Patterns
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#05-private-registries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        05 · Private Registries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#06-storage-drivers-volume-plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        06 · Storage Drivers &amp; Volume Plugins
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#07-logging-drivers-centralized-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07 · Logging Drivers &amp; Centralized Logging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#08-docker-swarm-basics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        08 · Docker Swarm Basics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#09-secrets-config-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        09 · Secrets &amp; Config Management
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-project-secure-resource-limited-production-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10 · Project — Secure, Resource-Limited Production Stack
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level-4-master" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 4 · Master
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Level 4 · Master">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#01-docker-in-cicd-pipelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        01 · Docker in CI/CD Pipelines
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02-orchestration-handoff-kubernetesswarm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        02 · Orchestration Handoff (Kubernetes/Swarm)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#03-production-image-hardening" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        03 · Production Image Hardening
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#04-build-optimization-at-scale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        04 · Build Optimization at Scale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#05-designing-a-containerized-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        05 · Designing a Containerized Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#06-observability-for-containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        06 · Observability for Containers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#07-zero-downtime-deployments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07 · Zero-Downtime Deployments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#08-cost-performance-at-scale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        08 · Cost &amp; Performance at Scale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#09-disaster-recovery-backups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        09 · Disaster Recovery &amp; Backups
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-capstone-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10 · Capstone Project
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mixed-questions-across-all-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mixed questions across all levels
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practical-coding-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Practical coding questions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Practical coding questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#isolate-the-tiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Isolate the tiers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reorder-for-the-build-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reorder for the build cache
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+  
+                  
+
+
+  
+  
+
+
+<h1 id="docker-interview-questions-and-answers">Docker Interview Questions and Answers<a class="headerlink" href="#docker-interview-questions-and-answers" title="Permanent link">&para;</a></h1>
+<p><strong>183 questions</strong> with the correct answer and a short explanation, organised from beginner (Level 1) to advanced (Level 4). Every question comes from a lesson in the free Docker Mastery Path, so you can open the lesson to go deeper.</p>
+<div class="admonition tip">
+<p class="admonition-title">Practise, don't just read</p>
+<p>Each lesson also ends with an interactive quiz, and the <a href="../quiz/">final quiz</a> tests all four levels. Try to answer each question below before reading the answer.</p>
+</div>
+<h2 id="level-1-entry">Level 1 · Entry<a class="headerlink" href="#level-1-entry" title="Permanent link">&para;</a></h2>
+<h3 id="01-what-is-docker-why-containers"><a href="../level-1/01-what-is-docker/">01 · What Is Docker &amp; Why Containers?</a><a class="headerlink" href="#01-what-is-docker-why-containers" title="Permanent link">&para;</a></h3>
+<p><strong>Q1.</strong> What is a container?</p>
+<p><strong>Answer:</strong> An isolated process (or group of processes) on the host's kernel, created from an image</p>
+<p>The promise: 'it works on my machine' becomes 'it works everywhere the container runs'.</p>
+<p><strong>Q2.</strong> Which three Linux kernel features make containers possible?</p>
+<p><strong>Answer:</strong> Namespaces, cgroups and a layered (union) filesystem</p>
+<p>Namespaces isolate the view; cgroups limit resources; layers share image data.</p>
+<p><strong>Q3.</strong> Why does a container start so much faster than a VM?</p>
+<p><strong>Answer:</strong> There's no second kernel to boot and no hardware to emulate</p>
+<p>It starts about as fast as launching a normal process.</p>
+<p><strong>Q4.</strong> What is the trade-off in isolation strength?</p>
+<p><strong>Answer:</strong> Containers share the host kernel, so isolation is weaker than a VM's separate kernel</p>
+<p>VMs offer very strong isolation at higher overhead.</p>
+<h3 id="02-installing-docker"><a href="../level-1/02-installing-docker/">02 · Installing Docker</a><a class="headerlink" href="#02-installing-docker" title="Permanent link">&para;</a></h3>
+<p><strong>Q5.</strong> What do you install on macOS and Windows?</p>
+<p><strong>Answer:</strong> Docker Desktop, which bundles the daemon, CLI, a small Linux VM and a GUI (WSL2 backend on Windows)</p>
+<p>Containers there run inside a Linux VM.</p>
+<p><strong>Q6.</strong> Why does Linux need no VM?</p>
+<p><strong>Answer:</strong> The host kernel is Linux, so Docker Engine runs natively</p>
+<p>You install docker-ce, docker-ce-cli, containerd.io and the compose plugin.</p>
+<p><strong>Q7.</strong> Who can use the Docker socket by default, and how do you run docker without sudo?</p>
+<p><strong>Answer:</strong> root and members of the docker group; sudo usermod -aG docker $USER, then log in again</p>
+<p>The lesson warns that docker group membership is effectively root-equivalent.</p>
+<p><strong>Q8.</strong> Why does the lesson say to cross-check docs.docker.com?</p>
+<p><strong>Answer:</strong> Installer screens and steps change over time</p>
+<p>The lesson describes documented behaviour, not screenshots.</p>
+<h3 id="03-images-vs-containers"><a href="../level-1/03-images-vs-containers/">03 · Images vs Containers</a><a class="headerlink" href="#03-images-vs-containers" title="Permanent link">&para;</a></h3>
+<p><strong>Q9.</strong> What is the relationship between an image and a container?</p>
+<p><strong>Answer:</strong> An image is a read-only template (like a class); a container is a running or stopped instance of it (like an object)</p>
+<p>Many containers can be created from one image.</p>
+<p><strong>Q10.</strong> Which Dockerfile instructions produce new filesystem layers?</p>
+<p><strong>Answer:</strong> RUN, COPY and ADD, which change the filesystem</p>
+<p>Each layer is immutable and identified by a content hash.</p>
+<p><strong>Q11.</strong> Where do a container's runtime file changes go?</p>
+<p><strong>Answer:</strong> A thin writable layer unique to that container; the image layers are never touched</p>
+<p>So containers from the same image don't interfere with each other.</p>
+<p><strong>Q12.</strong> Two images are both built FROM python:3.12-slim. What does Docker store?</p>
+<p><strong>Answer:</strong> The shared base layer once on disk</p>
+<p>Layers are shared even across images.</p>
+<h3 id="04-running-your-first-container"><a href="../level-1/04-first-container/">04 · Running Your First Container</a><a class="headerlink" href="#04-running-your-first-container" title="Permanent link">&para;</a></h3>
+<p><strong>Q13.</strong> What does <code>docker run hello-world</code> do, in order?</p>
+<p><strong>Answer:</strong> Resolve hello-world:latest, check the local cache, pull if missing, create the container, start its CMD/ENTRYPOINT as PID 1, attach</p>
+<p>It explains most 'why did it pull from the internet' questions.</p>
+<p><strong>Q14.</strong> What do -i and -t mean in <code>docker run -it ubuntu bash</code>?</p>
+<p><strong>Answer:</strong> -i keeps STDIN open; -t allocates a pseudo-TTY</p>
+<p>Together they behave like a normal terminal.</p>
+<p><strong>Q15.</strong> What is the container's main process?</p>
+<p><strong>Answer:</strong> The image's configured CMD or ENTRYPOINT, running as PID 1 in the container's PID namespace</p>
+<p>When it exits, the container stops.</p>
+<p><strong>Q16.</strong> What does Docker use by default for the registry?</p>
+<p><strong>Answer:</strong> Docker Hub</p>
+<p>The default tag is latest.</p>
+<h3 id="05-the-dockerfile-building-images"><a href="../level-1/05-dockerfile-building-images/">05 · The Dockerfile &amp; Building Images</a><a class="headerlink" href="#05-the-dockerfile-building-images" title="Permanent link">&para;</a></h3>
+<p><strong>Q17.</strong> Why prefer WORKDIR /app over <code>RUN cd /app &amp;&amp; ...</code>?</p>
+<p><strong>Answer:</strong> cd in a RUN affects only that instruction's shell, not later instructions; WORKDIR persists and creates the directory</p>
+<p>WORKDIR sets the directory for later RUN, CMD, COPY and ADD.</p>
+<p><strong>Q18.</strong> What does EXPOSE 8000 do?</p>
+<p><strong>Answer:</strong> Documents the port (metadata); it does not publish it. -p publishes, and -P publishes all exposed ports to random host ports</p>
+<p>It's a hint for humans and tools.</p>
+<p><strong>Q19.</strong> Why prefer COPY over ADD for plain files?</p>
+<p><strong>Answer:</strong> ADD has surprising extras (auto-extracting tarballs, fetching URLs)</p>
+<p>COPY copies from the build context.</p>
+<p><strong>Q20.</strong> How do RUN and CMD differ?</p>
+<p><strong>Answer:</strong> RUN executes at build time and commits a layer; CMD only runs when a container starts</p>
+<p>Use the exec (JSON array) form for CMD.</p>
+<p><strong>Q21.</strong> What is the build context in <code>docker build -t hello-app:1.0 .</code>?</p>
+<p><strong>Answer:</strong> The directory (.) whose contents are sent to the daemon; COPY can't reference files outside it</p>
+<p>Use -f for a differently named Dockerfile.</p>
+<p><strong>Q22.</strong> What does the daemon do for each instruction during a build?</p>
+<p><strong>Answer:</strong> Checks for a cached layer for that instruction plus its parent; reuses it or executes in a temporary container and commits a new layer</p>
+<p>Caching is explained in Level 2.</p>
+<p><strong>Q23.</strong> What does -t hello-app:1.0 do?</p>
+<p><strong>Answer:</strong> Tags the image with repository hello-app and tag 1.0 (you can pass -t multiple times)</p>
+<p>The default tag is latest.</p>
+<p><strong>Q24.</strong> What does .dockerignore do?</p>
+<p><strong>Answer:</strong> Excludes files from the build context, like .gitignore does for git</p>
+<p>It keeps the context small and secrets out.</p>
+<h3 id="06-container-lifecycle"><a href="../level-1/06-container-lifecycle/">06 · Container Lifecycle</a><a class="headerlink" href="#06-container-lifecycle" title="Permanent link">&para;</a></h3>
+<p><strong>Q25.</strong> What is <code>docker run</code> shorthand for?</p>
+<p><strong>Answer:</strong> docker create followed by docker start</p>
+<p>That's why <code>docker run --name x</code> fails the second time: the container already exists.</p>
+<p><strong>Q26.</strong> What's the difference between docker stop and docker kill?</p>
+<p><strong>Answer:</strong> stop sends SIGTERM, waits, then SIGKILL; kill sends SIGKILL immediately</p>
+<p>stop gives the app a chance to shut down cleanly.</p>
+<p><strong>Q27.</strong> What does docker pause do?</p>
+<p><strong>Answer:</strong> Freezes process execution with the cgroup freezer while retaining memory/state</p>
+<p>unpause resumes it.</p>
+<p><strong>Q28.</strong> What does <code>docker rm -f</code> do?</p>
+<p><strong>Answer:</strong> Force: kills a running container and removes it in one step</p>
+<p>Without -f the container must be stopped first.</p>
+<h3 id="07-volumes-bind-mounts"><a href="../level-1/07-volumes-bind-mounts/">07 · Volumes &amp; Bind Mounts</a><a class="headerlink" href="#07-volumes-bind-mounts" title="Permanent link">&para;</a></h3>
+<p><strong>Q29.</strong> What happens to data in a container's writable layer when it's removed?</p>
+<p><strong>Answer:</strong> It's destroyed with the container</p>
+<p>db2 would start with a fresh empty database.</p>
+<p><strong>Q30.</strong> What is a volume?</p>
+<p><strong>Answer:</strong> Storage managed by Docker under its own host location, referenced by name; its lifetime is independent of any container</p>
+<p>For example -v pgdata:/var/lib/postgresql/data.</p>
+<p><strong>Q31.</strong> What happens if the named volume doesn't exist when you use -v pgdata:/path?</p>
+<p><strong>Answer:</strong> Docker creates it automatically on first use</p>
+<p>docker volume create just makes intent clearer.</p>
+<p><strong>Q32.</strong> What is a bind mount?</p>
+<p><strong>Answer:</strong> A specific path on the host mapped directly into the container</p>
+<p>It's handy for development; volumes suit durable app data.</p>
+<h3 id="08-networking-basics"><a href="../level-1/08-networking-basics/">08 · Networking Basics</a><a class="headerlink" href="#08-networking-basics" title="Permanent link">&para;</a></h3>
+<p><strong>Q33.</strong> What does the default bridge network provide?</p>
+<p><strong>Answer:</strong> A private virtual switch: each container gets its own interface and private IP, outbound traffic is NATed, and nothing outside can reach it unless ports are published</p>
+<p>The host side commonly shows as docker0.</p>
+<p><strong>Q34.</strong> What does <code>docker run -d -p 8080:80 nginx</code> do?</p>
+<p><strong>Answer:</strong> Creates a NAT rule forwarding host port 8080 to container port 80</p>
+<p>-p is &lt;host&gt;:&lt;container&gt;.</p>
+<p><strong>Q35.</strong> Why create a user-defined bridge network?</p>
+<p><strong>Answer:</strong> Containers get DNS-based discovery by name (docker's embedded DNS), unlike the default bridge where only IPs work</p>
+<p>From frontend, the hostname backend resolves automatically.</p>
+<p><strong>Q36.</strong> Why are IP addresses fragile for container-to-container communication?</p>
+<p><strong>Answer:</strong> They can change on restart</p>
+<p>Use names on a user-defined network.</p>
+<h3 id="09-docker-hub-registries"><a href="../level-1/09-docker-hub-registries/">09 · Docker Hub &amp; Registries</a><a class="headerlink" href="#09-docker-hub-registries" title="Permanent link">&para;</a></h3>
+<p><strong>Q37.</strong> What does <code>docker pull nginx:1.27</code> resolve to?</p>
+<p><strong>Answer:</strong> docker.io/library/nginx:1.27, where Docker Hub and the library/ namespace are implicit defaults</p>
+<p>It then downloads the manifest and any missing layers in parallel.</p>
+<p><strong>Q38.</strong> What is an official image?</p>
+<p><strong>Answer:</strong> An unprefixed image like nginx, maintained and reviewed through Docker Hub, with docs and regular security patches</p>
+<p>Good default base images.</p>
+<p><strong>Q39.</strong> How must you name an image to push it to Docker Hub?</p>
+<p><strong>Answer:</strong> &lt;your-username&gt;/&lt;repo&gt;[:tag], using docker tag to retag without rebuilding</p>
+<p>For example docker tag hello-app:1.0 yourusername/hello-app:1.0.</p>
+<p><strong>Q40.</strong> Where does <code>docker login</code> store credentials by default?</p>
+<p><strong>Answer:</strong> ~/.docker/config.json, ideally backed by an OS credential store rather than plaintext</p>
+<p>Subsequent push and pull use it.</p>
+<h3 id="10-project-containerize-a-small-app"><a href="../level-1/10-project-containerize-app/">10 · Project — Containerize a Small App</a><a class="headerlink" href="#10-project-containerize-a-small-app" title="Permanent link">&para;</a></h3>
+<p><strong>Q41.</strong> Why does the Dockerfile copy requirements.txt and install before copying app.py?</p>
+<p><strong>Answer:</strong> Editing the app later won't invalidate the slower dependency-install layer</p>
+<p>This is the layer-caching order from modules 05 and 06.</p>
+<p><strong>Q42.</strong> What does -v visit-counter-data:/data achieve?</p>
+<p><strong>Answer:</strong> count.txt lives in a named volume, so the count outlives the container</p>
+<p>The count survives removing and re-creating the container.</p>
+<p><strong>Q43.</strong> What does --restart unless-stopped do?</p>
+<p><strong>Answer:</strong> Brings the container back after a crash or host reboot, unless you stopped it</p>
+<p>It's a lifecycle policy from module 7.</p>
+<p><strong>Q44.</strong> What does -p 8080:5000 mean?</p>
+<p><strong>Answer:</strong> Host port 8080 forwards to the container's Flask port 5000</p>
+<p>The app listens on 0.0.0.0:5000 inside.</p>
+<h2 id="level-2-intermediate">Level 2 · Intermediate<a class="headerlink" href="#level-2-intermediate" title="Permanent link">&para;</a></h2>
+<h3 id="01-multi-stage-builds"><a href="../level-2/01-multi-stage-builds/">01 · Multi-Stage Builds</a><a class="headerlink" href="#01-multi-stage-builds" title="Permanent link">&para;</a></h3>
+<p><strong>Q45.</strong> What problem does a multi-stage build solve?</p>
+<p><strong>Answer:</strong> Build tooling (compilers, dev dependencies, sources) never ends up in the shipped image; only artifacts you COPY --from= survive</p>
+<p>The golang:1.22 image is over 800 MB, yet the running container needs only one static binary.</p>
+<p><strong>Q46.</strong> How do you move an artifact from the build stage to the final stage?</p>
+<p><strong>Answer:</strong> COPY --from=&lt;stage&gt;</p>
+<p>Everything else in the build stage is discarded.</p>
+<p><strong>Q47.</strong> What does a multi-stage Dockerfile contain?</p>
+<p><strong>Answer:</strong> More than one FROM instruction</p>
+<p>Each FROM starts a new stage.</p>
+<p><strong>Q48.</strong> What does a naive Dockerfile ship to production for a Go app?</p>
+<p><strong>Answer:</strong> The whole toolchain, standard library sources and build cache</p>
+<p>That's what multi-stage avoids.</p>
+<h3 id="02-docker-compose-basics"><a href="../level-2/02-docker-compose-basics/">02 · Docker Compose Basics</a><a class="headerlink" href="#02-docker-compose-basics" title="Permanent link">&para;</a></h3>
+<p><strong>Q49.</strong> What does Compose let you do?</p>
+<p><strong>Answer:</strong> Describe a multi-container app in YAML and bring it up or down with one command</p>
+<p>It replaces long docker run, network create and volume create chains.</p>
+<p><strong>Q50.</strong> What does depends_on control?</p>
+<p><strong>Answer:</strong> Start order only; it doesn't wait for the dependency to be ready</p>
+<p>Readiness needs healthchecks (module 06).</p>
+<p><strong>Q51.</strong> What does <code>docker compose down</code> remove?</p>
+<p><strong>Answer:</strong> Containers and the network, but it keeps named volumes</p>
+<p>Add -v to remove volumes.</p>
+<p><strong>Q52.</strong> Why use <code>docker compose up -d --build</code>?</p>
+<p><strong>Answer:</strong> To force a rebuild of the image from its Dockerfile, since plain up reuses an existing image</p>
+<p>Needed after code or Dockerfile changes.</p>
+<h3 id="03-environment-variables-env-files"><a href="../level-2/03-environment-variables-env-files/">03 · Environment Variables &amp; .env Files</a><a class="headerlink" href="#03-environment-variables-env-files" title="Permanent link">&para;</a></h3>
+<p><strong>Q53.</strong> What is special about a file named .env in a Compose project directory?</p>
+<p><strong>Answer:</strong> It's loaded automatically for variable substitution inside docker-compose.yml itself, not injected into containers</p>
+<p>Use environment: ${VAR} to pass values into the container.</p>
+<p><strong>Q54.</strong> How do ENV, environment:/-e, and .env differ?</p>
+<p><strong>Answer:</strong> ENV is baked into the image; environment/-e is a runtime override; .env substitutes values into the compose file text</p>
+<p>A common mistake is expecting .env to inject variables into the container.</p>
+<p><strong>Q55.</strong> What does <code>docker compose config</code> do?</p>
+<p><strong>Answer:</strong> Renders the final YAML with substitutions applied so you can verify what's sent to the Engine</p>
+<p>Use it before trusting a nested ${VAR}.</p>
+<p><strong>Q56.</strong> Why avoid putting secrets in .env files?</p>
+<p><strong>Answer:</strong> They tend to get committed by accident; use Docker secrets or a secret manager</p>
+<p>One compose file can serve several environments with differing values only.</p>
+<h3 id="04-image-layering-build-cache"><a href="../level-2/04-image-layering-build-cache/">04 · Image Layering &amp; Build Cache</a><a class="headerlink" href="#04-image-layering-build-cache" title="Permanent link">&para;</a></h3>
+<p><strong>Q57.</strong> What happens when one layer misses the cache?</p>
+<p><strong>Answer:</strong> Every subsequent layer misses too, because their starting point changed</p>
+<p>Order instructions from least to most frequently changing.</p>
+<p><strong>Q58.</strong> What is a COPY layer's cache key?</p>
+<p><strong>Answer:</strong> The instruction plus a checksum of the copied files, so one changed byte invalidates it and everything after</p>
+<p>For RUN, it's the exact command string plus the parent layer.</p>
+<p><strong>Q59.</strong> Why put COPY . . after the pip install layer?</p>
+<p><strong>Answer:</strong> Edits to app code won't invalidate the slow dependency-install layer</p>
+<p>Measured: the pip layer says CACHED and the build takes about 1 s.</p>
+<p><strong>Q60.</strong> What does a BuildKit cache mount (--mount=type=cache) do?</p>
+<p><strong>Answer:</strong> Persists a directory like pip's download cache across builds, independent of the layer cache</p>
+<p>Useful when requirements.txt changes.</p>
+<h3 id="05-container-logs-debugging"><a href="../level-2/05-logs-and-debugging/">05 · Container Logs &amp; Debugging</a><a class="headerlink" href="#05-container-logs-debugging" title="Permanent link">&para;</a></h3>
+<p><strong>Q61.</strong> What does <code>docker logs</code> show?</p>
+<p><strong>Answer:</strong> What the container's PID 1 process wrote to stdout/stderr</p>
+<p>An app that logs only to /var/log/app.log shows nothing; symlink it to /dev/stdout.</p>
+<p><strong>Q62.</strong> When do you need -it with docker exec?</p>
+<p><strong>Answer:</strong> For an interactive shell; a one-off command like cat needs neither</p>
+<p>-i keeps stdin open; -t allocates a pseudo-TTY.</p>
+<p><strong>Q63.</strong> What does <code>docker inspect -f '{{.State.Status}}' myapp</code> show?</p>
+<p><strong>Answer:</strong> A single field of the container's state, using a Go template</p>
+<p>docker inspect shows full configuration and state.</p>
+<p><strong>Q64.</strong> How do you follow logs and show only the last 100 lines?</p>
+<p><strong>Answer:</strong> docker logs -f --tail 100 myapp</p>
+<p>--since 10m limits by time; -t adds timestamps.</p>
+<h3 id="06-health-checks"><a href="../level-2/06-health-checks/">06 · Health Checks</a><a class="headerlink" href="#06-health-checks" title="Permanent link">&para;</a></h3>
+<p><strong>Q65.</strong> What does 'Up' in docker ps tell you?</p>
+<p><strong>Answer:</strong> Only that the main process hasn't exited, not that the app can serve traffic</p>
+<p>A health check gives a real readiness signal: healthy, unhealthy or starting.</p>
+<p><strong>Q66.</strong> What does --start-period do?</p>
+<p><strong>Answer:</strong> A grace period after start during which failures don't count toward --retries</p>
+<p>It suits slow-starting apps.</p>
+<p><strong>Q67.</strong> What exit codes does a health check command use?</p>
+<p><strong>Answer:</strong> 0 for healthy and 1 for unhealthy</p>
+<p>curl -f fails on an HTTP error status.</p>
+<p><strong>Q68.</strong> What does <code>depends_on: api: condition: service_healthy</code> add?</p>
+<p><strong>Answer:</strong> The worker waits until the api's health check is healthy, not merely running</p>
+<p>Without a health check, depends_on only guarantees the container process started.</p>
+<h3 id="07-compose-networks-volumes"><a href="../level-2/07-compose-networks-volumes/">07 · Compose Networks &amp; Volumes</a><a class="headerlink" href="#07-compose-networks-volumes" title="Permanent link">&para;</a></h3>
+<p><strong>Q69.</strong> Why declare explicit networks?</p>
+<p><strong>Answer:</strong> By default every service shares one network, so a compromised web container could reach services it shouldn't; tiers limit that</p>
+<p>A frontend-only proxy would have no route to the db.</p>
+<p><strong>Q70.</strong> A web service is on frontend and backend; db is on backend only. Who can reach db?</p>
+<p><strong>Answer:</strong> web (shared backend network), but not a service on frontend alone</p>
+<p>Services need a shared network to talk.</p>
+<p><strong>Q71.</strong> What does <code>external: true</code> on a volume mean?</p>
+<p><strong>Answer:</strong> The volume already exists and Compose must not create or manage its lifecycle; <code>down -v</code> won't remove it</p>
+<p>Useful for production data that must outlive any project's teardown.</p>
+<p><strong>Q72.</strong> What is the difference between a named volume and a bind mount in Compose?</p>
+<p><strong>Answer:</strong> A named volume is Docker-managed and independent of containers; a bind mount maps a literal host path and ties the container to that host's layout</p>
+<p>Bind mounts suit init scripts and live-reload source.</p>
+<h3 id="08-managing-images-tags"><a href="../level-2/08-managing-images-tags/">08 · Managing Images &amp; Tags</a><a class="headerlink" href="#08-managing-images-tags" title="Permanent link">&para;</a></h3>
+<p><strong>Q73.</strong> What does <code>docker tag</code> do?</p>
+<p><strong>Answer:</strong> Adds another name pointing at the same image ID; nothing is copied</p>
+<p>Like a hard link adds a name for the same inode.</p>
+<p><strong>Q74.</strong> Why is :latest risky for deployments?</p>
+<p><strong>Answer:</strong> It's mutable: it silently points at whatever was last pushed</p>
+<p>Pin deploys to an immutable tag such as a git SHA.</p>
+<p><strong>Q75.</strong> What is a dangling image?</p>
+<p><strong>Answer:</strong> An image with no tag (&lt;none&gt;:&lt;none&gt;), usually the old image after a tag moved to a rebuild</p>
+<p>docker image prune removes them.</p>
+<p><strong>Q76.</strong> How does <code>docker image prune -a</code> differ from plain prune?</p>
+<p><strong>Answer:</strong> It removes all images not used by a running container, including tagged ones: fine for CI agents, dangerous on a workstation</p>
+<p>It's much more aggressive.</p>
+<h3 id="09-compose-for-multi-service-apps"><a href="../level-2/09-compose-multi-service-apps/">09 · Compose for Multi-Service Apps</a><a class="headerlink" href="#09-compose-for-multi-service-apps" title="Permanent link">&para;</a></h3>
+<p><strong>Q77.</strong> How does the web service reach the api in the three-tier stack?</p>
+<p><strong>Answer:</strong> By its service name via Compose's default network DNS: API_URL=http://api:8000</p>
+<p>The same applies to db:5432 and cache:6379.</p>
+<p><strong>Q78.</strong> Why does the api use depends_on db with condition: service_healthy?</p>
+<p><strong>Answer:</strong> So it starts only after the database is actually ready</p>
+<p>The api itself has a health check too.</p>
+<p><strong>Q79.</strong> What does a realistic app stack usually include?</p>
+<p><strong>Answer:</strong> A web tier, an API, a database and often a cache, wired with start order, environment and networks</p>
+<p>The module combines modules 02–08.</p>
+<p><strong>Q80.</strong> Which service publishes a host port in the example?</p>
+<p><strong>Answer:</strong> web, with 3000:3000, while api and db are internal</p>
+<p>Internal services needn't publish ports.</p>
+<h3 id="10-project-multi-container-compose-app"><a href="../level-2/10-project-compose-app/">10 · Project — Multi-Container Compose App</a><a class="headerlink" href="#10-project-multi-container-compose-app" title="Permanent link">&para;</a></h3>
+<p><strong>Q81.</strong> Which networks keep the data tier private in the link-shortener stack?</p>
+<p><strong>Answer:</strong> data is internal: true, so db and cache aren't reachable from outside; only api joins public and data, and proxy joins public only</p>
+<p>The proxy can't reach db or cache directly (no shared network).</p>
+<p><strong>Q82.</strong> How does the api's multi-stage Dockerfile keep the runtime image small?</p>
+<p><strong>Answer:</strong> An npm ci stage installs dependencies; the node:20-slim runtime copies only node_modules with COPY --from=deps</p>
+<p>The runtime stage also sets NODE_ENV=production and a HEALTHCHECK.</p>
+<p><strong>Q83.</strong> What does the db health check pg_isready -U app enable?</p>
+<p><strong>Answer:</strong> depends_on condition service_healthy, so the api starts only once Postgres is ready</p>
+<p>The cache only needs service_started.</p>
+<p><strong>Q84.</strong> How is configuration varied between environments?</p>
+<p><strong>Answer:</strong> A .env file supplies versions and the port via ${VAR} substitution in the compose file</p>
+<p>For example image: nginx:${NGINX_VERSION} and ${APP_PORT}:80.</p>
+<h2 id="level-3-advanced">Level 3 · Advanced<a class="headerlink" href="#level-3-advanced" title="Permanent link">&para;</a></h2>
+<h3 id="01-docker-networking-deep-dive"><a href="../level-3/01-networking-deep-dive/">01 · Docker Networking Deep Dive</a><a class="headerlink" href="#01-docker-networking-deep-dive" title="Permanent link">&para;</a></h3>
+<p><strong>Q85.</strong> Which network driver gives no isolation and removes the need for -p mapping?</p>
+<p><strong>Answer:</strong> host: the container shares the host's network namespace</p>
+<p>Two containers can't both bind the same port; rarely appropriate as a default.</p>
+<p><strong>Q86.</strong> What is the practical reason to use a user-defined bridge instead of the default docker0 bridge?</p>
+<p><strong>Answer:</strong> It provides embedded DNS, so containers resolve each other by name; the default bridge only supports IPs and legacy --link</p>
+<p>Compose creates user-defined networks automatically.</p>
+<p><strong>Q87.</strong> What is the overlay driver for?</p>
+<p><strong>Answer:</strong> Multi-host networking, such as Swarm services whose containers run on different machines</p>
+<p>It's created with --driver overlay --attachable.</p>
+<p><strong>Q88.</strong> When would you use <code>none</code> or <code>macvlan</code>?</p>
+<p><strong>Answer:</strong> none for fully isolated jobs with no networking; macvlan to give a container its own MAC/IP on the physical LAN</p>
+<p>They're niche drivers.</p>
+<h3 id="02-security-basics"><a href="../level-3/02-security-basics/">02 · Security Basics</a><a class="headerlink" href="#02-security-basics" title="Permanent link">&para;</a></h3>
+<p><strong>Q89.</strong> Why avoid running as root inside the container?</p>
+<p><strong>Answer:</strong> Without user-namespace remapping, root in the container maps to the host's root UID</p>
+<p>Most web apps and workers shouldn't need it; use USER appuser or the image's node user.</p>
+<p><strong>Q90.</strong> What does <code>COPY --chown=node:node . .</code> avoid?</p>
+<p><strong>Answer:</strong> A separate RUN chown -R layer that would duplicate the copied files' size in the layer diff</p>
+<p>Ownership is set at copy time.</p>
+<p><strong>Q91.</strong> What is the trade-off of distroless images?</p>
+<p><strong>Answer:</strong> Smallest attack surface (no shell or package manager), but you can't docker exec into them with a shell for debugging</p>
+<p>alpine is tiny but uses musl, which can cause compatibility issues. Choose by runtime needs, not size alone.</p>
+<p><strong>Q92.</strong> What does <code>docker scout cves myapp:latest</code> do?</p>
+<p><strong>Answer:</strong> Checks installed packages against vulnerability databases and reports CVEs by severity, including which layer introduced them</p>
+<p>Scan before shipping.</p>
+<h3 id="03-resource-limits-cpumemory"><a href="../level-3/03-resource-limits/">03 · Resource Limits (CPU/Memory)</a><a class="headerlink" href="#03-resource-limits-cpumemory" title="Permanent link">&para;</a></h3>
+<p><strong>Q93.</strong> What happens when a container exceeds --memory?</p>
+<p><strong>Answer:</strong> The kernel OOM killer terminates it (exit code 137); docker inspect OOMKilled shows true</p>
+<p>A container that dies with 137 and no app error is a strong hint.</p>
+<p><strong>Q94.</strong> What does setting --memory-swap equal to --memory do?</p>
+<p><strong>Answer:</strong> Disables swap for the container</p>
+<p>--memory-swap caps RAM plus swap combined.</p>
+<p><strong>Q95.</strong> How do --cpus and --cpu-shares differ?</p>
+<p><strong>Answer:</strong> --cpus is an absolute cap; --cpu-shares is a relative weight that only matters under contention</p>
+<p>With an idle host a low-share container can still use 100% of a core.</p>
+<p><strong>Q96.</strong> What does --memory-reservation do?</p>
+<p><strong>Answer:</strong> A soft limit enforced only under host memory pressure</p>
+<p>--cpuset-cpus pins to specific cores.</p>
+<h3 id="04-multi-container-app-patterns"><a href="../level-3/04-multi-container-patterns/">04 · Multi-Container App Patterns</a><a class="headerlink" href="#04-multi-container-app-patterns" title="Permanent link">&para;</a></h3>
+<p><strong>Q97.</strong> What is the sidecar pattern?</p>
+<p><strong>Answer:</strong> A container running alongside the main one (sharing network and often a volume) adds a capability like log shipping without changing the main image</p>
+<p>In the example app writes logs to a shared volume and log-shipper reads them read-only.</p>
+<p><strong>Q98.</strong> What does an ambassador container do?</p>
+<p><strong>Answer:</strong> A small proxy between the app and an external dependency, so the app talks to a stable local address while the real endpoint can change</p>
+<p>Only haproxy.cfg changes if the database's address changes.</p>
+<p><strong>Q99.</strong> What is an init container pattern, and what condition makes the api wait for it?</p>
+<p><strong>Answer:</strong> A job that runs to completion before the main container (e.g. migrations); depends_on condition service_completed_successfully</p>
+<p>The migrate service uses restart: "no".</p>
+<p><strong>Q100.</strong> Why did the log-shipper mount applogs read-only (:ro)?</p>
+<p><strong>Answer:</strong> It only needs to read the logs, which prevents it from altering them</p>
+<p>The app's image never needed to know fluent-bit exists.</p>
+<h3 id="05-private-registries"><a href="../level-3/05-private-registries/">05 · Private Registries</a><a class="headerlink" href="#05-private-registries" title="Permanent link">&para;</a></h3>
+<p><strong>Q101.</strong> How does Docker know where to push localhost:5000/myapp:1.0?</p>
+<p><strong>Answer:</strong> The registry hostname and port are part of the image name</p>
+<p>Without a prefix, the implicit registry is docker.io/library.</p>
+<p><strong>Q102.</strong> Why does Docker refuse plain-HTTP registries other than localhost?</p>
+<p><strong>Answer:</strong> It treats them as insecure; use TLS (a proxy or the registry's own), or an insecure-registries entry for local testing only</p>
+<p>insecure-registries is a host-wide opt-out of transport security.</p>
+<p><strong>Q103.</strong> How do you add basic authentication to the registry:2 image?</p>
+<p><strong>Answer:</strong> An htpasswd file mounted at /auth with REGISTRY_AUTH=htpasswd (and realm and path variables), then docker login</p>
+<p>An unauthenticated registry is for local experimentation only.</p>
+<p><strong>Q104.</strong> Name a managed registry option.</p>
+<p><strong>Answer:</strong> ECR, GCR, Azure ACR, GitHub Container Registry or Harbor</p>
+<p>For ECR: aws ecr get-login-password | docker login --password-stdin.</p>
+<h3 id="06-storage-drivers-volume-plugins"><a href="../level-3/06-storage-drivers-volume-plugins/">06 · Storage Drivers &amp; Volume Plugins</a><a class="headerlink" href="#06-storage-drivers-volume-plugins" title="Permanent link">&para;</a></h3>
+<p><strong>Q105.</strong> Which storage driver is the modern Linux default?</p>
+<p><strong>Answer:</strong> overlay2</p>
+<p>Check with docker info | grep "Storage Driver".</p>
+<p><strong>Q106.</strong> In overlay2, what are LowerDir, UpperDir and MergedDir?</p>
+<p><strong>Answer:</strong> LowerDir: read-only image layers; UpperDir: the container's single writable directory; MergedDir: the unified root filesystem the process sees</p>
+<p>Everything the container writes lands in UpperDir.</p>
+<p><strong>Q107.</strong> What does a volume plugin enable?</p>
+<p><strong>Answer:</strong> Backing volumes with network or cloud storage, e.g. a volume that survives the host being terminated or is shared across hosts</p>
+<p>From inside the container /data looks like a normal directory.</p>
+<p><strong>Q108.</strong> How can a volume use NFS without a plugin?</p>
+<p><strong>Answer:</strong> The built-in local driver with --opt type=nfs and --opt o=addr=...,rw and device=:/path</p>
+<p>The lesson shows docker volume create --driver local.</p>
+<h3 id="07-logging-drivers-centralized-logging"><a href="../level-3/07-logging-drivers/">07 · Logging Drivers &amp; Centralized Logging</a><a class="headerlink" href="#07-logging-drivers-centralized-logging" title="Permanent link">&para;</a></h3>
+<p><strong>Q109.</strong> Which driver was used by default in the earlier logs lesson?</p>
+<p><strong>Answer:</strong> json-file</p>
+<p>Logs sit on the host and vanish when the container is removed.</p>
+<p><strong>Q110.</strong> Why send logs to a central system in production?</p>
+<p><strong>Answer:</strong> With many hosts and short-lived containers, logs must leave the host before the container and its log file disappear</p>
+<p>For example --log-driver=syslog --log-opt syslog-address=udp://...</p>
+<p><strong>Q111.</strong> How do you set a logging driver for one container?</p>
+<p><strong>Answer:</strong> --log-driver on docker run, with --log-opt options</p>
+<p>It can also be set in daemon.json for all containers.</p>
+<p><strong>Q112.</strong> What happens to <code>docker logs</code> when a non-json-file driver is used?</p>
+<p><strong>Answer:</strong> It may not work for drivers that don't keep a local copy, so check the driver's capabilities</p>
+<p>Some drivers only ship logs away.</p>
+<h3 id="08-docker-swarm-basics"><a href="../level-3/08-docker-swarm-basics/">08 · Docker Swarm Basics</a><a class="headerlink" href="#08-docker-swarm-basics" title="Permanent link">&para;</a></h3>
+<p><strong>Q113.</strong> What does <code>docker swarm init --advertise-addr ...</code> do?</p>
+<p><strong>Answer:</strong> Turns the host into a Swarm manager and prints a join command with a token for workers</p>
+<p>Workers join with docker swarm join --token ... :2377.</p>
+<p><strong>Q114.</strong> What is a Swarm service?</p>
+<p><strong>Answer:</strong> A desired state (image, replicas, ports) that the manager continuously reconciles the cluster toward</p>
+<p>If a node dies, a replacement replica is scheduled on a healthy node.</p>
+<p><strong>Q115.</strong> What does <code>--update-parallelism 1 --update-delay 10s</code> do?</p>
+<p><strong>Answer:</strong> A rolling update: replace one replica, wait 10 s for it to become healthy, then continue</p>
+<p>It avoids a total outage if the new image is broken.</p>
+<p><strong>Q116.</strong> How does <code>docker stack deploy -c stack.yml myapp</code> relate to Compose?</p>
+<p><strong>Answer:</strong> Swarm reuses Compose file syntax (with deploy: keys) for multi-service deployments</p>
+<p>Overlay networks are needed for multi-host stacks.</p>
+<h3 id="09-secrets-config-management"><a href="../level-3/09-secrets-config-management/">09 · Secrets &amp; Config Management</a><a class="headerlink" href="#09-secrets-config-management" title="Permanent link">&para;</a></h3>
+<p><strong>Q117.</strong> Why are plain environment variables a poor place for secrets?</p>
+<p><strong>Answer:</strong> They're visible via docker inspect to anyone with Engine API access, and appear in Swarm's Raft state and process listings on some platforms</p>
+<p>Secrets are mounted as files instead.</p>
+<p><strong>Q118.</strong> Where is a Docker secret mounted inside the container?</p>
+<p><strong>Answer:</strong> /run/secrets/&lt;name&gt;, an in-memory tmpfs file never written to the writable layer</p>
+<p>POSTGRES_PASSWORD_FILE tells the image to read the value from that file.</p>
+<p><strong>Q119.</strong> How do configs differ from secrets?</p>
+<p><strong>Answer:</strong> Configs are mounted similarly but are for non-sensitive files (nginx.conf, feature flags) and lack the same encryption-at-rest guarantees</p>
+<p>Both are managed, versioned objects.</p>
+<p><strong>Q120.</strong> Why must a stack file mark a secret as external: true?</p>
+<p><strong>Answer:</strong> Swarm deliberately doesn't allow raw secret values inline, since stack files end up committed to version control</p>
+<p>Create it beforehand with docker secret create.</p>
+<h3 id="10-project-secure-resource-limited-production-stack"><a href="../level-3/10-project-secure-stack/">10 · Project — Secure, Resource-Limited Production Stack</a><a class="headerlink" href="#10-project-secure-resource-limited-production-stack" title="Permanent link">&para;</a></h3>
+<p><strong>Q121.</strong> Which hardening steps does the API Dockerfile use?</p>
+<p><strong>Answer:</strong> Multi-stage build with npm ci --omit=dev, COPY --chown=node:node, USER node, NODE_ENV=production and a HEALTHCHECK</p>
+<p>The runtime image contains no dev tooling.</p>
+<p><strong>Q122.</strong> How is the database password provided to the API?</p>
+<p><strong>Answer:</strong> Via a Docker secret mounted as a file, referenced by DATABASE_URL_FILE=/run/secrets/database_url</p>
+<p>The secrets file is gitignored.</p>
+<p><strong>Q123.</strong> What do resource limits and reservations in the stack do?</p>
+<p><strong>Answer:</strong> limits cap CPU and memory per replica; reservations guarantee a minimum</p>
+<p>For example the api: limits 1.0 CPU/256M, reservations 0.25 CPU/128M.</p>
+<p><strong>Q124.</strong> What does the log-shipping sidecar add?</p>
+<p><strong>Answer:</strong> Centralised logs without changing the app image</p>
+<p>It's one of the multi-container patterns from module 4.</p>
+<h2 id="level-4-master">Level 4 · Master<a class="headerlink" href="#level-4-master" title="Permanent link">&para;</a></h2>
+<h3 id="01-docker-in-cicd-pipelines"><a href="../level-4/01-docker-in-cicd/">01 · Docker in CI/CD Pipelines</a><a class="headerlink" href="#01-docker-in-cicd-pipelines" title="Permanent link">&para;</a></h3>
+<p><strong>Q125.</strong> Why tag images with the commit SHA in CI?</p>
+<p><strong>Answer:</strong> Every pushed image is traceable to the exact source that produced it, essential when debugging production weeks later</p>
+<p>It uses the tagging strategy from Level 2.</p>
+<p><strong>Q126.</strong> What is the benefit of a dedicated <code>test</code> stage in the Dockerfile?</p>
+<p><strong>Answer:</strong> CI fails the build on test failure before producing the artifact, and tests run against the same dependency state as production, with the stage never shipping</p>
+<p>Build with docker build --target test.</p>
+<p><strong>Q127.</strong> How should registry credentials be supplied in the workflow?</p>
+<p><strong>Answer:</strong> From repository secrets (${{ secrets.REGISTRY_TOKEN }}), never in the file</p>
+<p>docker/login-action uses them.</p>
+<p><strong>Q128.</strong> What does the pipeline do in order?</p>
+<p><strong>Answer:</strong> Checkout, set up Buildx, log in, build and test, build the production image, push</p>
+<p>Triggered on push to main.</p>
+<h3 id="02-orchestration-handoff-kubernetesswarm"><a href="../level-4/02-orchestration-handoff/">02 · Orchestration Handoff (Kubernetes/Swarm)</a><a class="headerlink" href="#02-orchestration-handoff-kubernetesswarm" title="Permanent link">&para;</a></h3>
+<p><strong>Q129.</strong> Which signals suggest moving beyond Compose/Swarm to Kubernetes?</p>
+<p><strong>Answer:</strong> Many hosts with varied hardware, multiple teams needing namespaces and RBAC, metric-based autoscaling, and a need for the ecosystem (Helm, operators, meshes)</p>
+<p>The lesson is honest that not every project reaches that point.</p>
+<p><strong>Q130.</strong> When is Swarm or plain Compose still the right size?</p>
+<p><strong>Answer:</strong> A single team, a handful of hosts and predictable load, where Swarm's simplicity is an advantage</p>
+<p>Adopting Kubernetes for its reputation alone adds burden without benefit.</p>
+<p><strong>Q131.</strong> What do Swarm's service and task map to in Kubernetes?</p>
+<p><strong>Answer:</strong> Deployment + Service, and Pod (which can hold several co-scheduled containers sharing a network namespace)</p>
+<p>Docker secret maps to Secret and docker config to ConfigMap.</p>
+<p><strong>Q132.</strong> How does Kubernetes handle networking compared to Swarm's overlay?</p>
+<p><strong>Answer:</strong> It delegates to a pluggable CNI network plugin</p>
+<p>That's a key architectural difference.</p>
+<h3 id="03-production-image-hardening"><a href="../level-4/03-production-image-hardening/">03 · Production Image Hardening</a><a class="headerlink" href="#03-production-image-hardening" title="Permanent link">&para;</a></h3>
+<p><strong>Q133.</strong> Why is a distroless image safer?</p>
+<p><strong>Answer:</strong> No shell, package manager or coreutils: an attacker has no shell to pivot with and no curl/wget to fetch payloads</p>
+<p>Debugging shifts to logs, app instrumentation or a temporary debug image.</p>
+<p><strong>Q134.</strong> What does --read-only do, and why add --tmpfs?</p>
+<p><strong>Answer:</strong> Makes the root filesystem immutable (no webshell or persistence), while --tmpfs gives in-memory writable paths such as /tmp</p>
+<p>The read-only guarantee stays everywhere else.</p>
+<p><strong>Q135.</strong> What does --security-opt=no-new-privileges do?</p>
+<p><strong>Answer:</strong> Blocks a process and its children from gaining extra privileges via setuid/setgid binaries or file capabilities</p>
+<p>It pairs with --cap-drop=ALL, re-adding only what's proven necessary.</p>
+<p><strong>Q136.</strong> What does --cap-drop=ALL do?</p>
+<p><strong>Answer:</strong> Removes every Linux capability from the container's processes; add back only what's needed</p>
+<p>Least privilege.</p>
+<h3 id="04-build-optimization-at-scale"><a href="../level-4/04-build-optimization-at-scale/">04 · Build Optimization at Scale</a><a class="headerlink" href="#04-build-optimization-at-scale" title="Permanent link">&para;</a></h3>
+<p><strong>Q137.</strong> Why use per-branch cache tags with a fallback chain?</p>
+<p><strong>Answer:</strong> A single cache tag becomes a write-contention bottleneck; each branch reads its own cache then falls back to main's</p>
+<p>New branches get fast first builds from main's layers.</p>
+<p><strong>Q138.</strong> What does cache-to ... mode=max do?</p>
+<p><strong>Answer:</strong> Exports layers from all stages, not just the final image, for better cache reuse</p>
+<p>It's used with type=registry.</p>
+<p><strong>Q139.</strong> What do remote builders provide?</p>
+<p><strong>Answer:</strong> Consistent, powerful build hosts used via docker buildx create --driver remote</p>
+<p>Builds run on a build farm rather than on each runner.</p>
+<p><strong>Q140.</strong> What shift does this lesson recommend?</p>
+<p><strong>Answer:</strong> Treat build infrastructure as a system to optimise, not just individual Dockerfiles</p>
+<p>Many services and concurrent jobs make it a system problem.</p>
+<h3 id="05-designing-a-containerized-architecture"><a href="../level-4/05-containerized-architecture-design/">05 · Designing a Containerized Architecture</a><a class="headerlink" href="#05-designing-a-containerized-architecture" title="Permanent link">&para;</a></h3>
+<p><strong>Q141.</strong> What two questions does 'one process per container' really stand for?</p>
+<p><strong>Answer:</strong> Does it need to scale independently, and does it change or deploy independently?</p>
+<p>A CPU-bound worker and a light API gateway have different demand curves.</p>
+<p><strong>Q142.</strong> When may components legitimately stay in one container?</p>
+<p><strong>Answer:</strong> When they always scale together, always deploy together and are maintained by the same team</p>
+<p>Over-decomposing adds coordination and network-hop overhead without benefit.</p>
+<p><strong>Q143.</strong> What is the downside of a direct HTTP/gRPC call between services versus a queue?</p>
+<p><strong>Answer:</strong> It couples the caller to the callee's availability in real time; a queue decouples uptime at the cost of eventual consistency</p>
+<p>Decide synchronous or asynchronous at each boundary.</p>
+<p><strong>Q144.</strong> Why prefer each service owning its data store?</p>
+<p><strong>Answer:</strong> Two services sharing tables aren't really separate; schema changes in one can silently break the other</p>
+<p>Expose data to others only through the service's own API.</p>
+<h3 id="06-observability-for-containers"><a href="../level-4/06-observability-for-containers/">06 · Observability for Containers</a><a class="headerlink" href="#06-observability-for-containers" title="Permanent link">&para;</a></h3>
+<p><strong>Q145.</strong> How do metrics typically reach a collector?</p>
+<p><strong>Answer:</strong> The app exposes a /metrics HTTP endpoint (Prometheus format) that the collector scrapes periodically</p>
+<p>Prometheus reaches api:8000 via Compose service-name DNS.</p>
+<p><strong>Q146.</strong> What does cAdvisor give you?</p>
+<p><strong>Answer:</strong> Per-container CPU, memory, network and disk metrics from cgroups, without instrumenting the app</p>
+<p>It reads the same cgroup data as docker stats.</p>
+<p><strong>Q147.</strong> What does distributed tracing need to cross container boundaries?</p>
+<p><strong>Answer:</strong> A trace ID propagated on each hop (HTTP headers or message metadata) so the path and per-hop latency can be reconstructed</p>
+<p>Services send spans to an OpenTelemetry collector.</p>
+<p><strong>Q148.</strong> Which three pillars of observability are covered across the course?</p>
+<p><strong>Answer:</strong> Logs, metrics and traces</p>
+<p>Logs came in Level 3, module 07.</p>
+<h3 id="07-zero-downtime-deployments"><a href="../level-4/07-zero-downtime-deployments/">07 · Zero-Downtime Deployments</a><a class="headerlink" href="#07-zero-downtime-deployments" title="Permanent link">&para;</a></h3>
+<p><strong>Q149.</strong> What are the two failure windows of <code>docker stop web &amp;&amp; docker run ...</code>?</p>
+<p><strong>Answer:</strong> Connection refused between stop and the new container binding the port, and the new container being listening but not ready</p>
+<p>Zero downtime never removes capacity before its replacement is ready.</p>
+<p><strong>Q150.</strong> What are the two ingredients that prevent downtime?</p>
+<p><strong>Answer:</strong> Health gating (no traffic until provably ready) and graceful shutdown (don't kill a container mid-request)</p>
+<p>The health check should verify the container is useful, e.g. can reach its database.</p>
+<p><strong>Q151.</strong> Why does --start-period=10s matter?</p>
+<p><strong>Answer:</strong> Failed checks during a slow cold start don't count against --retries, so it isn't mistaken for a crash and restarted endlessly</p>
+<p>Otherwise an orchestrator can kill a container that just needed more seconds.</p>
+<p><strong>Q152.</strong> What do --update-order start-first and --update-failure-action rollback do?</p>
+<p><strong>Answer:</strong> Start the new replica before stopping the old one, and roll back automatically if the update fails</p>
+<p>They pair with a health command.</p>
+<h3 id="08-cost-performance-at-scale"><a href="../level-4/08-cost-performance-at-scale/">08 · Cost &amp; Performance at Scale</a><a class="headerlink" href="#08-cost-performance-at-scale" title="Permanent link">&para;</a></h3>
+<p><strong>Q153.</strong> Why isn't 84MiB used against a 512MiB limit 'safely under budget'?</p>
+<p><strong>Answer:</strong> You're paying for 428MiB never touched, since schedulers bill and bin-pack against the request, not actual usage</p>
+<p>Inflated limits reduce containers per host and raise host count.</p>
+<p><strong>Q154.</strong> What should you do before right-sizing?</p>
+<p><strong>Answer:</strong> Measure with docker stats over time (e.g. a week), then adjust, as in docker update --memory=192m</p>
+<p>Steady usage was 90–110 MiB in the example.</p>
+<p><strong>Q155.</strong> Why does --memory-reservation matter for bin-packing?</p>
+<p><strong>Answer:</strong> The scheduler can plan around typical usage while --memory still protects against leaks via OOM kill</p>
+<p>It is the soft limit.</p>
+<p><strong>Q156.</strong> Which two levers move cost most?</p>
+<p><strong>Answer:</strong> Right-sizing resource requests and image size</p>
+<p>Both compound at fleet scale.</p>
+<h3 id="09-disaster-recovery-backups"><a href="../level-4/09-disaster-recovery-backups/">09 · Disaster Recovery &amp; Backups</a><a class="headerlink" href="#09-disaster-recovery-backups" title="Permanent link">&para;</a></h3>
+<p><strong>Q157.</strong> What does NOT need backing up in a containerised system?</p>
+<p><strong>Answer:</strong> Containers and images themselves, which are rebuilt from source and redeployed from the stack file</p>
+<p>Data in volumes and non-reproducible registry images do need backups.</p>
+<p><strong>Q158.</strong> How does the sidecar backup pattern work?</p>
+<p><strong>Answer:</strong> A throwaway alpine container mounts the volume read-only plus a host directory, and tar writes a timestamped archive</p>
+<p>The read-only mount means the backup can't corrupt live data.</p>
+<p><strong>Q159.</strong> Why restore into a new volume name first?</p>
+<p><strong>Answer:</strong> You can verify the restored data before replacing the live volume</p>
+<p>A backup that's never been restored is a hope, not a plan.</p>
+<p><strong>Q160.</strong> Why are registry images at risk even though they're 'reproducible'?</p>
+<p><strong>Answer:</strong> A base image tag can be repointed upstream or the build context may disappear, so an old build might not be reconstructible</p>
+<p>Pin by digest and back up registry contents.</p>
+<h3 id="10-capstone-project"><a href="../level-4/10-capstone-project/">10 · Capstone Project</a><a class="headerlink" href="#10-capstone-project" title="Permanent link">&para;</a></h3>
+<p><strong>Q161.</strong> Which Dockerfile baseline does the capstone treat as non-optional for production?</p>
+<p><strong>Answer:</strong> Non-root USER, a multi-stage build without dev dependencies, and a real health check</p>
+<p>They come from modules 03, 04 and 07.</p>
+<p><strong>Q162.</strong> Which services make up the capstone system?</p>
+<p><strong>Answer:</strong> A stateless web API, a Postgres db and Redis cache on named volumes, and a reverse proxy for TLS and routing</p>
+<p>web is replicated with limits and rolling updates.</p>
+<p><strong>Q163.</strong> What does the web service's update_config provide?</p>
+<p><strong>Answer:</strong> Rolling updates one at a time with start-first order and automatic rollback on failure</p>
+<p>parallelism 1, delay 10s, order start-first, failure_action rollback.</p>
+<p><strong>Q164.</strong> What is the point of the capstone's written deliverable?</p>
+<p><strong>Answer:</strong> Putting everything together correctly and writing down why, like a production handoff document</p>
+<p>There's no new syntax in it.</p>
+<h2 id="mixed-questions-across-all-levels">Mixed questions across all levels<a class="headerlink" href="#mixed-questions-across-all-levels" title="Permanent link">&para;</a></h2>
+<p><strong>Q165.</strong> A Dockerfile has these lines. After editing only app.py, which steps rebuild (cache miss)?</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.12-slim</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">"python"</span><span class="p">,</span><span class="w"> </span><span class="s2">"app.py"</span><span class="p">]</span>
+</code></pre></div>
+<p><strong>Answer:</strong> COPY . . and then RUN pip install (every later layer misses once one layer misses)</p>
+<p>COPY . . has a changed checksum, so it and every layer after it rebuild. Verified with a small cache simulation. Copying requirements.txt first avoids the reinstall.</p>
+<p><strong>Q166.</strong> After reordering to <code>COPY requirements.txt .</code> → <code>RUN pip install</code> → <code>COPY . .</code>, you edit only app.py. What rebuilds?</p>
+<p><strong>Answer:</strong> Only COPY . .; the pip install layer is CACHED</p>
+<p>The dependency manifest didn't change, so the install layer is reused. Verified by simulation.</p>
+<p><strong>Q167.</strong> <code>docker run --name web nginx</code> worked yesterday and fails today with a name conflict. Why, and what fixes it?</p>
+<p><strong>Answer:</strong> docker run is create + start, so the container web still exists (Exited); docker rm web, or docker start web</p>
+<p>A stopped container keeps its name until removed.</p>
+<p><strong>Q168.</strong> A container exits with code 137 and no error in its logs. What should you check first?</p>
+<p><strong>Answer:</strong> Whether the kernel OOM killer stopped it: docker inspect -f '{{.State.OOMKilled}}'</p>
+<p>Exceeding --memory gets the process killed rather than throttled.</p>
+<p><strong>Q169.</strong> <code>EXPOSE 8000</code> is in the Dockerfile, but <code>curl localhost:8000</code> from the host fails. Why?</p>
+<p><strong>Answer:</strong> EXPOSE is only documentation; you must publish with -p 8000:8000 (or -P)</p>
+<p>-p creates the NAT rule from host port to container port.</p>
+<p><strong>Q170.</strong> In Compose, <code>depends_on: [db]</code> is set, yet the api crashes because Postgres isn't accepting connections yet. What is the fix?</p>
+<p><strong>Answer:</strong> Add a healthcheck to db and use depends_on with condition: service_healthy</p>
+<p>depends_on alone only controls start order, not readiness.</p>
+<p><strong>Q171.</strong> You run <code>docker compose down</code> on a stack with a named volume pgdata. What happens to the database data?</p>
+<p><strong>Answer:</strong> It's kept: down removes containers and networks but keeps named volumes (unless -v is given)</p>
+<p>Named volumes outlive containers.</p>
+<p><strong>Q172.</strong> A .env file next to docker-compose.yml has APP_PORT=8080 and the service uses <code>ports: ["${APP_PORT}:8000"]</code>. Is APP_PORT available as an environment variable inside the container?</p>
+<p><strong>Answer:</strong> No: .env substitutes values into the compose file; add environment: - APP_PORT=${APP_PORT} to pass it through</p>
+<p>The three mechanisms differ: ENV in the image, environment:/-e at runtime, and .env for compose-file substitution.</p>
+<p><strong>Q173.</strong> Which setup stops the proxy container from reaching the database?</p>
+<p><strong>Answer:</strong> Put db on an internal network shared only with the api, and the proxy on a public network only</p>
+<p>Services need a shared network to talk. Verified by parsing a compose file: proxy-&gt;db False, api-&gt;db True.</p>
+<p><strong>Q174.</strong> Which image reference means an official Docker Hub image?</p>
+<p><strong>Answer:</strong> nginx:1.27 (shorthand for docker.io/library/nginx:1.27)</p>
+<p>No namespace means library/ on Docker Hub.</p>
+<p><strong>Q175.</strong> Why is <code>myapp:latest</code> a poor tag to deploy in production?</p>
+<p><strong>Answer:</strong> It's mutable and can silently point at a different image; pin to a git SHA or version</p>
+<p>Immutable tags make deployments reproducible and traceable.</p>
+<p><strong>Q176.</strong> You want the smallest, hardest-to-abuse final image for a Node API. Which Dockerfile ending is best?</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">gcr.io/distroless/nodejs20-debian12</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>build<span class="w"> </span>/app/dist<span class="w"> </span>./dist
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">USER</span><span class="w"> </span><span class="s">nonroot</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">"dist/server.js"</span><span class="p">]</span>
+</code></pre></div>
+<p><strong>Answer:</strong> This one: distroless has no shell or package manager, runs as non-root, and uses a build stage artifact</p>
+<p>A shell-less image gives an attacker nothing to pivot with.</p>
+<p><strong>Q177.</strong> Which run flags make the root filesystem immutable while still allowing /tmp?</p>
+<p><strong>Answer:</strong> --read-only --tmpfs /tmp</p>
+<p>--tmpfs gives in-memory writable paths without weakening the read-only guarantee.</p>
+<p><strong>Q178.</strong> How do you give a Swarm service a database password without an environment variable value?</p>
+<p><strong>Answer:</strong> Create a Docker secret and read it from /run/secrets/&lt;name&gt;, e.g. POSTGRES_PASSWORD_FILE</p>
+<p>Secrets are mounted in memory as files, never in the writable layer.</p>
+<p><strong>Q179.</strong> A new image version must replace the old one with no dropped requests. Which combination is right?</p>
+<p><strong>Answer:</strong> Health-gated rolling update (start-first, rollback on failure) plus graceful shutdown</p>
+<p>Never remove capacity before its replacement is provably ready.</p>
+<p><strong>Q180.</strong> A volume holds production data. Which backup is correct?</p>
+<p><strong>Answer:</strong> A throwaway container mounting the volume read-only and writing a tar to a host directory, plus a tested restore into a new volume</p>
+<p>Test restores; a backup never restored is a hope, not a plan.</p>
+<p><strong>Q181.</strong> Containers on the default bridge can't reach each other by name, but they can on a network created with <code>docker network create app-net</code>. Why?</p>
+<p><strong>Answer:</strong> User-defined bridge networks provide embedded DNS name resolution</p>
+<p>The legacy default bridge only supports IPs and --link.</p>
+<p><strong>Q182.</strong> In CI you push images tagged with the commit SHA. What does that buy you?</p>
+<p><strong>Answer:</strong> Traceability: every image maps to the exact source that built it</p>
+<p>It's essential when debugging production weeks later.</p>
+<p><strong>Q183.</strong> When is Kubernetes justified over Compose or Swarm?</p>
+<p><strong>Answer:</strong> Many hosts with varied hardware, multiple teams needing RBAC and namespaces, metric-based autoscaling, or the Helm/operator ecosystem</p>
+<p>For a single team with a handful of hosts and predictable load, Swarm or Compose is often the right size.</p>
+<h2 id="practical-coding-questions">Practical coding questions<a class="headerlink" href="#practical-coding-questions" title="Permanent link">&para;</a></h2>
+<h3 id="isolate-the-tiers">Isolate the tiers<a class="headerlink" href="#isolate-the-tiers" title="Permanent link">&para;</a></h3>
+<p>Fill in the Compose file so that the proxy can reach the api, the api can reach the db, but the proxy cannot reach the db; only the proxy publishes a port; and the data network is internal. The checker parses your YAML and prints the results. (Needs PyYAML: pip install pyyaml.)</p>
+<p>Starter code:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>import yaml
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>COMPOSE = """
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>services:
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>  proxy:
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    image: nginx:1.25
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    # TODO: ports and networks
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>  api:
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    build: ./api
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    # TODO: networks
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>  db:
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    image: postgres:16
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    volumes: ["pgdata:/var/lib/postgresql/data"]
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>    # TODO: networks
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a># TODO: declare the networks (data must be internal)
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>volumes:
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>  pgdata:
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>"""
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>cfg = yaml.safe_load(COMPOSE)
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>svc = cfg["services"]
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>def can_reach(a, b):
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>    return bool(set(svc[a].get("networks", [])) &amp; set(svc[b].get("networks", [])))
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>for a, b in [("proxy", "db"), ("api", "db"), ("proxy", "api")]:
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>    print(f"{a}-&gt;{b}: {can_reach(a, b)}")
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>print("published:", sorted(n for n, s in svc.items() if s.get("ports")))
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>print("internal networks:", sorted(n for n, v in cfg["networks"].items() if v and v.get("internal")))
+</code></pre></div>
+<p>Expected output:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>proxy-&gt;db: False
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>api-&gt;db: True
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>proxy-&gt;api: True
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>published: ['proxy']
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>internal networks: ['data']
+</code></pre></div>
+<p>??? success "Show a solution"</p>
+<div class="highlight"><pre><span></span><code>```
+import yaml
+COMPOSE = """
+services:
+  proxy:
+    image: nginx:1.25
+    ports: ["8080:80"]
+    networks: [public]
+  api:
+    build: ./api
+    networks: [public, data]
+  db:
+    image: postgres:16
+    volumes: ["pgdata:/var/lib/postgresql/data"]
+    networks: [data]
+networks:
+  public:
+  data:
+    internal: true
+volumes:
+  pgdata:
+"""
+cfg = yaml.safe_load(COMPOSE)
+svc = cfg["services"]
+def can_reach(a, b):
+    return bool(set(svc[a].get("networks", [])) &amp; set(svc[b].get("networks", [])))
+for a, b in [("proxy", "db"), ("api", "db"), ("proxy", "api")]:
+    print(f"{a}-&gt;{b}: {can_reach(a, b)}")
+print("published:", sorted(n for n, s in svc.items() if s.get("ports")))
+print("internal networks:", sorted(n for n, v in cfg["networks"].items() if v and v.get("internal")))
+```
+
+Services can talk only if they share a network. proxy is on public, db on data, and api on both, so api bridges them. internal: true stops the data network from reaching outside. Verified by running the checker (PyYAML) against the solution.
+</code></pre></div>
+<h3 id="reorder-for-the-build-cache">Reorder for the build cache<a class="headerlink" href="#reorder-for-the-build-cache" title="Permanent link">&para;</a></h3>
+<p>The NAIVE Dockerfile reinstalls dependencies on every code edit. Write GOOD so that editing app.py rebuilds only COPY . ., while editing requirements.txt rebuilds the install too. The simulation applies the rule 'once one layer misses the cache, every later layer misses'.</p>
+<p>Starter code:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>NAIVE = """FROM python:3.12-slim
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>WORKDIR /app
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>COPY . .
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>RUN pip install -r requirements.txt
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>CMD ["python", "app.py"]"""
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>GOOD = """FROM python:3.12-slim
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a># TODO: reorder so dependencies are installed before the source is copied
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>"""
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>def rebuilt(dockerfile, changed):
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>    """Layers that must rebuild: once one layer misses the cache, every later layer misses too."""
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>    missed, out = False, []
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>    for line in dockerfile.splitlines():
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>        op, _, rest = line.partition(" ")
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>        if op not in ("FROM", "WORKDIR", "COPY", "RUN"):
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>            continue  # CMD only adds metadata
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>        if op == "COPY":
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>            src = rest.split()[0]
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>            if src == "." or src in changed:
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>                missed = missed or bool(src == "." and changed) or src in changed
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>        if missed:
+<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>            out.append(line)
+<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>    return out
+<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>
+<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>print("naive, edit app.py -&gt;", rebuilt(NAIVE, {"app.py"}))
+<a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>print("good, edit app.py -&gt;", rebuilt(GOOD, {"app.py"}))
+<a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a>print("good, edit requirements.txt -&gt;", rebuilt(GOOD, {"requirements.txt"}))
+</code></pre></div>
+<p>Expected output:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>naive, edit app.py -&gt; ['COPY . .', 'RUN pip install -r requirements.txt']
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>good, edit app.py -&gt; ['COPY . .']
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>good, edit requirements.txt -&gt; ['COPY requirements.txt .', 'RUN pip install -r requirements.txt', 'COPY . .']
+</code></pre></div>
+<p>??? success "Show a solution"</p>
+<div class="highlight"><pre><span></span><code>```
+NAIVE = """FROM python:3.12-slim
+WORKDIR /app
+COPY . .
+RUN pip install -r requirements.txt
+CMD ["python", "app.py"]"""
+
+GOOD = """FROM python:3.12-slim
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+COPY . .
+CMD ["python", "app.py"]"""
+
+def rebuilt(dockerfile, changed):
+    """Layers that must rebuild: once one layer misses the cache, every later layer misses too."""
+    missed, out = False, []
+    for line in dockerfile.splitlines():
+        op, _, rest = line.partition(" ")
+        if op not in ("FROM", "WORKDIR", "COPY", "RUN"):
+            continue  # CMD only adds metadata
+        if op == "COPY":
+            src = rest.split()[0]
+            if src == "." or src in changed:
+                missed = missed or bool(src == "." and changed) or src in changed
+        if missed:
+            out.append(line)
+    return out
+
+print("naive, edit app.py -&gt;", rebuilt(NAIVE, {"app.py"}))
+print("good, edit app.py -&gt;", rebuilt(GOOD, {"app.py"}))
+print("good, edit requirements.txt -&gt;", rebuilt(GOOD, {"requirements.txt"}))
+```
+
+Copy the manifest and install dependencies first, then copy the source. Source edits then only invalidate the last COPY. Verified by running the simulation against the solution.
+</code></pre></div>
+<hr />
+<p>More free practice: the <a href="../">Docker Mastery Path</a> curriculum, the <a href="https://learnmasterypath.com/interview-pack/">Interview Prep Pack</a> and the <a href="https://learnmasterypath.com/resume/">free resume ATS check</a>.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+  
+  <nav class="mp-related" aria-label="Related free courses">
+    <h2>Related free courses</h2>
+    <ul>
+      <li><a href="https://learnmasterypath.com/server-ops-mastery-path/">Server Ops</a></li><li><a href="https://learnmasterypath.com/linux-mastery-path/">Linux</a></li><li><a href="https://learnmasterypath.com/nodemcu-mastery-path/">NodeMCU/IoT</a></li><li><a href="https://learnmasterypath.com/terraform-mastery-path/">Terraform</a></li><li><a href="https://learnmasterypath.com/kubernetes-mastery-path/">Kubernetes</a></li>
+      <li><a href="https://learnmasterypath.com/">All 100+ courses &rarr;</a></li>
+    </ul>
+  </nav>
+  
+
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Home">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Home
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../cheat-sheet/" class="md-footer__link md-footer__link--next" aria-label="Next: Cheat Sheet">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Cheat Sheet
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+  <div class="mp-foot">
+    <div class="mp-foot-inner">
+      <a class="mp-foot-brand" href="https://learnmasterypath.com/"><svg class="mp-mark" viewBox="0 0 160 160" role="img" aria-label="Mastery Path logo">
+  <circle cx="80" cy="80" r="74" fill="#FAF7EF" stroke="#2FA98D" stroke-width="5"/>
+  <rect class="mp-bar mp-bar-1" x="36" y="90" width="17" height="24" rx="5" fill="#2FA98D"/>
+  <rect class="mp-bar mp-bar-2" x="59" y="74" width="17" height="40" rx="5" fill="#7FC9B7"/>
+  <rect class="mp-bar mp-bar-3" x="82" y="56" width="17" height="58" rx="5" fill="#E0B457"/>
+  <rect class="mp-bar mp-bar-4" x="105" y="38" width="17" height="76" rx="5" fill="#C97B4A"/>
+  <circle class="mp-dot" cx="44.5" cy="82" r="7" fill="#22261f"/>
+</svg><span>Mastery Path</span></a>
+      <nav class="mp-sitelinks" aria-label="Site and legal links">
+        <a href="https://learnmasterypath.com/">All courses</a>
+        <a href="https://learnmasterypath.com/about.html">About</a>
+        <a href="https://learnmasterypath.com/contact.html">Contact</a>
+        <a href="https://learnmasterypath.com/docker-mastery-path/privacy/">Privacy Policy</a>
+        <a href="https://learnmasterypath.com/terms.html">Terms</a>
+        <a href="https://learnmasterypath.com/docker-mastery-path/license/">License</a>
+        <a href="https://learnmasterypath.com/verify/">Verify a certificate</a>
+      </nav>
+    </div>
+    <p class="mp-license-note">
+      © 2026 Vinod Kumar Sigilipelli · Except where otherwise noted, lesson content is licensed under
+      <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> and code examples under the
+      <a href="https://opensource.org/license/mit">MIT License</a>.
+    </p>
+  </div>
+
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.path", "navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "navigation.indexes", "toc.follow", "content.code.copy", "content.code.annotate", "search.suggest", "search.highlight"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+        <script src="../javascripts/progress-tracker.js"></script>
+      
+        <script src="../javascripts/final-quiz.js"></script>
+      
+    
+  </body>
+</html>
